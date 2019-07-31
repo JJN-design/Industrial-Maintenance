@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class FPSController : MonoBehaviour
 {
+	[Tooltip("How fast the player should move")]
 	[SerializeField] private float m_speed = 10.0f;
+
+	//Forward/backward movement
 	private float m_translation;
+
+	//Left/right movement
 	private float m_strafe;
 
     // Start is called before the first frame update
