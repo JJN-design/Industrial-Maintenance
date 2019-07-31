@@ -20,7 +20,6 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
 		ResetScore(); //set current score to none on scene load
-		Debug.Log("score manager init");
 
 		int[] highScores = FileIO.Load(); //attempt to load the high score from file
 		m_firstHighScore = highScores[0];
@@ -34,18 +33,6 @@ public class ScoreManager : MonoBehaviour
 		{
 			AddScore(1);
 			Debug.Log("Added one score");
-		}
-		if(Input.GetKeyDown(KeyCode.Keypad2))
-		{
-			Debug.Log("Current Score: " + m_currentScore.ToString());
-			Debug.Log("\n1st Highest Score: " + m_firstHighScore.ToString());
-			Debug.Log("\n2nd Highest Score: " + m_secondHighScore.ToString()); 
-			Debug.Log("\n3rd Highest Score: " + m_thirdHighScore.ToString());
-		}
-		if(Input.GetKeyDown(KeyCode.Keypad8))
-		{
-			Debug.Log("Saved new scores");
-			SaveNewScores();
 		}
 		if(Input.GetKeyDown(KeyCode.Keypad4))
 		{
