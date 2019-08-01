@@ -26,12 +26,6 @@ public class MachineManager : MonoBehaviour
 		//the current timer of box production
 		private float m_boxTimer = 0.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -90,7 +84,7 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	private void BreakMachine()
 	{
-		int machineToBreak = Random.Range(0, 3);
+		int machineToBreak = Random.Range(0, 4);
 		MachineIssue issue = GenerateIssue();
 		switch(machineToBreak)
 		{
@@ -105,6 +99,9 @@ public class MachineManager : MonoBehaviour
 			case (2):
 				m_generator.BreakMachine(issue);
 				Debug.Log("Generator broke with issue " + issue.ToString());
+				break;
+			case (3):
+				Debug.Log("No machine was broken");
 				break;
 			default:
 				Debug.LogError("Something went horribly wrong with Random.Range");

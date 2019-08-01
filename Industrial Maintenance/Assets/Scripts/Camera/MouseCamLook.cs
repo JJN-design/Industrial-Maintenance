@@ -36,21 +36,22 @@ public class MouseCamLook : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape))
 			m_canLook = false;
+
+		Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+		mouseDelta = Vector2.Scale(mouseDelta, new Vector2(m_sensitivity * m_smoothing, m_sensitivity * m_smoothing));
+
+		//interpolated float between the two values
+		m_smoothV.x = Mathf.Lerp(m_smoothV.x, mouseDelta.x, 1f / m_smoothing);
+		m_smoothV.y = Mathf.Lerp(m_smoothV.y, mouseDelta.y, 1f / m_smoothing);
+
+		m_mouseLook += m_smoothV;
+		if (m_mouseLook.y > m_xRotationLimitsUpper)
+			m_mouseLook.y = m_xRotationLimitsUpper;
+		if (m_mouseLook.y < m_xRotationLimitsLower)
+			m_mouseLook.y = m_xRotationLimitsLower;
+
 		if(m_canLook)
 		{
-			Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-			mouseDelta = Vector2.Scale(mouseDelta, new Vector2(m_sensitivity * m_smoothing, m_sensitivity * m_smoothing));
-
-			//interpolated float between the two values
-			m_smoothV.x = Mathf.Lerp(m_smoothV.x, mouseDelta.x, 1f / m_smoothing);
-			m_smoothV.y = Mathf.Lerp(m_smoothV.y, mouseDelta.y, 1f / m_smoothing);
-
-			m_mouseLook += m_smoothV;
-			if (m_mouseLook.y > m_xRotationLimitsUpper)
-				m_mouseLook.y = m_xRotationLimitsUpper;
-			if (m_mouseLook.y < m_xRotationLimitsLower)
-				m_mouseLook.y = m_xRotationLimitsLower;
-
 			transform.localRotation = Quaternion.AngleAxis(-m_mouseLook.y, Vector3.right);
 			m_player.transform.localRotation = Quaternion.AngleAxis(m_mouseLook.x, m_player.transform.up);
 		}

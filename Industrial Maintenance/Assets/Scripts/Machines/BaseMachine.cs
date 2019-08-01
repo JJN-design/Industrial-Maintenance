@@ -10,13 +10,34 @@ public enum MachineIssue
 	SPARKING
 }
 
-public class BaseMachine : MonoBehaviour
+abstract public class BaseMachine : MonoBehaviour
 {
 	//Whether or not the machine is currently working
-	protected bool m_isWorking;
+	protected bool m_isWorking = true;
 
 	//If the machine is not working, what the issue with it is
 	protected MachineIssue m_issue;
+
+	[Header("Specific machine variables")]
+	[Tooltip("How long before a fail state is reached while this machine is broken")]
+	[SerializeField] private float m_timeBeforeFailure;
+	private float m_failTimer;
+
+	/// <summary>
+	/// Update function, is called every frame
+	/// </summary>
+	void Update()
+	{
+		if(!m_isWorking)
+		{
+			m_failTimer += Time.deltaTime;
+			if(m_failTimer >= m_timeBeforeFailure)
+			{
+				Debug.Log("Level failed");
+				//TODO: Failure state
+			}
+		}
+	}
 
 	/// <summary>
 	/// Calls for the machine to be broken
@@ -49,4 +70,6 @@ public class BaseMachine : MonoBehaviour
 	{
 		return m_isWorking;
 	}
+
+	abstract public void GenerateVariables();
 }

@@ -13,9 +13,12 @@ public class FPSController : MonoBehaviour
 	//Left/right movement
 	private float m_strafe;
 
+	private Rigidbody m_rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
+		m_rigidbody = GetComponent<Rigidbody>();
 		//turn off cursor
 		Cursor.lockState = CursorLockMode.Locked;
     }
@@ -26,7 +29,8 @@ public class FPSController : MonoBehaviour
 		//Input.GetAxis() is used to get user input
 		m_translation = Input.GetAxis("Vertical") * m_speed * Time.deltaTime;
 		m_strafe = Input.GetAxis("Horizontal") * m_speed * Time.deltaTime;
-		transform.Translate(m_strafe, 0, m_translation);
+		//transform.Translate(m_strafe, 0, m_translation);
+		m_rigidbody.AddRelativeForce(new Vector3(m_strafe, 0, m_translation));
 
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
