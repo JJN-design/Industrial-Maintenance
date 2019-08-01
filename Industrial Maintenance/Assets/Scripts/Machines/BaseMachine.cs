@@ -43,7 +43,7 @@ abstract public class BaseMachine : MonoBehaviour
 	/// Calls for the machine to be broken
 	/// </summary>
 	/// <param name="issue">What the issue is</param>
-	public void BreakMachine(MachineIssue issue)
+	virtual public void BreakMachine(MachineIssue issue)
 	{
 		if (issue == MachineIssue.FIXED) //if the issue given is FIXED, don't break the machine
 			return;
@@ -56,7 +56,7 @@ abstract public class BaseMachine : MonoBehaviour
 	/// <summary>
 	/// Calls for the machine to return to a working state
 	/// </summary>
-	protected void FixMachine()
+	public void FixMachine()
 	{
 		m_isWorking = true;
 		m_issue = MachineIssue.FIXED;
@@ -72,4 +72,13 @@ abstract public class BaseMachine : MonoBehaviour
 	}
 
 	abstract public void GenerateVariables();
+
+	/// <summary>
+	/// Reduces how much time there is left to fix the machine
+	/// </summary>
+	/// <param name="time">How much time to subtract from your time left</param>
+	public void SubtractTime(float time)
+	{
+		m_failTimer += time;
+	}
 }
