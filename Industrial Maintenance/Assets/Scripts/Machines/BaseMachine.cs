@@ -34,6 +34,13 @@ abstract public class BaseMachine : MonoBehaviour
 	[SerializeField] private float m_timeBeforeFailure;
 	private float m_failTimer;
 
+	void Awake()
+	{
+		m_fireParticles.Stop();
+		m_dustParticles.Stop();
+		m_sparkParticles.Stop();
+	}
+
 	/// <summary>
 	/// Update function, is called every frame
 	/// </summary>
