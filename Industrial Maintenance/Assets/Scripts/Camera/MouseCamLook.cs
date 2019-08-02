@@ -14,6 +14,8 @@ public class MouseCamLook : MonoBehaviour
 		[SerializeField] private float m_smoothing = 2.0f;
 		[Tooltip("How far the raycast from the player will go")]
 		[SerializeField] private float m_raycastDist;
+		[Tooltip("The interactable layer")]
+		[SerializeField] private LayerMask m_interactableLayer;
 
 	[Header("Limits")]
 		[Tooltip("How high up the player can look")]
@@ -42,7 +44,6 @@ public class MouseCamLook : MonoBehaviour
 		if(Input.GetButtonDown("Fire1"))
 		{
 			Interact();
-			Debug.Log("Click!");
 		}
 
 		Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -72,7 +73,7 @@ public class MouseCamLook : MonoBehaviour
 		Camera cam = GetComponent<Camera>();
 		RaycastHit hit;
 		Ray ray = cam.ScreenPointToRay(new Vector3(x, y, 0.0f));
-		if (Physics.Raycast(ray, out hit, 9))
+		if (Physics.Raycast(ray, out hit, m_interactableLayer))
 		{
 			if(hit.transform.GetComponent<Interactable>() != null)
 			{
