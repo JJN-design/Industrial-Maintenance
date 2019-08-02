@@ -60,6 +60,7 @@ abstract public class BaseMachine : MonoBehaviour
 	{
 		m_isWorking = true;
 		m_issue = MachineIssue.FIXED;
+		Debug.Log(gameObject.name + " was fixed!");
 	}
 
 	/// <summary>

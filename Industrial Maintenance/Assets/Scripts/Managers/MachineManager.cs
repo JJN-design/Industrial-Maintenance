@@ -5,29 +5,36 @@ using UnityEngine;
 public class MachineManager : MonoBehaviour
 {
 	[Header("Machines")]
-		[Tooltip("The object of the woodchipper")]
-		[SerializeField] private BaseMachine m_woodchipper;
-		[Tooltip("The object of the press")]
-		[SerializeField] private BaseMachine m_press;
-		[Tooltip("The object of the generator")]
-		[SerializeField] private BaseMachine m_generator;
+	[Tooltip("The object of the woodchipper")]
+	[SerializeField] private BaseMachine m_woodchipper;
+	[Tooltip("The object of the press")]
+	[SerializeField] private BaseMachine m_press;
+	[Tooltip("The object of the generator")]
+	[SerializeField] private BaseMachine m_generator;
 
 	//whether or not the factory is currently producing boxes
 	private bool m_producingBoxes = true;
 
 	[Header("Timers")]
-		[Tooltip("How long between machine breakings")]
-		[SerializeField] private float m_timeBetweenBreaks;
-		//The current timer of the machine breaking
-		private float m_breakTimer = 0.0f;
+	[Tooltip("How long between machine breakings")]
+	[SerializeField] private float m_timeBetweenBreaks;
+	//The current timer of the machine breaking
+	private float m_breakTimer = 0.0f;
 	
-		[Tooltip("How long it takes to produce a box")]
-		[SerializeField] private float m_timeBetweenBoxes;
-		//the current timer of box production
-		private float m_boxTimer = 0.0f;
+	[Tooltip("How long it takes to produce a box")]
+	[SerializeField] private float m_timeBetweenBoxes;
+	//the current timer of box production
+	private float m_boxTimer = 0.0f;
 
-    // Update is called once per frame
-    void Update()
+	private void Awake()
+	{
+		m_woodchipper.GenerateVariables();
+		/*m_press.GenerateVariables();
+		m_generator.GenerateVariables();*/
+	}
+
+	// Update is called once per frame
+	void Update()
     {
 		//Check if the factory can produce boxes
 		m_producingBoxes = CheckMachines();
@@ -62,10 +69,10 @@ public class MachineManager : MonoBehaviour
 	{
 		if (!m_woodchipper.GetWorking())
 			return false;
-		if (!m_press.GetWorking())
+		/*if (!m_press.GetWorking())
 			return false;
 		if (!m_generator.GetWorking())
-			return false;
+			return false;*/
 		return true;
 	}
 
@@ -84,7 +91,7 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	private void BreakMachine()
 	{
-		int machineToBreak = Random.Range(0, 4);
+		int machineToBreak = Random.Range(0, /*4*/ 1);
 		MachineIssue issue = GenerateIssue();
 		switch(machineToBreak)
 		{
@@ -92,7 +99,7 @@ public class MachineManager : MonoBehaviour
 				m_woodchipper.BreakMachine(issue);
 				Debug.Log("Woodchipper broke with issue " + issue.ToString());
 				break;
-			case (1):
+			/*case (1):
 				m_press.BreakMachine(issue);
 				Debug.Log("Press broke with issue " + issue.ToString());
 				break;
@@ -102,7 +109,7 @@ public class MachineManager : MonoBehaviour
 				break;
 			case (3):
 				Debug.Log("No machine was broken");
-				break;
+				break;*/
 			default:
 				Debug.LogError("Something went horribly wrong with Random.Range");
 				break;
