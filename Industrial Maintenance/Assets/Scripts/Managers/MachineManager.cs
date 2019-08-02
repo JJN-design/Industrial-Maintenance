@@ -28,9 +28,9 @@ public class MachineManager : MonoBehaviour
 
 	private void Awake()
 	{
-		m_woodchipper.GenerateVariables();
-		/*m_press.GenerateVariables();
-		m_generator.GenerateVariables();*/
+		m_woodchipper.GenerateVariables(this);
+		/*m_press.GenerateVariables(this);
+		m_generator.GenerateVariables(this);*/
 	}
 
 	// Update is called once per frame

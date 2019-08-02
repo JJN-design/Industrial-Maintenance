@@ -77,6 +77,9 @@ public class ScoreManager : MonoBehaviour
 		m_currentScore += value;
 	}
 
+	/// <summary>
+	/// Saves the current score to high scores if applicable
+	/// </summary>
 	static public void SaveNewScores()
 	{
 		//if current score is higher than the third highest score, but is less than the second high score, set a new third highest score

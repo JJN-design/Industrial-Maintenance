@@ -228,10 +228,12 @@ public class Woodchipper : BaseMachine
 	/// Generates the variables the woodchipper may have
 	/// Also creates the buttons
 	/// </summary>
-	override public void GenerateVariables()
+	override public void GenerateVariables(MachineManager manager)
 	{
 		if (m_isGenerated) //if the machine's already had variables generated, don't do it again
 			return;
+
+		m_machineManager = manager;
 
 		//Sets up the buttons for the machine
 		m_smallMagentaButton.Create(this, ButtonType.SMALL_MAGENTA, m_incorrectTime);

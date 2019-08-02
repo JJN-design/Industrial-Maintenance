@@ -7,6 +7,9 @@ public class FPSController : MonoBehaviour
 	[Tooltip("How fast the player should move")]
 	[SerializeField] private float m_speed = 10.0f;
 
+	//Whether or not the player can move
+	private bool m_canMove = true;
+
 	//Forward/backward movement
 	private float m_translation;
 
@@ -30,7 +33,8 @@ public class FPSController : MonoBehaviour
 		m_translation = Input.GetAxis("Vertical") * m_speed * Time.deltaTime;
 		m_strafe = Input.GetAxis("Horizontal") * m_speed * Time.deltaTime;
 		//transform.Translate(m_strafe, 0, m_translation);
-		m_rigidbody.AddRelativeForce(new Vector3(m_strafe, 0, m_translation));
+		if(m_canMove)
+			m_rigidbody.AddRelativeForce(new Vector3(m_strafe, 0, m_translation));
 
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{

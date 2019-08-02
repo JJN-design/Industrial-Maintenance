@@ -10,10 +10,12 @@ public class Generator : BaseMachine
 {
 	private bool m_isGenerated = false;
 
-	override public void GenerateVariables()
+	override public void GenerateVariables(MachineManager manager)
 	{
 		if (m_isGenerated) //if this machine's already been generated before, don't do it again
 			return;
+
+		m_machineManager = manager;
 
 		//TODO variables
 

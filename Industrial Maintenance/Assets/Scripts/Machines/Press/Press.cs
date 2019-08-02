@@ -32,10 +32,12 @@ public class Press : BaseMachine
 	/// <summary>
 	/// Generates the variables for press
 	/// </summary>
-	override public void GenerateVariables()
+	override public void GenerateVariables(MachineManager manager)
 	{
 		if (m_isGenerated) //if the machine's already had variables generated, don't do it again
 			return;
+
+		m_machineManager = manager;
 
 		m_nozzleType = (NozzleType)Random.Range(0, 2);
 		m_RPMRating = (RPMRating)Random.Range(0, 5);
