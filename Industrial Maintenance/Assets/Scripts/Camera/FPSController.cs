@@ -7,6 +7,13 @@ public class FPSController : MonoBehaviour
 	[Tooltip("How fast the player should move")]
 	[SerializeField] private float m_speed = 10.0f;
 
+	[Tooltip("The mouse camera script of the player")]
+	[SerializeField] private MouseCamLook m_mouseCam;
+
+	[Tooltip("The score UI script")]
+	[SerializeField] private ScoreUI m_scoreUI;
+	public ScoreUI GetUI() { return m_scoreUI; }
+
 	//Whether or not the player can move
 	private bool m_canMove = true;
 
@@ -16,6 +23,7 @@ public class FPSController : MonoBehaviour
 	//Left/right movement
 	private float m_strafe;
 
+	//The rigidbody of the player
 	private Rigidbody m_rigidbody;
 
     // Start is called before the first frame update
@@ -36,10 +44,17 @@ public class FPSController : MonoBehaviour
 		if(m_canMove)
 			m_rigidbody.AddRelativeForce(new Vector3(m_strafe, 0, m_translation));
 
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetButtonDown("Cancel"))
 		{
-			//enable cursor
-			Cursor.lockState = CursorLockMode.None;
+			DisableMovement();
+			m_scoreUI.ShowScores();
 		}
     }
+
+	public void DisableMovement()
+	{
+		m_canMove = false;
+		m_mouseCam.DisableMovement();
+		Cursor.lockState = CursorLockMode.None;
+	}
 }

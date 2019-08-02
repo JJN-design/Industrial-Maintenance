@@ -52,7 +52,8 @@ abstract public class BaseMachine : MonoBehaviour
 			if(m_failTimer >= m_timeBeforeFailure)
 			{
 				Debug.Log("Level failed due to " + gameObject.name);
-				//TODO: Failure state
+				m_machineManager.GetController().DisableMovement();
+				m_machineManager.GetController().GetUI().ShowScores();
 			}
 		}
 	}

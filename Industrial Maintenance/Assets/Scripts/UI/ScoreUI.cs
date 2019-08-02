@@ -32,11 +32,11 @@ public class ScoreUI : MonoBehaviour
 		m_firstHighScoreText.text = ScoreManager.GetHighScores()[0].ToString();
 		m_secondHighScoreText.text = ScoreManager.GetHighScores()[1].ToString();
 		m_thirdHighScoreText.text = ScoreManager.GetHighScores()[2].ToString();
+	}
 
-		if(Input.GetKeyDown(KeyCode.Escape))
-		{
-			m_highScorePanel.SetActive(true);
-			ScoreManager.SaveNewScores();
-		}
+	public void ShowScores()
+	{
+		m_highScorePanel.SetActive(true);
+		ScoreManager.SaveNewScores();
 	}
 }

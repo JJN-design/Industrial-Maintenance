@@ -38,9 +38,6 @@ public class MouseCamLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Escape))
-			m_canLook = false;
-
 		if(Input.GetButtonDown("Fire1"))
 		{
 			Interact();
@@ -80,5 +77,10 @@ public class MouseCamLook : MonoBehaviour
 				hit.transform.GetComponent<Interactable>().InteractWith();
 			}
 		}
+	}
+
+	public void DisableMovement()
+	{
+		m_canLook = false;
 	}
 }

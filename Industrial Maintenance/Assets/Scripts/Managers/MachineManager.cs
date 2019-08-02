@@ -26,6 +26,11 @@ public class MachineManager : MonoBehaviour
 	//the current timer of box production
 	private float m_boxTimer = 0.0f;
 
+	[Header("Other Objects")]
+	[Tooltip("The FPS controller of the player")]
+	[SerializeField] private FPSController m_playerController;
+	public FPSController GetController() { return m_playerController; }
+
 	private void Awake()
 	{
 		m_woodchipper.GenerateVariables(this);

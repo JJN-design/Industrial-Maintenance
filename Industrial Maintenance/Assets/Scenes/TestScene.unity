@@ -1277,6 +1277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 1000
+  m_mouseCam: {fileID: 534669906}
+  m_scoreUI: {fileID: 330802708}
 --- !u!136 &492175846
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7621,6 +7623,7 @@ MonoBehaviour:
   m_generator: {fileID: 0}
   m_timeBetweenBreaks: 30
   m_timeBetweenBoxes: 120
+  m_playerController: {fileID: 492175845}
 --- !u!4 &1964062928
 Transform:
   m_ObjectHideFlags: 0
