@@ -12,6 +12,8 @@ public class MouseCamLook : MonoBehaviour
 		[SerializeField] private float m_sensitivity = 5.0f;
 		[Tooltip("The mouse smoothing to be applied")]
 		[SerializeField] private float m_smoothing = 2.0f;
+		[Tooltip("How far the raycast from the player will go")]
+		[SerializeField] private float m_raycastDist;
 
 	[Header("Limits")]
 		[Tooltip("How high up the player can look")]
@@ -36,23 +38,46 @@ public class MouseCamLook : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.Escape))
 			m_canLook = false;
+
+		if(Input.GetButtonDown("Fire1"))
+		{
+			Interact();
+			Debug.Log("Click!");
+		}
+
+		Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+		mouseDelta = Vector2.Scale(mouseDelta, new Vector2(m_sensitivity * m_smoothing, m_sensitivity * m_smoothing));
+
+		//interpolated float between the two values
+		m_smoothV.x = Mathf.Lerp(m_smoothV.x, mouseDelta.x, 1f / m_smoothing);
+		m_smoothV.y = Mathf.Lerp(m_smoothV.y, mouseDelta.y, 1f / m_smoothing);
+
+		m_mouseLook += m_smoothV;
+		if (m_mouseLook.y > m_xRotationLimitsUpper)
+			m_mouseLook.y = m_xRotationLimitsUpper;
+		if (m_mouseLook.y < m_xRotationLimitsLower)
+			m_mouseLook.y = m_xRotationLimitsLower;
+
 		if(m_canLook)
 		{
-			Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-			mouseDelta = Vector2.Scale(mouseDelta, new Vector2(m_sensitivity * m_smoothing, m_sensitivity * m_smoothing));
-
-			//interpolated float between the two values
-			m_smoothV.x = Mathf.Lerp(m_smoothV.x, mouseDelta.x, 1f / m_smoothing);
-			m_smoothV.y = Mathf.Lerp(m_smoothV.y, mouseDelta.y, 1f / m_smoothing);
-
-			m_mouseLook += m_smoothV;
-			if (m_mouseLook.y > m_xRotationLimitsUpper)
-				m_mouseLook.y = m_xRotationLimitsUpper;
-			if (m_mouseLook.y < m_xRotationLimitsLower)
-				m_mouseLook.y = m_xRotationLimitsLower;
-
 			transform.localRotation = Quaternion.AngleAxis(-m_mouseLook.y, Vector3.right);
 			m_player.transform.localRotation = Quaternion.AngleAxis(m_mouseLook.x, m_player.transform.up);
+		}
+	}
+
+	private void Interact()
+	{
+		int x = Screen.width / 2;
+		int y = Screen.height / 2;
+		Camera cam = GetComponent<Camera>();
+		RaycastHit hit;
+		Ray ray = cam.ScreenPointToRay(new Vector3(x, y, 0.0f));
+		if (Physics.Raycast(ray, out hit, 9))
+		{
+			if(hit.transform.GetComponent<Interactable>() != null)
+			{
+				hit.transform.GetComponent<Interactable>().InteractWith();
+			}
 		}
 	}
 }
