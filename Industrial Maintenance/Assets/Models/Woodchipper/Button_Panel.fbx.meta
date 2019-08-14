@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c53eabaa67ce2d743b76c5fd0c75e263
+guid: 6a7569c30ac9638468e5bf871e66b2ce
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: lambert2
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Blades
+    4300000: Button_Panel
   externalObjects: {}
   materials:
     importMaterials: 1

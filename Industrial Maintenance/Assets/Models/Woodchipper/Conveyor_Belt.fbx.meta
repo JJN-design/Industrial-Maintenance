@@ -1,14 +1,22 @@
 fileFormatVersion: 2
-guid: c53eabaa67ce2d743b76c5fd0c75e263
+guid: ac6a79e6f43e5824f8f7e1658bf9fe72
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert2
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Blades
+    100000: Belt
+    100002: Belt_Frame
+    100004: //RootNode
+    400000: Belt
+    400002: Belt_Frame
+    400004: //RootNode
+    2100000: lambert1
+    2300000: Belt
+    2300002: Belt_Frame
+    3300000: Belt
+    3300002: Belt_Frame
+    4300000: Belt
+    4300002: Belt_Frame
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1

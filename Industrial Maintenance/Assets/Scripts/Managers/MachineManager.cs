@@ -64,6 +64,11 @@ public class MachineManager : MonoBehaviour
 			m_breakTimer -= m_timeBetweenBreaks;
 			BreakMachine();
 		}
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            BreakMachine();
+        }
     }
 
 	/// <summary>
