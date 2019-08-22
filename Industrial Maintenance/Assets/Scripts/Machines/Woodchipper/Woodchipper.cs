@@ -236,11 +236,11 @@ public class Woodchipper : BaseMachine
 		m_machineManager = manager;
 
 		//Sets up the buttons for the machine
-		m_smallMagentaButton.Create(this, ButtonType.SMALL_MAGENTA, m_incorrectTime);
-		m_smallYellowButton.Create(this, ButtonType.SMALL_YELLOW, m_incorrectTime);
-		m_smallBlackButton.Create(this, ButtonType.SMALL_BLACK, m_incorrectTime);
-		m_smallCyanButton.Create(this, ButtonType.SMALL_CYAN, m_incorrectTime);
-		m_bigRedButton.Create(this, ButtonType.BIG_RED, m_incorrectTime);
+		m_smallMagentaButton.Create(this, WoodchipperInteractableType.SMALL_MAGENTA, m_incorrectTime);
+		m_smallYellowButton.Create(this, WoodchipperInteractableType.SMALL_YELLOW, m_incorrectTime);
+		m_smallBlackButton.Create(this, WoodchipperInteractableType.SMALL_BLACK, m_incorrectTime);
+		m_smallCyanButton.Create(this, WoodchipperInteractableType.SMALL_CYAN, m_incorrectTime);
+		m_bigRedButton.Create(this, WoodchipperInteractableType.BIG_RED, m_incorrectTime);
 
 		//Randomly generates variables for the machine
 		CreateBlades();
@@ -284,23 +284,23 @@ public class Woodchipper : BaseMachine
 	/// </summary>
 	/// <param name="button">The type of button to be set correct next</param>
 	/// <param name="secondStage">Whether or not this is the second stage of button press</param>
-	public void SetNewButton(ButtonType button, bool secondStage)
+	public void SetNewButton(WoodchipperInteractableType button, bool secondStage)
 	{
 		switch(button) //Switch for the new button
 		{
-			case (ButtonType.BIG_RED):
+			case (WoodchipperInteractableType.BIG_RED):
 				m_bigRedButton.SetCorrect(true, secondStage);
 				break;
-			case (ButtonType.SMALL_BLACK):
+			case (WoodchipperInteractableType.SMALL_BLACK):
 				m_smallBlackButton.SetCorrect(true, secondStage);
 				break;
-			case (ButtonType.SMALL_CYAN):
+			case (WoodchipperInteractableType.SMALL_CYAN):
 				m_smallCyanButton.SetCorrect(true, secondStage);
 				break;
-			case (ButtonType.SMALL_MAGENTA):
+			case (WoodchipperInteractableType.SMALL_MAGENTA):
 				m_smallMagentaButton.SetCorrect(true, secondStage);
 				break;
-			case (ButtonType.SMALL_YELLOW):
+			case (WoodchipperInteractableType.SMALL_YELLOW):
 				m_smallYellowButton.SetCorrect(true, secondStage);
 				break;
 			default:
