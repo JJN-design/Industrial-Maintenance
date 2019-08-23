@@ -20,4 +20,9 @@ abstract public class Interactable : MonoBehaviour
 	/// Code for interacting with this interactable
 	/// </summary>
 	abstract public void InteractWith();
+
+	/// <summary>
+	/// Code for stopping interaction with this interactable
+	/// </summary>
+	abstract public void StopInteractingWith();
 }

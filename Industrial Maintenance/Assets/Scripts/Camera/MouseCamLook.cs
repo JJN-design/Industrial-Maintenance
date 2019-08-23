@@ -16,6 +16,8 @@ public class MouseCamLook : MonoBehaviour
 		[SerializeField] private float m_raycastDist;
 		[Tooltip("The interactable layer")]
 		[SerializeField] private LayerMask m_interactableLayer;
+		[Tooltip("How far you can move from the interactable without cancelling interaction")]
+		[SerializeField] private float m_interactDistance;
 
 	[Header("Limits")]
 		[Tooltip("How high up the player can look")]
@@ -28,6 +30,9 @@ public class MouseCamLook : MonoBehaviour
 
 	private Vector2 m_mouseLook;
 	private Vector2 m_smoothV;
+
+	private Interactable m_currentlyInteractingWith;
+	private bool m_isInteracting;
     
 	// Start is called before the first frame update
     void Start()
@@ -41,6 +46,18 @@ public class MouseCamLook : MonoBehaviour
 		if(Input.GetButtonDown("Fire1"))
 		{
 			Interact();
+		}
+
+		if(Input.GetButtonUp("Fire1"))
+		{
+			StopInteract();
+		}
+
+		if(m_currentlyInteractingWith != null)
+		{
+			float distance = Vector3.Distance(m_currentlyInteractingWith.transform.position, transform.position);
+			if (distance >= m_interactDistance)
+				StopInteract();
 		}
 
 		Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -75,8 +92,19 @@ public class MouseCamLook : MonoBehaviour
 			Debug.Log("Hit " + hit.transform.name);
 			if(hit.transform.GetComponent<Interactable>() != null && hit.distance <= m_raycastDist)
 			{
-				hit.transform.GetComponent<Interactable>().InteractWith();
+				m_currentlyInteractingWith = hit.transform.GetComponent<Interactable>();
+				m_currentlyInteractingWith.InteractWith();
 			}
+		}
+	}
+
+	private void StopInteract()
+	{
+		if(m_isInteracting)
+		{
+			m_isInteracting = false;
+			m_currentlyInteractingWith.StopInteractingWith();
+			m_currentlyInteractingWith = null;
 		}
 	}
 

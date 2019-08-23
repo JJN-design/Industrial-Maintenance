@@ -118,4 +118,13 @@ public class WoodchipperInteractable : Interactable
 			m_secondStage = false;
 		}
 	}
+
+	/// <summary>
+	/// Code for stopping interaction with this interactable
+	/// Empty on woodchipper interactable
+	/// </summary>
+	public override void StopInteractingWith()
+	{
+		return;
+	}
 }

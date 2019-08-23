@@ -12,7 +12,7 @@ enum NozzleType
 }
 
 //The possible RPM ratings
-enum RPMRating
+public enum RPMRating
 {
 	RPM700, 
 	RPM856,
@@ -108,6 +108,12 @@ public class Press : BaseMachine
 		}
 	}
 
+	/// <summary>
+	/// Gets the RPM rating
+	/// </summary>
+	/// <returns>The RPM rating of the machine</returns>
+	public RPMRating GetRPM() { return m_RPMRating; }
+
 	private int m_modelNumber;
 	//whether the model number is even or not
 	private bool m_modelIsEven;
@@ -132,6 +138,10 @@ public class Press : BaseMachine
 	[Header("Other variables")]
 	[Tooltip("How much time to be subtracted on an incorrect button press in seconds")]
 	[SerializeField] private float m_incorrectTime;
+	[Tooltip("How long the restart button needs to be held to restart on a non-multiple of 100 RPM rating")]
+	[SerializeField] private float m_buttonHoldTime;
+	[Tooltip("How long the restart button can be held for before failure on a multiple of 100 RPM rating")]
+	[SerializeField] private float m_maxButtonHoldTime;
 
 	/// <summary>
 	/// Breaks the machine
@@ -146,23 +156,23 @@ public class Press : BaseMachine
 		{
 			case (MachineIssue.DUST_PLUMES):
 				if (m_modelIsEven)
-					m_secondBolt.SetCorrect(true, false);
+					m_secondBolt.SetCorrect(true);
 				else
-					m_thirdBolt.SetCorrect(true, false);
+					m_thirdBolt.SetCorrect(true);
 				break;
 			case (MachineIssue.ON_FIRE):
 				if (m_nozzleType == NozzleType.NARROW)
-					m_tightenInk.SetCorrect(true, false);
+					m_tightenInk.SetCorrect(true);
 				else if (m_nozzleType == NozzleType.WIDE)
-					m_loosenInk.SetCorrect(true, false);
+					m_loosenInk.SetCorrect(true);
 				else
 					Debug.LogError("Invalid nozzle type on press!");
 				break;
 			case (MachineIssue.SPARKING):
 				if (m_RPMRating == RPMRating.RPM700 || m_RPMRating == RPMRating.RPM856)
-					m_yellowLever.SetCorrect(true, false);
+					m_yellowLever.SetCorrect(true);
 				else if (m_RPMRating == RPMRating.RPM900 || m_RPMRating == RPMRating.RPM902 || m_RPMRating == RPMRating.RPM1000)
-					m_orangeLever.SetCorrect(true, false);
+					m_orangeLever.SetCorrect(true);
 				else
 					Debug.LogError("Invalid RPM rating on press!");
 				break;
@@ -193,7 +203,7 @@ public class Press : BaseMachine
 		m_loosenInk.Create(this, PressInteractableType.LOOSEN_INK, m_incorrectTime);
 		m_yellowLever.Create(this, PressInteractableType.YELLOW_LEVER, m_incorrectTime);
 		m_orangeLever.Create(this, PressInteractableType.ORANGE_LEVER, m_incorrectTime);
-		m_restartButton.Create(this, PressInteractableType.RESTART_BUTTON, m_incorrectTime);
+		m_restartButton.Create(this, PressInteractableType.RESTART_BUTTON, m_incorrectTime, m_buttonHoldTime, m_maxButtonHoldTime);
 
 		//Randomly generates variables for the machine
 		CreateNozzle();
@@ -207,10 +217,36 @@ public class Press : BaseMachine
 	/// <summary>
 	/// Sets a new correct interactable
 	/// </summary>
-	/// <param name="interactableType"></param>
-	/// <param name="secondStage"></param>
-	public void SetNewInteractable(PressInteractableType interactableType, bool secondStage)
+	/// <param name="interactableType">The new interactable to be set as correct</param>
+	/// <param name="secondStage">Whether or not this is on the second stage</param>
+	public void SetNewInteractable(PressInteractableType interactableType)
 	{
-		switch(interactableType);
+		switch(interactableType)
+		{
+			case (PressInteractableType.SECOND_BOLT):
+				m_secondBolt.SetCorrect(true);
+				break;
+			case (PressInteractableType.THIRD_BOLT):
+				m_thirdBolt.SetCorrect(true);
+				break;
+			case (PressInteractableType.LOOSEN_INK):
+				m_loosenInk.SetCorrect(true);
+				break;
+			case (PressInteractableType.TIGHTEN_INK):
+				m_tightenInk.SetCorrect(true);
+				break;
+			case (PressInteractableType.ORANGE_LEVER):
+				m_orangeLever.SetCorrect(true);
+				break;
+			case (PressInteractableType.YELLOW_LEVER):
+				m_yellowLever.SetCorrect(true);
+				break;
+			case (PressInteractableType.RESTART_BUTTON):
+				m_restartButton.SetCorrect(true);
+				break;
+			default:
+				Debug.LogError("Invalid interactable type on Press!");
+				break;
+		}
 	}
 }
