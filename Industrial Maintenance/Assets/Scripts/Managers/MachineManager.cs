@@ -34,8 +34,8 @@ public class MachineManager : MonoBehaviour
 	private void Awake()
 	{
 		m_woodchipper.GenerateVariables(this);
-		/*m_press.GenerateVariables(this);
-		m_generator.GenerateVariables(this);*/
+		m_press.GenerateVariables(this);
+		//m_generator.GenerateVariables(this);
 	}
 
 	// Update is called once per frame
@@ -79,9 +79,9 @@ public class MachineManager : MonoBehaviour
 	{
 		if (!m_woodchipper.GetWorking())
 			return false;
-		/*if (!m_press.GetWorking())
+		if (!m_press.GetWorking())
 			return false;
-		if (!m_generator.GetWorking())
+		/*if (!m_generator.GetWorking())
 			return false;*/
 		return true;
 	}
@@ -101,7 +101,7 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	private void BreakMachine()
 	{
-		int machineToBreak = Random.Range(0, /*4*/ 1);
+		int machineToBreak = Random.Range(0, /*4*/ 2);
 		MachineIssue issue = GenerateIssue();
 		switch(machineToBreak)
 		{
@@ -109,11 +109,11 @@ public class MachineManager : MonoBehaviour
 				m_woodchipper.BreakMachine(issue);
 				Debug.Log("Woodchipper broke with issue " + issue.ToString());
 				break;
-			/*case (1):
+			case (1):
 				m_press.BreakMachine(issue);
 				Debug.Log("Press broke with issue " + issue.ToString());
 				break;
-			case (2):
+			/*case (2):
 				m_generator.BreakMachine(issue);
 				Debug.Log("Generator broke with issue " + issue.ToString());
 				break;
