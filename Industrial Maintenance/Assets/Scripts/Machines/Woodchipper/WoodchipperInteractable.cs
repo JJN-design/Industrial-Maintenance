@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ButtonType
+public enum WoodchipperInteractableType
 {
 	SMALL_MAGENTA,
 	SMALL_YELLOW,
@@ -17,7 +17,7 @@ public class WoodchipperInteractable : Interactable
 	private Woodchipper m_parent;
 
 	//The type of button this interactable is
-	private ButtonType m_buttonType;
+	private WoodchipperInteractableType m_buttonType;
 
 	//Whether or not this button is on the second stage
 	private bool m_secondStage = false;
@@ -32,7 +32,7 @@ public class WoodchipperInteractable : Interactable
 	/// <param name="machine">The machine this button is linked to</param>
 	/// <param name="buttonType">The type of button this button is</param>
 	/// <param name="incorrectTime">How much time is subtracted when an incorrect button is pressed</param>
-	public void Create(Woodchipper machine, ButtonType buttonType, float incorrectTime)
+	public void Create(Woodchipper machine, WoodchipperInteractableType buttonType, float incorrectTime)
 	{
 		m_parent = machine;
 		m_buttonType = buttonType;
@@ -63,46 +63,46 @@ public class WoodchipperInteractable : Interactable
 		}
 		Debug.Log("Correct button!");
 		m_isCorrect = false; //Reset correct state
-		if(m_buttonType != ButtonType.BIG_RED && !m_secondStage) //If the button isn't a 'big red' button and we're not on the second stage, check light colour
+		if(m_buttonType != WoodchipperInteractableType.BIG_RED && !m_secondStage) //If the button isn't a 'big red' button and we're not on the second stage, check light colour
 		{
 			switch(m_parent.GetLightColour())
 			{
 				case (LightColour.BLUE): 
 					switch (m_buttonType) //If a blue light, set new button to clockwise small button
 					{
-						case (ButtonType.SMALL_MAGENTA):
-							m_parent.SetNewButton(ButtonType.SMALL_CYAN, true);
+						case (WoodchipperInteractableType.SMALL_MAGENTA):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_CYAN, true);
 							break;
-						case (ButtonType.SMALL_YELLOW):
-							m_parent.SetNewButton(ButtonType.SMALL_MAGENTA, true);
+						case (WoodchipperInteractableType.SMALL_YELLOW):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_MAGENTA, true);
 							break;
-						case (ButtonType.SMALL_BLACK):
-							m_parent.SetNewButton(ButtonType.SMALL_YELLOW, true);
+						case (WoodchipperInteractableType.SMALL_BLACK):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_YELLOW, true);
 							break;
-						case (ButtonType.SMALL_CYAN):
-							m_parent.SetNewButton(ButtonType.SMALL_BLACK, true);
+						case (WoodchipperInteractableType.SMALL_CYAN):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_BLACK, true);
 							break;
 						default:
 							break;
 					}
 					break;
 				case (LightColour.ORANGE): //If an orange light, set new button to big red button
-					m_parent.SetNewButton(ButtonType.BIG_RED, true);
+					m_parent.SetNewButton(WoodchipperInteractableType.BIG_RED, true);
 					break;
 				case (LightColour.PINK): //If a pink light, set new button to diagonal button
 					switch (m_buttonType)
 					{
-						case (ButtonType.SMALL_MAGENTA):
-							m_parent.SetNewButton(ButtonType.SMALL_BLACK, true);
+						case (WoodchipperInteractableType.SMALL_MAGENTA):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_BLACK, true);
 							break;
-						case (ButtonType.SMALL_YELLOW):
-							m_parent.SetNewButton(ButtonType.SMALL_CYAN, true);
+						case (WoodchipperInteractableType.SMALL_YELLOW):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_CYAN, true);
 							break;
-						case (ButtonType.SMALL_BLACK):
-							m_parent.SetNewButton(ButtonType.SMALL_MAGENTA, true);
+						case (WoodchipperInteractableType.SMALL_BLACK):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_MAGENTA, true);
 							break;
-						case (ButtonType.SMALL_CYAN):
-							m_parent.SetNewButton(ButtonType.SMALL_YELLOW, true);
+						case (WoodchipperInteractableType.SMALL_CYAN):
+							m_parent.SetNewButton(WoodchipperInteractableType.SMALL_YELLOW, true);
 							break;
 						default:
 							break;
@@ -117,5 +117,14 @@ public class WoodchipperInteractable : Interactable
 			m_parent.FixMachine();
 			m_secondStage = false;
 		}
+	}
+
+	/// <summary>
+	/// Code for stopping interaction with this interactable
+	/// Empty on woodchipper interactable
+	/// </summary>
+	public override void StopInteractingWith()
+	{
+		return;
 	}
 }
