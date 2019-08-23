@@ -26,6 +26,22 @@ public class Press : BaseMachine
 	//Whether or not the machine's variables have been generated yet
 	private bool m_isGenerated = false;
 
+	[Header("Interactables")]
+	[Tooltip("The second bolt from the left")]
+	[SerializeField] private PressInteractable m_secondBolt;
+	[Tooltip("The third bolt from the left")]
+	[SerializeField] private PressInteractable m_thirdBolt;
+	[Tooltip("The interactable to tighten the ink valve")]
+	[SerializeField] private PressInteractable m_tightenInk;
+	[Tooltip("The interactable to loosen the ink valve")]
+	[SerializeField] private PressInteractable m_loosenInk;
+	[Tooltip("The yellow coloured lever")]
+	[SerializeField] private PressInteractable m_yellowLever;
+	[Tooltip("The orange coloured lever")]
+	[SerializeField] private PressInteractable m_orangeLever;
+	[Tooltip("The button to restart the machine")]
+	[SerializeField] private PressInteractable m_restartButton;
+
 	private NozzleType m_nozzleType;
 	[Header("Nozzle Types")]
 	[Tooltip("The narrow nozzle")]
@@ -112,7 +128,53 @@ public class Press : BaseMachine
 		else
 			m_modelIsEven = false;
 	}
-	
+
+	[Header("Other variables")]
+	[Tooltip("How much time to be subtracted on an incorrect button press in seconds")]
+	[SerializeField] private float m_incorrectTime;
+
+	/// <summary>
+	/// Breaks the machine
+	/// </summary>
+	/// <param name="issue">The issue that was generated for the machine</param>
+	public override void BreakMachine(MachineIssue issue)
+	{
+		//call base machine break code
+		base.BreakMachine(issue);
+
+		switch(issue)
+		{
+			case (MachineIssue.DUST_PLUMES):
+				if (m_modelIsEven)
+					m_secondBolt.SetCorrect(true, false);
+				else
+					m_thirdBolt.SetCorrect(true, false);
+				break;
+			case (MachineIssue.ON_FIRE):
+				if (m_nozzleType == NozzleType.NARROW)
+					m_tightenInk.SetCorrect(true, false);
+				else if (m_nozzleType == NozzleType.WIDE)
+					m_loosenInk.SetCorrect(true, false);
+				else
+					Debug.LogError("Invalid nozzle type on press!");
+				break;
+			case (MachineIssue.SPARKING):
+				if (m_RPMRating == RPMRating.RPM700 || m_RPMRating == RPMRating.RPM856)
+					m_yellowLever.SetCorrect(true, false);
+				else if (m_RPMRating == RPMRating.RPM900 || m_RPMRating == RPMRating.RPM902 || m_RPMRating == RPMRating.RPM1000)
+					m_orangeLever.SetCorrect(true, false);
+				else
+					Debug.LogError("Invalid RPM rating on press!");
+				break;
+			case (MachineIssue.FIXED):
+				//no issue, no action needed
+				break;
+			default:
+				Debug.LogError("Invalid issue generated for press!");
+				break;
+		}
+	}
+
 	/// <summary>
 	/// Generates the variables for press
 	/// </summary>
@@ -121,9 +183,17 @@ public class Press : BaseMachine
 		if (m_isGenerated) //if the machine's already had variables generated, don't do it again
 			return;
 
+		//set manager
 		m_machineManager = manager;
 
-		//TODO interactable generation
+		//Create interactables
+		m_secondBolt.Create(this, PressInteractableType.SECOND_BOLT, m_incorrectTime);
+		m_thirdBolt.Create(this, PressInteractableType.THIRD_BOLT, m_incorrectTime);
+		m_tightenInk.Create(this, PressInteractableType.TIGHTEN_INK, m_incorrectTime);
+		m_loosenInk.Create(this, PressInteractableType.LOOSEN_INK, m_incorrectTime);
+		m_yellowLever.Create(this, PressInteractableType.YELLOW_LEVER, m_incorrectTime);
+		m_orangeLever.Create(this, PressInteractableType.ORANGE_LEVER, m_incorrectTime);
+		m_restartButton.Create(this, PressInteractableType.RESTART_BUTTON, m_incorrectTime);
 
 		//Randomly generates variables for the machine
 		CreateNozzle();
@@ -132,5 +202,15 @@ public class Press : BaseMachine
 
 		//confirm that this machine has been generated
 		m_isGenerated = true;
+	}
+
+	/// <summary>
+	/// Sets a new correct interactable
+	/// </summary>
+	/// <param name="interactableType"></param>
+	/// <param name="secondStage"></param>
+	public void SetNewInteractable(PressInteractableType interactableType, bool secondStage)
+	{
+		switch(interactableType);
 	}
 }

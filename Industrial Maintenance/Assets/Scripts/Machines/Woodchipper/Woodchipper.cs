@@ -233,6 +233,7 @@ public class Woodchipper : BaseMachine
 		if (m_isGenerated) //if the machine's already had variables generated, don't do it again
 			return;
 
+		//set manager
 		m_machineManager = manager;
 
 		//Sets up the buttons for the machine
