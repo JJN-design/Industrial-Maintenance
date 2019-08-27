@@ -26,6 +26,9 @@ public class FPSController : MonoBehaviour
 	//The rigidbody of the player
 	private Rigidbody m_rigidbody;
 
+	//Debug escape key
+	private bool m_isPaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +49,11 @@ public class FPSController : MonoBehaviour
 
 		if(Input.GetButtonDown("Cancel"))
 		{
+			if (m_isPaused)
+				Application.Quit();
 			DisableMovement();
 			m_scoreUI.ShowScores();
+			m_isPaused = true;
 		}
     }
 
