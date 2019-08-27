@@ -65,6 +65,7 @@ public class WoodchipperInteractable : Interactable
 		m_isCorrect = false; //Reset correct state
 		if(m_buttonType != WoodchipperInteractableType.BIG_RED && !m_secondStage) //If the button isn't a 'big red' button and we're not on the second stage, check light colour
 		{
+			m_parent.EnableLight(); //sets light colour to correct one
 			switch(m_parent.GetLightColour())
 			{
 				case (LightColour.BLUE): 

@@ -171,35 +171,62 @@ public class Woodchipper : BaseMachine
 	}
 
 	private LightColour m_lightColour;
-	[Header("Light Colours")]
-	[Tooltip("The pink light")]
-	[SerializeField] private GameObject m_pinkLight;
-	[Tooltip("The orange light")]
-	[SerializeField] private GameObject m_orangeLight;
-	[Tooltip("The blue light")]
-	[SerializeField] private GameObject m_blueLight;
+	[Header("Light")]
+	[Tooltip("The renderer of the light")]
+	[SerializeField] private Renderer m_light;
+	[Tooltip("The pink light colour")]
+	[SerializeField] private Material m_pinkLight;
+	[Tooltip("The orange light colour")]
+	[SerializeField] private Material m_orangeLight;
+	[Tooltip("The blue light colour")]
+	[SerializeField] private Material m_blueLight;
+	[Tooltip("The disabled light colour")]
+	[SerializeField] private Material m_disabledLight;
 
 	/// <summary>
-	/// Randomly sets a light colour and makes the correct light visible
+	/// Sets the material of the light to be disabled
 	/// </summary>
 	private void CreateLight()
 	{
+		m_light.material = m_disabledLight;
+	}
+
+	/// <summary>
+	/// Randomly sets a new light colour
+	/// </summary>
+	private void RandomiseLight()
+	{
 		m_lightColour = (LightColour)Random.Range(0, 3);
+	}
+
+	/// <summary>
+	/// Sets the light colour to the correct colour
+	/// </summary>
+	public void EnableLight()
+	{
 		switch(m_lightColour)
 		{
-			case (LightColour.PINK):
-				m_pinkLight.SetActive(true);
+			case (LightColour.BLUE):
+				m_light.material = m_blueLight;
 				break;
 			case (LightColour.ORANGE):
-				m_orangeLight.SetActive(true);
+				m_light.material = m_orangeLight;
 				break;
-			case (LightColour.BLUE):
-				m_blueLight.SetActive(true);
+			case (LightColour.PINK):
+				m_light.material = m_pinkLight;
 				break;
-			default:
-				Debug.LogError("Light colour randomisation went wrong on woodchipper");
+			default: //should only happen if light colour wasn't randomised
+				Debug.Log("Invalid light colour on woodchipper!");
 				break;
 		}
+	}
+
+	/// <summary>
+	/// Sets the light colour back to disabled
+	/// </summary>
+	public void DisableLight()
+	{
+		m_light.material = m_disabledLight;
 	}
 
 	/// <summary>
@@ -263,6 +290,9 @@ public class Woodchipper : BaseMachine
 		//Base machine break
 		base.BreakMachine(issue);
 
+		//sets a new light colour
+		RandomiseLight();
+
 		//Sets the correct button to press based on the variables the machine may have
 		if (m_inputWords == InputWords.TIMBER && m_conveyorColour == ConveyorColour.BLUE) //A blue conveyor with an input labelled 'Timber' means small yellow is correct
 			m_smallYellowButton.SetCorrect(true, false);
@@ -308,5 +338,17 @@ public class Woodchipper : BaseMachine
 				Debug.LogError("Invalid button type on woodchipper");
 				break;
 		}
+	}
+
+	/// <summary>
+	/// Calls for the machine to return to a working state
+	/// </summary>
+	public override void FixMachine()
+	{
+		//call the base function
+		base.FixMachine();
+
+		//set light colour back to disabled
+		DisableLight();
 	}
 }

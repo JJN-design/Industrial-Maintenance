@@ -90,7 +90,7 @@ abstract public class BaseMachine : MonoBehaviour
 	/// <summary>
 	/// Calls for the machine to return to a working state
 	/// </summary>
-	public void FixMachine()
+	virtual public void FixMachine()
 	{
 		switch(m_issue)
 		{
