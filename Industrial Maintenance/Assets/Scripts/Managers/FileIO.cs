@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
+public struct HighScore
+{
+	public int score;
+	public string name;
+}
+
 public class FileIO : MonoBehaviour
 {
 	/// <summary>
@@ -12,7 +18,7 @@ public class FileIO : MonoBehaviour
 	/// <param name="highScore1">The highest score reached</param>
 	/// <param name="highScore2">The second highest score reached</param>
 	/// <param name="highScore3">The third highest score reached</param>
-	static public void Save(int highScore1, int highScore2, int highScore3)
+	static public void Save(HighScore highScore1, HighScore highScore2, HighScore highScore3)
 	{
 		FileStream file;
 		string fileDestination = Application.persistentDataPath + "/save.dat";
@@ -24,7 +30,7 @@ public class FileIO : MonoBehaviour
 			file = File.OpenWrite(fileDestination); //if file exists, open it for writing
 
 		//condense high scores into an array
-		int[] highScores = { highScore1, highScore2, highScore3 };
+		HighScore[] highScores = { highScore1, highScore2, highScore3 };
 
 		//write high scores to file in binary format
 		BinaryFormatter formatter = new BinaryFormatter();
@@ -38,7 +44,7 @@ public class FileIO : MonoBehaviour
 	/// 
 	/// </summary>
 	/// <returns></returns>
-	static public int[] Load()
+	static public HighScore[] Load()
 	{
 		FileStream file;
 		string fileDestination = Application.persistentDataPath + "/save.dat";
@@ -48,13 +54,16 @@ public class FileIO : MonoBehaviour
 			file = File.OpenRead(fileDestination); //file exists, open it for reading
 		else
 		{
-			int[] emptyArray = { 0, 0, 0 };
+			HighScore newScore = new HighScore();
+			newScore.name = "Empty";
+			newScore.score = 0;
+			HighScore[] emptyArray = { newScore, newScore, newScore };
 			return emptyArray; //no file exists, return empty array
 		}
 
 		//reformat and read the binary file
 		BinaryFormatter formatter = new BinaryFormatter();
-		int[] highScores = (int[])formatter.Deserialize(file);
+		HighScore[] highScores = (HighScore[])formatter.Deserialize(file);
 		return highScores;
 	}
 }

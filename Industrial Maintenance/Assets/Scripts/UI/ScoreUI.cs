@@ -21,19 +21,27 @@ public class ScoreUI : MonoBehaviour
 
 	[Tooltip("The display for the third highest score")]
 	[SerializeField] private Text m_thirdHighScoreText;
-
-	// Update is called once per frame
+	
+	/// <summary>
+	/// Updates the text for the manager
+	/// </summary>
 	void Update()
     {
 		//update score display
 		m_scoreText.text = ScoreManager.GetScore().ToString();
 
+		//get high scores
+		HighScore[] highScores = ScoreManager.GetHighScores();
+
 		//update high scores
-		m_firstHighScoreText.text = ScoreManager.GetHighScores()[0].ToString();
-		m_secondHighScoreText.text = ScoreManager.GetHighScores()[1].ToString();
-		m_thirdHighScoreText.text = ScoreManager.GetHighScores()[2].ToString();
+		m_firstHighScoreText.text = highScores[0].name + " - " + highScores[0].score.ToString();
+		m_secondHighScoreText.text = highScores[1].name + " - " + highScores[1].score.ToString();
+		m_thirdHighScoreText.text = highScores[2].name + " - " + highScores[2].score.ToString();
 	}
 
+	/// <summary>
+	/// Saves the scores and shows the panel
+	/// </summary>
 	public void ShowScores()
 	{
 		m_highScorePanel.SetActive(true);

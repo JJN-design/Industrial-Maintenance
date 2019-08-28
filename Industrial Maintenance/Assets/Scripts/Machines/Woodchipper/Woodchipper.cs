@@ -296,18 +296,18 @@ public class Woodchipper : BaseMachine
 		//Sets the correct button to press based on the variables the machine may have
 		if (m_inputWords == InputWords.TIMBER && m_conveyorColour == ConveyorColour.BLUE) //A blue conveyor with an input labelled 'Timber' means small yellow is correct
 			m_smallYellowButton.SetCorrect(true, false);
-		else if (m_bladeOrientation == BladeOrientation.HORIZONTAL && m_inputWords == InputWords.WOOD) //A horizontal blade assembly with an input labelled 'Wood' means big red is correct
-			m_bigRedButton.SetCorrect(true, false);
+		else if (m_bladeOrientation == BladeOrientation.HORIZONTAL && m_inputWords == InputWords.WOOD) //A horizontal blade assembly with an input labelled 'Wood' means small black is correct
+			m_smallBlackButton.SetCorrect(true, false);
 		else if (m_conveyorColour == ConveyorColour.WHITE && m_warrantyLabel == WarrantyLabel.MISSING) //A missing warranty with a white conveyor means small cyan is correct
 			m_smallCyanButton.SetCorrect(true, false);
-		else if (m_warrantyLabel == WarrantyLabel.EXPIRED && m_bladeOrientation == BladeOrientation.VERTICAL) //An expired warranty with a vertical blade assembly means big red is correct
-			m_bigRedButton.SetCorrect(true, false);
+		else if (m_warrantyLabel == WarrantyLabel.EXPIRED && m_bladeOrientation == BladeOrientation.VERTICAL) //An expired warranty with a vertical blade assembly means small yellow is correct
+			m_smallYellowButton.SetCorrect(true, false);
 		else if (m_conveyorColour == ConveyorColour.YELLOW) //A yellow conveyor means small magenta is correct
 			m_smallMagentaButton.SetCorrect(true, false);
-		else if (m_conveyorColour == ConveyorColour.RED && m_inputWords == InputWords.LUMBER) //A red conveyor with an input labelled 'Lumber' means big red is correct
+		else if (m_conveyorColour == ConveyorColour.RED && m_inputWords == InputWords.LUMBER) //A red conveyor with an input labelled 'Lumber' means small cyan is correct
+			m_smallCyanButton.SetCorrect(true, false);
+		else //If no other conditions are met, big red is correct
 			m_bigRedButton.SetCorrect(true, false);
-		else //If no other conditions are met, small black is correct
-			m_smallBlackButton.SetCorrect(true, false);
 	}
 
 	/// <summary>
