@@ -25,6 +25,10 @@ public class MouseCamLook : MonoBehaviour
 		[Tooltip("How low down the player can look")]
 		[SerializeField] private float m_xRotationLimitsLower;
 
+	[Header("Objects")]
+	[Tooltip("The particle system for button pressing")]
+	[SerializeField] private ParticleSystem m_particles;
+
 	//The player
 	private GameObject m_player;
 
@@ -92,6 +96,7 @@ public class MouseCamLook : MonoBehaviour
 			Debug.Log("Hit " + hit.transform.name);
 			if(hit.transform.GetComponent<Interactable>() != null && hit.distance <= m_raycastDist)
 			{
+				m_particles.Play();
 				m_currentlyInteractingWith = hit.transform.GetComponent<Interactable>();
 				m_currentlyInteractingWith.InteractWith();
 			}
