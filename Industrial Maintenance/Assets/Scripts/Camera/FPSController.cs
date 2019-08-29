@@ -32,6 +32,7 @@ public class FPSController : MonoBehaviour
 		m_rigidbody = GetComponent<Rigidbody>();
 		//turn off cursor
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -56,5 +57,6 @@ public class FPSController : MonoBehaviour
 		m_canMove = false;
 		m_mouseCam.DisableMovement();
 		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 }
