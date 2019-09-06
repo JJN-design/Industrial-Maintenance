@@ -55,6 +55,7 @@ public class WoodchipperInteractable : Interactable
 	/// </summary>
 	public override void InteractWith()
 	{
+		base.InteractWith();
 		if(!m_isCorrect) //If this button isn't correct, subtract time remaining before failure
 		{
 			Debug.Log("Incorrect button!");
@@ -126,6 +127,7 @@ public class WoodchipperInteractable : Interactable
 	/// </summary>
 	public override void StopInteractingWith()
 	{
+		base.StopInteractingWith();
 		return;
 	}
 }
