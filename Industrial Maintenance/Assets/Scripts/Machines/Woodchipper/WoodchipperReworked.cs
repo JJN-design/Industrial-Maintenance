@@ -121,7 +121,7 @@ public class WoodchipperReworked : BaseMachine
 	[SerializeField] private SpinningBlades m_leftBlades;
 	[Tooltip("The right (in horizontal orientation) blade")]
 	[SerializeField] private SpinningBlades m_rightBlades;
-	[Tooltip("How fast the blades should spin")]
+	[Tooltip("How fast the blades should spin at 500 RPM")]
 	[SerializeField] private float m_bladeSpinSpeed;
 	[Tooltip("The multiplier for blade spin speed when")]
 	[SerializeField] private float m_brokenBladeMultiplier;
@@ -139,8 +139,8 @@ public class WoodchipperReworked : BaseMachine
 	{
 		m_bladeSpinDirection = (BladeSpinDirection)Random.Range(0, 2);
 
-		m_leftBlades.Create(m_bladeSpinDirection, m_bladeSpinSpeed, m_brokenBladeMultiplier);
-		m_rightBlades.Create(m_bladeSpinDirection, -m_bladeSpinSpeed, m_brokenBladeMultiplier);
+		m_leftBlades.Create(m_bladeSpinDirection, m_bladeSpinSpeed, m_brokenBladeMultiplier, m_RPM);
+		m_rightBlades.Create(m_bladeSpinDirection, -m_bladeSpinSpeed, m_brokenBladeMultiplier, m_RPM);
 	}
 
 	/// <summary>
@@ -305,15 +305,76 @@ public class WoodchipperReworked : BaseMachine
 	public RotationRate GetRotationRate() { return m_RPM; }
 
 	/// <summary>
-	/// Sets up variables for rotation rate
+	/// Sets up variables for rotation rate and sets the text field to reflect the rotation rate
 	/// </summary>
 	private void CreateRotationRate()
 	{
 		m_RPM = (RotationRate)Random.Range(0, 5);
+		switch (m_RPM)
+		{
+			case (RotationRate.RPM300):
+				m_RPMField.text = m_RPM300Text;
+				break;
+			case (RotationRate.RPM400):
+				m_RPMField.text = m_RPM400Text;
+				break;
+			case (RotationRate.RPM500):
+				m_RPMField.text = m_RPM500Text;
+				break;
+			case (RotationRate.RPM600):
+				m_RPMField.text = m_RPM600Text;
+				break;
+			case (RotationRate.RPM700):
+				m_RPMField.text = m_RPM700Text;
+				break;
+			default:
+				m_RPMField.text = "INVALID RPM";
+				Debug.LogError("Randomisation went wrong for RPM rating on WoodchipperReworked");
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Updates the rotation rate and sets the text field to reflect the new rotation rate
+	/// </summary>
+	/// <param name="newRate"></param>
+	private void UpdateRotationRate(RotationRate newRate)
+	{
+		//set the new rpm rate, and update the spinning blades
+		m_RPM = newRate; 
+		m_leftBlades.UpdateMachineRPM(m_RPM, m_bladeSpinSpeed);
+		m_rightBlades.UpdateMachineRPM(m_RPM, -m_bladeSpinSpeed);
+		switch (m_RPM) //modify the text field
+		{
+			case (RotationRate.RPM300):
+				m_RPMField.text = m_RPM300Text;
+				break;
+			case (RotationRate.RPM400):
+				m_RPMField.text = m_RPM400Text;
+				break;
+			case (RotationRate.RPM500):
+				m_RPMField.text = m_RPM500Text;
+				break;
+			case (RotationRate.RPM600):
+				m_RPMField.text = m_RPM600Text;
+				break;
+			case (RotationRate.RPM700):
+				m_RPMField.text = m_RPM700Text;
+				break;
+			default:
+				m_RPMField.text = "INVALID RPM";
+				Debug.LogError("Invalid RPM rating passed on UpdateRotationRate for WoodchipperReworked");
+				break;
+		}
 	}
 
 	#endregion //Machine RPM
 
+	#region Machine Pressure
+
+	private PressureGauge m_pressure;
+
+	#endregion //Machine Pressure
 	/// <summary>
 	/// Initially generates the variables the woodchipper might have
 	/// </summary>
@@ -325,8 +386,9 @@ public class WoodchipperReworked : BaseMachine
 
 		//Create the variables
 		CreateAxle();
-		CreateBlades();
 		CreateRattlingPipe();
+		CreateRotationRate();
+		CreateBlades();
 
 		//sets manager
 		m_machineManager = manager;
