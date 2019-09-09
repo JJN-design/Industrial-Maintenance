@@ -309,7 +309,10 @@ public class WoodchipperReworked : BaseMachine
 	/// </summary>
 	private void CreateRotationRate()
 	{
+		//randomly select an rpm rating
 		m_RPM = (RotationRate)Random.Range(0, 5);
+
+		//set the text field to the proper text
 		switch (m_RPM)
 		{
 			case (RotationRate.RPM300):
@@ -373,8 +376,75 @@ public class WoodchipperReworked : BaseMachine
 	#region Machine Pressure
 
 	private PressureGauge m_pressure;
+	[Header("Pressure Gauge variables")]
+	[Tooltip("The GameObject for the 30 PSI reading gauge")]
+	[SerializeField] private GameObject m_30PSIGauge;
+	[Tooltip("The GameObject for the 45 PSI reading gauge")]
+	[SerializeField] private GameObject m_45PSIGauge;
+	[Tooltip("The GameObject for the 60 PSI reading gauge")]
+	[SerializeField] private GameObject m_60PSIGauge;
+	[Tooltip("The GameObject for the 75 PSI reading gauge")]
+	[SerializeField] private GameObject m_75PSIGauge;
+	[Tooltip("The GameObject for the 90 PSI reading gauge")]
+	[SerializeField] private GameObject m_90PSIGauge;
+
+	/// <summary>
+	/// Gets the current pressure rating of the machine
+	/// </summary>
+	/// <returns>The current pressure rating</returns>
+	public PressureGauge GetPressure() { return m_pressure; }
+
+	/// <summary>
+	/// Randomly sets a pressure rating for the machine, and makes the correct gauge active, while also making the other gauges inactive
+	/// </summary>
+	private void CreatePressure()
+	{
+		//Randomly select a pressure rating
+		PressureGauge newPressure = (PressureGauge)Random.Range(0, 5);
+
+		//set the pressure rating
+		UpdatePressure(newPressure);
+	}
+
+	/// <summary>
+	/// Sets a new pressure rating, and updates the visible gauge to match
+	/// </summary>
+	/// <param name="newPressure">The new pressure rating for the machine</param>
+	private void UpdatePressure(PressureGauge newPressure)
+	{
+		//sets the new rating
+		m_pressure = newPressure;
+
+		//deactivate all gauges
+		m_30PSIGauge.SetActive(false);
+		m_45PSIGauge.SetActive(false);
+		m_60PSIGauge.SetActive(false);
+		m_75PSIGauge.SetActive(false);
+		m_90PSIGauge.SetActive(false);
+
+		//activate the correct one
+		switch (m_pressure)
+		{
+			case (PressureGauge.PSI30):
+				m_30PSIGauge.SetActive(true);
+				break;
+			case (PressureGauge.PSI45):
+				m_45PSIGauge.SetActive(true);
+				break;
+			case (PressureGauge.PSI60):
+				m_60PSIGauge.SetActive(true);
+				break;
+			case (PressureGauge.PSI75):
+				m_75PSIGauge.SetActive(true);
+				break;
+			case (PressureGauge.PSI90):
+				m_90PSIGauge.SetActive(true);
+				break;
+		}
+	}
 
 	#endregion //Machine Pressure
+
 	/// <summary>
 	/// Initially generates the variables the woodchipper might have
 	/// </summary>
@@ -389,6 +459,7 @@ public class WoodchipperReworked : BaseMachine
 		CreateRattlingPipe();
 		CreateRotationRate();
 		CreateBlades();
+		CreatePressure();
 
 		//sets manager
 		m_machineManager = manager;
