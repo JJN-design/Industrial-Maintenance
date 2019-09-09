@@ -58,13 +58,13 @@ public class WoodchipperReworked : BaseMachine
 	[SerializeField] private Vector3 m_verticalRotation;
 	[Tooltip("The rotation of the blade assembly in horizontal configuration")]
 	[SerializeField] private Vector3 m_horizontalRotation;
-	
+
 	/// <summary>
 	/// Gets the axle orientation of the woodchipper
 	/// </summary>
 	/// <returns>The current axle orientation</returns>
 	public AxleOrientation GetAxleOrientation() { return m_axleOrientation; }
-	
+
 	/// <summary>
 	/// Randomly sets a blade orientation and sets the correct rotation
 	/// </summary>
@@ -72,7 +72,7 @@ public class WoodchipperReworked : BaseMachine
 	{
 		//Randomly sets a configuration for the axle
 		m_axleOrientation = (AxleOrientation)Random.Range(0, 2);
-		switch(m_axleOrientation)
+		switch (m_axleOrientation)
 		{
 			case (AxleOrientation.VERTICAL):
 				Quaternion verticalRotation = Quaternion.Euler(m_verticalRotation);
@@ -247,7 +247,7 @@ public class WoodchipperReworked : BaseMachine
 	private void StartRattlingPipe()
 	{
 		m_isPipeRattling = true;
-		switch(m_rattlingPipe)
+		switch (m_rattlingPipe)
 		{
 			case (RattlingPipe.GREEN):
 				m_greenPipe.StartRattling();
@@ -344,7 +344,7 @@ public class WoodchipperReworked : BaseMachine
 	private void UpdateRotationRate(RotationRate newRate)
 	{
 		//set the new rpm rate, and update the spinning blades
-		m_RPM = newRate; 
+		m_RPM = newRate;
 		m_leftBlades.UpdateMachineRPM(m_RPM, m_bladeSpinSpeed);
 		m_rightBlades.UpdateMachineRPM(m_RPM, -m_bladeSpinSpeed);
 		switch (m_RPM) //modify the text field
@@ -444,6 +444,44 @@ public class WoodchipperReworked : BaseMachine
 	}
 
 	#endregion //Machine Pressure
+
+	#region Interactables
+
+	[Header("Interactables")]
+	[Tooltip("The blue lever")]
+	[SerializeField] private WoodchipperInteractableReworked m_blueLever;
+	[Tooltip("The red lever")]
+	[SerializeField] private WoodchipperInteractableReworked m_redLever;
+	[Tooltip("The A button")]
+	[SerializeField] private WoodchipperInteractableReworked m_buttonA;
+	[Tooltip("The B button")]
+	[SerializeField] private WoodchipperInteractableReworked m_buttonB;
+	[Tooltip("The C button")]
+	[SerializeField] private WoodchipperInteractableReworked m_buttonC;
+	[Tooltip("The D button")]
+	[SerializeField] private WoodchipperInteractableReworked m_buttonD;
+	[Tooltip("The E button")]
+	[SerializeField] private WoodchipperInteractableReworked m_buttonE;
+
+	/// <summary>
+	/// Creates all the interactables
+	/// </summary>
+	private void CreateInteractables()
+	{
+		m_blueLever.Create(this, WoodchipperInteractableTypeV2.BLUE_LEVER, m_incorrectTimeSubtraction);
+		m_redLever.Create(this, WoodchipperInteractableTypeV2.RED_LEVER, m_incorrectTimeSubtraction);
+		m_buttonA.Create(this, WoodchipperInteractableTypeV2.BUTTON_A, m_incorrectTimeSubtraction);
+		m_buttonB.Create(this, WoodchipperInteractableTypeV2.BUTTON_B, m_incorrectTimeSubtraction);
+		m_buttonC.Create(this, WoodchipperInteractableTypeV2.BUTTON_C, m_incorrectTimeSubtraction);
+		m_buttonD.Create(this, WoodchipperInteractableTypeV2.BUTTON_D, m_incorrectTimeSubtraction);
+		m_buttonE.Create(this, WoodchipperInteractableTypeV2.BUTTON_E, m_incorrectTimeSubtraction);
+	}
+
+	#endregion //Interactables
+
+	[Header("Misc. Variables")]
+	[Tooltip("How much time is lost when you press the wrong button")]
+	[SerializeField] private float m_incorrectTimeSubtraction;
 
 	/// <summary>
 	/// Initially generates the variables the woodchipper might have

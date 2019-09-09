@@ -24,6 +24,9 @@ public class WoodchipperInteractableReworked : Interactable
     //How much time is lost when an incorrect interactable is pressed
     private float m_incorrectTimeSubtraction;
 
+	//What stage of fixing the machine are we at?
+	private int m_currentStage;
+
 	/// <summary>
 	/// Sets initial variables for interactable
 	/// </summary>
@@ -53,5 +56,14 @@ public class WoodchipperInteractableReworked : Interactable
 	{
 		base.StopInteractingWith();
 		//TODO
+	}
+
+	/// <summary>
+	/// Function to be called when the machine is fixed
+	/// </summary>
+	public void MachineFixed()
+	{
+		m_isCorrect = false;
+		m_currentStage = 0;
 	}
 }
