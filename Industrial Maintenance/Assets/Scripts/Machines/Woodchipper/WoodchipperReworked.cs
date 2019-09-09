@@ -464,4 +464,27 @@ public class WoodchipperReworked : BaseMachine
 		//sets manager
 		m_machineManager = manager;
 	}
+
+	/// <summary>
+	/// Calls base fix machine, also randomly sets a new value for all the variables
+	/// </summary>
+	public override void FixMachine()
+	{
+		//call base function
+		base.FixMachine();
+
+		//randomly generate new variables
+		AxleOrientation newAxles = (AxleOrientation)Random.Range(0, 2);
+		BladeSpinDirection newSpin = (BladeSpinDirection)Random.Range(0, 2);
+		RattlingPipe newRattle = (RattlingPipe)Random.Range(0, 4);
+		RotationRate newRotateSpeed = (RotationRate)Random.Range(0, 5);
+		PressureGauge newPressure = (PressureGauge)Random.Range(0, 5);
+
+		//update all the variables
+		UpdateAxle(newAxles);
+		UpdateBlades(newSpin);
+		UpdateRattlingPipe(newRattle);
+		UpdateRotationRate(newRotateSpeed);
+		UpdatePressure(newPressure);
+	}
 }

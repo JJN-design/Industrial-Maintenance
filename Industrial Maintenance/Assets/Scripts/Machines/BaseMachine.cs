@@ -121,6 +121,11 @@ abstract public class BaseMachine : MonoBehaviour
 		return m_isWorking;
 	}
 
+	/// <summary>
+	/// Abstract function for generating machine variables
+	/// Called from the machine manager
+	/// </summary>
+	/// <param name="manager">The machine manager</param>
 	abstract public void GenerateVariables(MachineManager manager);
 
 	/// <summary>
