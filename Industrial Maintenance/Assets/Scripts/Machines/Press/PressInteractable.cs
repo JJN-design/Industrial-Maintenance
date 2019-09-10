@@ -108,6 +108,8 @@ public class PressInteractable : Interactable
 	/// </summary>
 	public override void InteractWith()
 	{
+		base.InteractWith(); //call base interact with
+
 		if(!m_isCorrect) //if button is incorrect, subtract time remaining and stop going through code
 		{
 			Debug.Log("Incorrect button!");
@@ -129,6 +131,8 @@ public class PressInteractable : Interactable
 	/// </summary>
 	public override void StopInteractingWith()
 	{
+		base.StopInteractingWith(); //call base stop interacting with
+
 		if(m_isPressed) //if already pressed, continue with code
 		{
 			m_isPressed = false; //reset pressed state
