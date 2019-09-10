@@ -244,7 +244,7 @@ public class WoodchipperReworked : BaseMachine
 	/// <summary>
 	/// Start rattling the currently active pipe
 	/// </summary>
-	private void StartRattlingPipe()
+	public void StartRattlingPipe()
 	{
 		m_isPipeRattling = true;
 		switch (m_rattlingPipe)
@@ -517,6 +517,10 @@ public class WoodchipperReworked : BaseMachine
 		RattlingPipe newRattle = (RattlingPipe)Random.Range(0, 4);
 		RotationRate newRotateSpeed = (RotationRate)Random.Range(0, 5);
 		PressureGauge newPressure = (PressureGauge)Random.Range(0, 5);
+
+		//Hide variables
+		StopRattlingPipe();
+		//TODO close panels
 
 		//update all the variables
 		UpdateAxle(newAxles);
