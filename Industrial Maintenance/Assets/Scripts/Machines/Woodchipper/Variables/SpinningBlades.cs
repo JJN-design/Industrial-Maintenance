@@ -130,6 +130,6 @@ public class SpinningBlades : MonoBehaviour
 	private void Update()
 	{
 		//rotate the blades a little each frame
-		transform.Rotate(Vector3.up, m_currentSpinSpeed * Time.deltaTime);
+		transform.Rotate(Vector3.right, m_currentSpinSpeed * Time.deltaTime);
 	}
 }
