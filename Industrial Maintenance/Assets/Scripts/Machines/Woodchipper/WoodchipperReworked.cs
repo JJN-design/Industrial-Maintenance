@@ -507,6 +507,9 @@ public class WoodchipperReworked : BaseMachine
 
 		//sets manager
 		m_machineManager = manager;
+
+		//set is generated
+		m_isGenerated = true;
 	}
 
 	/// <summary>
