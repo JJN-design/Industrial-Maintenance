@@ -22,7 +22,7 @@ public class RattlingPipes : MonoBehaviour
 	/// </summary>
 	private void Awake()
 	{
-		m_startPos = transform.localPosition;
+		m_startPos = transform.position;
 	}
 
 	/// <summary>
@@ -32,7 +32,7 @@ public class RattlingPipes : MonoBehaviour
 	{
 		if(m_isRattling)
 		{
-			Vector3 newPosition = m_startPos; //not sure if should use m_startPos or transform.localPosition here
+			Vector3 newPosition = transform.position; //not sure if should use m_startPos or transform.localPosition here
 			newPosition.x = newPosition.x + Mathf.Sin(Time.time * m_shakeSpeed.x) * m_shakeIntensity.x;
 			newPosition.y = newPosition.y + Mathf.Sin(Time.time * m_shakeSpeed.y) * m_shakeIntensity.y;
 			newPosition.z = newPosition.z + Mathf.Sin(Time.time * m_shakeSpeed.z) * m_shakeIntensity.z;
