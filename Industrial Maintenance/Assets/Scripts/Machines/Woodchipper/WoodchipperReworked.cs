@@ -170,10 +170,6 @@ public class WoodchipperReworked : BaseMachine
 	[SerializeField] private RattlingPipes m_bluePipe;
 	[Tooltip("The red pipe")]
 	[SerializeField] private RattlingPipes m_redPipe;
-	[Tooltip("How fast pipes should shake in the 3 axis")]
-	[SerializeField] private Vector3 m_pipeShakeSpeed;
-	[Tooltip("How much pipes should shake")]
-	[SerializeField] private float m_pipeShakeIntensity;
 
 	/// <summary>
 	/// Gets which pipe is rattling
