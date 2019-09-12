@@ -1,0 +1,274 @@
+fileFormatVersion: 2
+guid: 14e69c232774b3f4b8915434e41663af
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Big_Button
+    100002: Blades_1
+    100004: Blades_2
+    100006: Body
+    100008: Bolts1
+    100010: Bolts2
+    100012: Bolts2 1
+    100014: Bolts3
+    100016: Box
+    100018: Box_Cannon
+    100020: Button_Panel
+    100022: Coolant
+    100024: Cube
+    100026: Cylinder
+    100028: Door
+    100030: Door_Hinge
+    100032: Funnel
+    100034: Funnel_and_blades
+    100036: Funnel_Frame1
+    100038: Gear1
+    100040: Gear2
+    100042: Gear3
+    100044: Glass_Tube
+    100046: //RootNode
+    100048: Label
+    100050: Light1
+    100052: Panel
+    100054: Panel 1
+    100056: Panel_Box
+    100058: Pipes
+    100060: Pipes_1
+    100062: Pipes_2
+    100064: Pipes_3
+    100066: Pipes_4
+    100068: PSI_Tube
+    100070: RPM_DIal
+    100072: RPM_Dial
+    100074: Small_Button_1
+    100076: Small_Button_2
+    100078: Small_Button_3
+    100080: Small_Button_4
+    100082: Stands
+    100084: transform1
+    100086: transform99
+    100088: Woodchipper_Panel
+    400000: Big_Button
+    400002: Blades_1
+    400004: Blades_2
+    400006: Body
+    400008: Bolts1
+    400010: Bolts2
+    400012: Bolts2 1
+    400014: Bolts3
+    400016: Box
+    400018: Box_Cannon
+    400020: Button_Panel
+    400022: Coolant
+    400024: Cube
+    400026: Cylinder
+    400028: Door
+    400030: Door_Hinge
+    400032: Funnel
+    400034: Funnel_and_blades
+    400036: Funnel_Frame1
+    400038: Gear1
+    400040: Gear2
+    400042: Gear3
+    400044: Glass_Tube
+    400046: //RootNode
+    400048: Label
+    400050: Light1
+    400052: Panel
+    400054: Panel 1
+    400056: Panel_Box
+    400058: Pipes
+    400060: Pipes_1
+    400062: Pipes_2
+    400064: Pipes_3
+    400066: Pipes_4
+    400068: PSI_Tube
+    400070: RPM_DIal
+    400072: RPM_Dial
+    400074: Small_Button_1
+    400076: Small_Button_2
+    400078: Small_Button_3
+    400080: Small_Button_4
+    400082: Stands
+    400084: transform1
+    400086: transform99
+    400088: Woodchipper_Panel
+    2100000: lambert2
+    2100002: lambert3
+    2100004: lambert68
+    2100006: lambert70
+    2100008: lambert67
+    2100010: lambert47
+    2100012: lambert76
+    2100014: lambert75
+    2100016: lambert1
+    2300000: Big_Button
+    2300002: Blades_1
+    2300004: Blades_2
+    2300006: Bolts2 1
+    2300008: Box
+    2300010: Box_Cannon
+    2300012: Coolant
+    2300014: Cube
+    2300016: Cylinder
+    2300018: Door
+    2300020: Door_Hinge
+    2300022: Funnel
+    2300024: Funnel_Frame1
+    2300026: Gear1
+    2300028: Glass_Tube
+    2300030: Label
+    2300032: Light1
+    2300034: Panel 1
+    2300036: Pipes_1
+    2300038: Pipes_2
+    2300040: Pipes_3
+    2300042: Pipes_4
+    2300044: RPM_Dial
+    2300046: Small_Button_1
+    2300048: Small_Button_2
+    2300050: Small_Button_3
+    2300052: Small_Button_4
+    2300054: Stands
+    3300000: Big_Button
+    3300002: Blades_1
+    3300004: Blades_2
+    3300006: Bolts2 1
+    3300008: Box
+    3300010: Box_Cannon
+    3300012: Coolant
+    3300014: Cube
+    3300016: Cylinder
+    3300018: Door
+    3300020: Door_Hinge
+    3300022: Funnel
+    3300024: Funnel_Frame1
+    3300026: Gear1
+    3300028: Glass_Tube
+    3300030: Label
+    3300032: Light1
+    3300034: Panel 1
+    3300036: Pipes_1
+    3300038: Pipes_2
+    3300040: Pipes_3
+    3300042: Pipes_4
+    3300044: RPM_Dial
+    3300046: Small_Button_1
+    3300048: Small_Button_2
+    3300050: Small_Button_3
+    3300052: Small_Button_4
+    3300054: Stands
+    4300000: Label
+    4300002: Cylinder
+    4300004: Stands
+    4300006: Box_Cannon
+    4300008: Cube
+    4300010: Small_Button_1
+    4300012: Panel
+    4300014: Big_Button
+    4300016: Small_Button_2
+    4300018: Small_Button_3
+    4300020: Small_Button_4
+    4300022: Pipes_1
+    4300024: Pipes_2
+    4300026: Pipes_3
+    4300028: Pipes_4
+    4300030: Funnel
+    4300032: Gear1
+    4300034: Funnel_Frame1
+    4300036: Blades_1
+    4300038: Blades_2
+    4300040: Light1
+    4300042: Box
+    4300044: Door_Hinge
+    4300046: Door
+    4300048: RPM_Dial
+    4300050: Glass_Tube
+    4300052: Coolant
+    4300054: Bolts2
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
