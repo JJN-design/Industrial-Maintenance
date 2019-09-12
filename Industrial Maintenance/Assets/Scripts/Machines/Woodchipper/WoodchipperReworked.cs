@@ -496,14 +496,7 @@ public class WoodchipperReworked : BaseMachine
 		CreatePressure();
 
 		//Create the interactables
-		m_buttonA.Create(this, WoodchipperInteractableTypeV2.BUTTON_A, m_incorrectTimeSubtraction);
-		m_buttonB.Create(this, WoodchipperInteractableTypeV2.BUTTON_B, m_incorrectTimeSubtraction);
-		m_buttonC.Create(this, WoodchipperInteractableTypeV2.BUTTON_C, m_incorrectTimeSubtraction);
-		m_buttonD.Create(this, WoodchipperInteractableTypeV2.BUTTON_D, m_incorrectTimeSubtraction);
-		m_buttonE.Create(this, WoodchipperInteractableTypeV2.BUTTON_E, m_incorrectTimeSubtraction);
-
-		m_redLever.Create(this, WoodchipperInteractableTypeV2.RED_LEVER, m_incorrectTimeSubtraction);
-		m_blueLever.Create(this, WoodchipperInteractableTypeV2.BLUE_LEVER, m_incorrectTimeSubtraction);
+		CreateInteractables();
 
 		//sets manager
 		m_machineManager = manager;

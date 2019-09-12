@@ -9,8 +9,8 @@ public class MachineManager : MonoBehaviour
 	[SerializeField] private BaseMachine m_woodchipper;
 	[Tooltip("The object of the press")]
 	[SerializeField] private BaseMachine m_press;
-	[Tooltip("The object of the generator")]
-	[SerializeField] private BaseMachine m_generator;
+	[Tooltip("The object of the painter")]
+	[SerializeField] private BaseMachine m_painter;
 
 	//whether or not the factory is currently producing boxes
 	private bool m_producingBoxes = true;
@@ -35,7 +35,7 @@ public class MachineManager : MonoBehaviour
 	{
 		m_woodchipper.GenerateVariables(this);
 		//m_press.GenerateVariables(this);
-		//m_generator.GenerateVariables(this);
+		//m_painter.GenerateVariables(this);
 	}
 
 	// Update is called once per frame
@@ -81,7 +81,7 @@ public class MachineManager : MonoBehaviour
 			return false;
 		/*if (!m_press.GetWorking())
 			return false;
-		if (!m_generator.GetWorking())
+		if (!m_painter.GetWorking())
 			return false;*/
 		return true;
 	}
@@ -114,8 +114,8 @@ public class MachineManager : MonoBehaviour
 				Debug.Log("Press broke with issue " + issue.ToString());
 				break;
 			case (2):
-				m_generator.BreakMachine(issue);
-				Debug.Log("Generator broke with issue " + issue.ToString());
+				m_painter.BreakMachine(issue);
+				Debug.Log("Painter broke with issue " + issue.ToString());
 				break;
 			case (3):
 				Debug.Log("No machine was broken");
