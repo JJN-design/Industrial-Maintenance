@@ -40,7 +40,7 @@ public class Painter : BaseMachine
 	private PainterLight m_lightColour;
 	[Header("Light Colour variables")]
 	[Tooltip("The three different lights")]
-	[SerializeField] private PainterLightDisplay[] m_lights = new PainterLightDisplay[3];
+	[SerializeField] private PainterLightDisplay[] m_lights = new PainterLightDisplay[4];
 	[Tooltip("The red colour")]
 	[SerializeField] private Color m_red = new Color(1.0f, 0.0f, 0.0f);
 	[Tooltip("The rose colour")]
@@ -78,10 +78,10 @@ public class Painter : BaseMachine
 	/// <summary>
 	/// Sets the light colour to the current colour
 	/// </summary>
-	/// <param name="puzzleStage">What puzzle stage light should be enabled, should be 0, 1, or 2</param>
+	/// <param name="puzzleStage">What puzzle stage light should be enabled, should be 0, 1, 2, or 3</param>
 	private void EnableLight(int puzzleStage)
 	{
-		if(puzzleStage >= 3 || puzzleStage < 0) //if puzzle stage isn't 0, 1, or 2, throw an error
+		if(puzzleStage >= 4 || puzzleStage < 0) //if puzzle stage isn't 0, 1, 2, or 3, throw an error
 		{
 			Debug.LogError("Invalid puzzleStage on Painter.EnableLight()!");
 			return;
@@ -127,10 +127,10 @@ public class Painter : BaseMachine
 	/// <summary>
 	/// Sets the light colour to disabled
 	/// </summary>
-	/// <param name="puzzleStage">What stage light colour should be disabled, should be 0, 1, or 2</param>
+	/// <param name="puzzleStage">What stage light colour should be disabled, should be 0, 1, 2, or 3</param>
 	private void DisableLight(int puzzleStage)
 	{
-		if (puzzleStage >= 3 || puzzleStage < 0)
+		if (puzzleStage >= 4 || puzzleStage < 0)
 		{
 			Debug.LogError("Invalid puzzleStage on Painter.DisableLight()!");
 			return;
@@ -415,14 +415,14 @@ public class Painter : BaseMachine
 		//call base
 		base.BreakMachine(issue);
 
-		//set puzzles left to 3
-		m_puzzlesLeft = 3;
+		//set puzzles left to 4
+		m_puzzlesLeft = 4;
 
 		//generates a light colour
 		GenerateLight();
 
 		//enable light
-		EnableLight(2);
+		EnableLight(3);
 	}
 
 	/// <summary>
