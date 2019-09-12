@@ -45,8 +45,6 @@ public enum PressureGauge
 
 public class WoodchipperReworked : BaseMachine
 {
-	//Whether or not this machine's variables have been generated
-	private bool m_isGenerated = false;
 
 	#region Axle Orientation
 

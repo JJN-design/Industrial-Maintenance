@@ -2,29 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MachineIssue
-{
-	FIXED, 
-	ON_FIRE,
-	DUST_PLUMES,
-	SPARKING
-}
-
 abstract public class BaseMachine : MonoBehaviour
 {
 	//Whether or not the machine is currently working
 	protected bool m_isWorking = true;
 
-	//If the machine is not working, what the issue with it is
-	protected MachineIssue m_issue;
+	//variable for if machine is generated
+	protected bool m_isGenerated = false;
 
 	[Header("Particle Generators")]
-	[Tooltip("The fire particle system")]
-	[SerializeField] private ParticleSystem m_fireParticles;
-	[Tooltip("The dust particle system")]
-	[SerializeField] private ParticleSystem m_dustParticles;
-	[Tooltip("The sparks particle systems")]
-	[SerializeField] private ParticleSystem m_sparkParticles;
+	[Tooltip("The broken particle system")]
+	[SerializeField] private ParticleSystem m_brokenParticles;
 
 	//The machine manager
 	protected MachineManager m_machineManager;
@@ -36,9 +24,7 @@ abstract public class BaseMachine : MonoBehaviour
 
 	void Awake()
 	{
-		m_fireParticles.Stop();
-		m_dustParticles.Stop();
-		m_sparkParticles.Stop();
+		m_brokenParticles.Stop();
 	}
 
 	/// <summary>
@@ -62,29 +48,12 @@ abstract public class BaseMachine : MonoBehaviour
 	/// <summary>
 	/// Calls for the machine to be broken
 	/// </summary>
-	/// <param name="issue">What the issue is</param>
-	virtual public void BreakMachine(MachineIssue issue)
+	virtual public void BreakMachine()
 	{
-		if (issue == MachineIssue.FIXED) //if the issue given is FIXED, don't break the machine
-			return;
 		if (!m_isWorking) //if the machine is already broken, don't rebreak it
 			return;
 		m_isWorking = false;
-		m_issue = issue;
-		switch(m_issue)
-		{
-			case (MachineIssue.ON_FIRE):
-				m_fireParticles.Play();
-				break;
-			case (MachineIssue.DUST_PLUMES):
-				m_dustParticles.Play();
-				break;
-			case (MachineIssue.SPARKING):
-				m_sparkParticles.Play();
-				break;
-			default:
-				break;
-		}
+		m_brokenParticles.Play();
 	}
 
 	/// <summary>
@@ -92,23 +61,8 @@ abstract public class BaseMachine : MonoBehaviour
 	/// </summary>
 	virtual public void FixMachine()
 	{
-		switch(m_issue)
-		{
-			case (MachineIssue.ON_FIRE):
-				m_fireParticles.Stop();
-				break;
-			case (MachineIssue.DUST_PLUMES):
-				m_dustParticles.Stop();
-				break;
-			case (MachineIssue.SPARKING):
-				m_sparkParticles.Stop();
-				break;
-			default:
-				break;
-
-		}
+		m_brokenParticles.Stop();
 		m_isWorking = true;
-		m_issue = MachineIssue.FIXED;
 		Debug.Log(gameObject.name + " was fixed!");
 	}
 
