@@ -9,8 +9,16 @@ public class MachineManager : MonoBehaviour
 	[SerializeField] private BaseMachine m_woodchipper;
 	[Tooltip("The object of the press")]
 	[SerializeField] private BaseMachine m_press;
-	[Tooltip("The object of the generator")]
-	[SerializeField] private BaseMachine m_generator;
+	[Tooltip("The object of the painter")]
+	[SerializeField] private BaseMachine m_painter;
+
+	[Header("Machines Enabled State")]
+	[Tooltip("Whether or not the woodchipper is enabled")]
+	[SerializeField] private bool m_woodchipperEnabled;
+	[Tooltip("Whether or not the press is enabled")]
+	[SerializeField] private bool m_pressEnabled;
+	[Tooltip("Whether or not the painter is enabled")]
+	[SerializeField] private bool m_painterEnabled;
 
 	//whether or not the factory is currently producing boxes
 	private bool m_producingBoxes = true;
@@ -33,9 +41,12 @@ public class MachineManager : MonoBehaviour
 
 	private void Awake()
 	{
-		m_woodchipper.GenerateVariables(this);
-		//m_press.GenerateVariables(this);
-		//m_generator.GenerateVariables(this);
+		if(m_woodchipperEnabled)
+			m_woodchipper.GenerateVariables(this);
+		if(m_pressEnabled)
+			m_press.GenerateVariables(this);
+		if(m_painterEnabled)
+			m_painter.GenerateVariables(this);
 	}
 
 	// Update is called once per frame
@@ -77,12 +88,12 @@ public class MachineManager : MonoBehaviour
 	/// <returns>Whether or not all machines are working</returns>
 	private bool CheckMachines()
 	{
-		if (!m_woodchipper.GetWorking())
+		if (!m_woodchipper.GetWorking() && m_woodchipperEnabled)
 			return false;
-		/*if (!m_press.GetWorking())
+		if (!m_press.GetWorking() && m_pressEnabled)
 			return false;
-		if (!m_generator.GetWorking())
-			return false;*/
+		if (!m_painter.GetWorking() && m_painterEnabled)
+			return false;
 		return true;
 	}
 
@@ -101,25 +112,40 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	private void BreakMachine()
 	{
-		int machineToBreak = Random.Range(0, /*4*/ 1);
+		int machineToBreak = Random.Range(0, 4);
 		MachineIssue issue = GenerateIssue();
 		switch(machineToBreak)
 		{
 			case (0):
-				m_woodchipper.BreakMachine(issue);
-				Debug.Log("Woodchipper broke with issue " + issue.ToString());
+				if (m_woodchipperEnabled)
+				{
+					m_woodchipper.BreakMachine(issue);
+					Debug.Log("Woodchipper broke with issue " + issue.ToString());
+				}
+				else
+					Debug.Log("Woodchipper tried to break but is disabled");
 				break;
-			/*case (1):
-				m_press.BreakMachine(issue);
-				Debug.Log("Press broke with issue " + issue.ToString());
+			case (1):
+				if (m_pressEnabled)
+				{
+					m_press.BreakMachine(issue);
+					Debug.Log("Press broke with issue " + issue.ToString());
+				}
+				else
+					Debug.Log("Press tried to break but is disabled");
 				break;
 			case (2):
-				m_generator.BreakMachine(issue);
-				Debug.Log("Generator broke with issue " + issue.ToString());
+				if (m_painterEnabled)
+				{
+					m_painter.BreakMachine(issue);
+					Debug.Log("Painter broke with issue " + issue.ToString());
+				}
+				else
+					Debug.Log("Painter tried to break but is disabled");
 				break;
 			case (3):
 				Debug.Log("No machine was broken");
-				break;*/
+				break;
 			default:
 				Debug.LogError("Something went horribly wrong with Random.Range");
 				break;
