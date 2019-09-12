@@ -15,6 +15,7 @@ public class PainterLightDisplay : MonoBehaviour
 	{
 		m_renderer = GetComponent<Renderer>();
 		m_parent = parent;
+		m_renderer.material.color = m_parent.GetDisabledColour();
 	}
 
 	/// <summary>
@@ -31,6 +32,6 @@ public class PainterLightDisplay : MonoBehaviour
 	/// </summary>
 	public void DisableLight()
 	{
-		//m_renderer.material.color = m_parent
+		m_renderer.material.color = m_parent.GetDisabledColour();
 	}
 }
