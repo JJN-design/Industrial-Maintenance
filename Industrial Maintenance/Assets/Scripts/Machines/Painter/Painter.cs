@@ -250,7 +250,8 @@ public class Painter : BaseMachine
 	/// </summary>
 	private void CompletePuzzle()
 	{
-		Debug.Log("Puzzle stage was completed on painter!");
+		Debug.Log("Puzzle stage was completed on painter!\n"
+			+ "Light was: " + m_lightColour.ToString());
 
 		//decrement puzzles left
 		m_puzzlesLeft--;
@@ -276,7 +277,8 @@ public class Painter : BaseMachine
 		//subtract time remaining
 		SubtractTime(m_incorrectTimeSubtraction);
 
-		Debug.Log("Puzzle stage was failed on painter!");
+		Debug.Log("Puzzle stage was failed on painter!\n"
+			+ "Light is: " + m_lightColour.ToString());
 	}
 
 	/// <summary>
