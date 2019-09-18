@@ -46,30 +46,33 @@ public class WoodchipperInteractableReworked : Interactable
 	public override void InteractWith()
 	{
 		base.InteractWith();
-
-		switch (m_currentStage)
+		
+		if(!m_parent.GetWorking()) //only if machine isn't working
 		{
-			case (0):
-				bool stageOneCorrect = StageOne();
-				if (stageOneCorrect)
-					InteractCorrect();
-				else
-					InteractFail();
-				break;
-			case (1):
-				bool stageTwoCorrect = StageTwo();
-				if (stageTwoCorrect)
-					InteractCorrect();
-				else
-					InteractFail();
-				break;
-			case (2):
-				bool stageThreeCorrect = StageThree();
-				if (stageThreeCorrect)
-					m_parent.FixMachine();
-				else
-					InteractFail();
-				break;
+			switch (m_currentStage)
+			{
+				case (0):
+					bool stageOneCorrect = StageOne();
+					if (stageOneCorrect)
+						InteractCorrect();
+					else
+						InteractFail();
+					break;
+				case (1):
+					bool stageTwoCorrect = StageTwo();
+					if (stageTwoCorrect)
+						InteractCorrect();
+					else
+						InteractFail();
+					break;
+				case (2):
+					bool stageThreeCorrect = StageThree();
+					if (stageThreeCorrect)
+						m_parent.FixMachine();
+					else
+						InteractFail();
+					break;
+			}
 		}
 	}
 
@@ -78,8 +81,16 @@ public class WoodchipperInteractableReworked : Interactable
 	/// </summary>
 	public void MachineFixed()
 	{
-		m_isCorrect = false;
-		m_currentStage = 0;
+		m_parent.SetNewStage(0);
+	}
+
+	/// <summary>
+	/// Sets a new stage for all machines
+	/// </summary>
+	/// <param name="stage">The new stage value</param>
+	public void SetNewStage(int stage)
+	{
+		m_currentStage = stage;
 	}
 
 	/// <summary>
@@ -96,7 +107,7 @@ public class WoodchipperInteractableReworked : Interactable
 	/// </summary>
 	private void InteractCorrect()
 	{
-		m_currentStage++;
+		m_parent.SetNewStage(m_currentStage + 1);
 		Debug.Log("Correct interactable press for Woodchipper rework at stage " + m_currentStage.ToString());
 	}
 

@@ -81,8 +81,7 @@ public class WoodchipperReworked : BaseMachine
 				m_bladeAssembly.transform.localRotation = horizontalRotation;
 				break;
 			default:
-				Debug.LogError("Invalid AxleOrientation randomised on CreateAxle()" +
-					"");
+				Debug.LogError("Invalid AxleOrientation randomised on CreateAxle()");
 				break;
 		}
 	}
@@ -469,6 +468,21 @@ public class WoodchipperReworked : BaseMachine
 		m_buttonC.Create(this, WoodchipperInteractableType.BUTTON_C, m_incorrectTimeSubtraction);
 		m_buttonD.Create(this, WoodchipperInteractableType.BUTTON_D, m_incorrectTimeSubtraction);
 		m_buttonE.Create(this, WoodchipperInteractableType.BUTTON_E, m_incorrectTimeSubtraction);
+	}
+
+	/// <summary>
+	/// Sets a new stage for all machines
+	/// </summary>
+	/// <param name="stage"></param>
+	public void SetNewStage(int stage)
+	{
+		m_blueLever.SetNewStage(stage);
+		m_redLever.SetNewStage(stage);
+		m_buttonA.SetNewStage(stage);
+		m_buttonB.SetNewStage(stage);
+		m_buttonC.SetNewStage(stage);
+		m_buttonD.SetNewStage(stage);
+		m_buttonE.SetNewStage(stage);
 	}
 
 	#endregion //Interactables

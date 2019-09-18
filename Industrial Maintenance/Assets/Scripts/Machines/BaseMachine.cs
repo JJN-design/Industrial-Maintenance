@@ -22,6 +22,9 @@ abstract public class BaseMachine : MonoBehaviour
 	[SerializeField] private float m_timeBeforeFailure;
 	private float m_failTimer;
 
+	/// <summary>
+	/// Stops particles
+	/// </summary>
 	void Awake()
 	{
 		m_brokenParticles.Stop();
