@@ -98,29 +98,19 @@ public class MachineManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Generates a random issue for a machine
-	/// </summary>
-	/// <returns>A random MachineIssue</returns>
-	private MachineIssue GenerateIssue()
-	{
-		return (MachineIssue)Random.Range(0, 4);
-	}
-
-	/// <summary>
 	/// Breaks a random machine, has a chance to generate a 'FIXED' issue, or break an already broken machine
 	/// in which case, nothing will happen
 	/// </summary>
 	private void BreakMachine()
 	{
 		int machineToBreak = Random.Range(0, 4);
-		MachineIssue issue = GenerateIssue();
 		switch(machineToBreak)
 		{
 			case (0):
 				if (m_woodchipperEnabled)
 				{
-					m_woodchipper.BreakMachine(issue);
-					Debug.Log("Woodchipper broke with issue " + issue.ToString());
+					m_woodchipper.BreakMachine();
+					Debug.Log("Woodchipper broke");
 				}
 				else
 					Debug.Log("Woodchipper tried to break but is disabled");
@@ -128,8 +118,8 @@ public class MachineManager : MonoBehaviour
 			case (1):
 				if (m_pressEnabled)
 				{
-					m_press.BreakMachine(issue);
-					Debug.Log("Press broke with issue " + issue.ToString());
+					m_press.BreakMachine();
+					Debug.Log("Press broke");
 				}
 				else
 					Debug.Log("Press tried to break but is disabled");
@@ -137,8 +127,8 @@ public class MachineManager : MonoBehaviour
 			case (2):
 				if (m_painterEnabled)
 				{
-					m_painter.BreakMachine(issue);
-					Debug.Log("Painter broke with issue " + issue.ToString());
+					m_painter.BreakMachine();
+					Debug.Log("Painter");
 				}
 				else
 					Debug.Log("Painter tried to break but is disabled");

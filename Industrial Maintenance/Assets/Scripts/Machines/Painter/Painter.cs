@@ -31,9 +31,6 @@ public enum PainterPresses
 
 public class Painter : BaseMachine
 {
-	//variable for if machine is generated
-	private bool m_isGenerated;
-
 	#region Light Variables
 
 	//the current colour of the light
@@ -411,11 +408,10 @@ public class Painter : BaseMachine
 	/// <summary>
 	/// Calls for the machine to be broken
 	/// </summary>
-	/// <param name="issue">The issue the machine broke with</param>
-	public override void BreakMachine(MachineIssue issue)
+	public override void BreakMachine()
 	{
 		//call base
-		base.BreakMachine(issue);
+		base.BreakMachine();
 
 		//set puzzles left to 4
 		m_puzzlesLeft = 4;

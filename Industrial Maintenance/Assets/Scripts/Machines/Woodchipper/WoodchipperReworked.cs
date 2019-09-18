@@ -45,8 +45,6 @@ public enum PressureGauge
 
 public class WoodchipperReworked : BaseMachine
 {
-	//Whether or not this machine's variables have been generated
-	private bool m_isGenerated = false;
 
 	#region Axle Orientation
 
@@ -83,8 +81,7 @@ public class WoodchipperReworked : BaseMachine
 				m_bladeAssembly.transform.localRotation = horizontalRotation;
 				break;
 			default:
-				Debug.LogError("Invalid AxleOrientation randomised on CreateAxle()" +
-					"");
+				Debug.LogError("Invalid AxleOrientation randomised on CreateAxle()");
 				break;
 		}
 	}
@@ -464,13 +461,28 @@ public class WoodchipperReworked : BaseMachine
 	/// </summary>
 	private void CreateInteractables()
 	{
-		m_blueLever.Create(this, WoodchipperInteractableTypeV2.BLUE_LEVER, m_incorrectTimeSubtraction);
-		m_redLever.Create(this, WoodchipperInteractableTypeV2.RED_LEVER, m_incorrectTimeSubtraction);
-		m_buttonA.Create(this, WoodchipperInteractableTypeV2.BUTTON_A, m_incorrectTimeSubtraction);
-		m_buttonB.Create(this, WoodchipperInteractableTypeV2.BUTTON_B, m_incorrectTimeSubtraction);
-		m_buttonC.Create(this, WoodchipperInteractableTypeV2.BUTTON_C, m_incorrectTimeSubtraction);
-		m_buttonD.Create(this, WoodchipperInteractableTypeV2.BUTTON_D, m_incorrectTimeSubtraction);
-		m_buttonE.Create(this, WoodchipperInteractableTypeV2.BUTTON_E, m_incorrectTimeSubtraction);
+		m_blueLever.Create(this, WoodchipperInteractableType.BLUE_LEVER, m_incorrectTimeSubtraction);
+		m_redLever.Create(this, WoodchipperInteractableType.RED_LEVER, m_incorrectTimeSubtraction);
+		m_buttonA.Create(this, WoodchipperInteractableType.BUTTON_A, m_incorrectTimeSubtraction);
+		m_buttonB.Create(this, WoodchipperInteractableType.BUTTON_B, m_incorrectTimeSubtraction);
+		m_buttonC.Create(this, WoodchipperInteractableType.BUTTON_C, m_incorrectTimeSubtraction);
+		m_buttonD.Create(this, WoodchipperInteractableType.BUTTON_D, m_incorrectTimeSubtraction);
+		m_buttonE.Create(this, WoodchipperInteractableType.BUTTON_E, m_incorrectTimeSubtraction);
+	}
+
+	/// <summary>
+	/// Sets a new stage for all machines
+	/// </summary>
+	/// <param name="stage"></param>
+	public void SetNewStage(int stage)
+	{
+		m_blueLever.SetNewStage(stage);
+		m_redLever.SetNewStage(stage);
+		m_buttonA.SetNewStage(stage);
+		m_buttonB.SetNewStage(stage);
+		m_buttonC.SetNewStage(stage);
+		m_buttonD.SetNewStage(stage);
+		m_buttonE.SetNewStage(stage);
 	}
 
 	#endregion //Interactables
