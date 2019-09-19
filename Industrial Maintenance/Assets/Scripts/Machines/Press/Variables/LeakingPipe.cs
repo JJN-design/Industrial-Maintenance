@@ -14,6 +14,10 @@ public class LeakingPipe : MonoBehaviour
 	private float m_lowLeakVelocity;
 	private float m_highLeakVelocity;
 
+	//the emission rate of the leaking
+	private float m_lowLeakEmission;
+	private float m_highLeakEmission;
+
 	//the parent of this pipe
 	private PressReworked m_parent;
 
@@ -29,13 +33,17 @@ public class LeakingPipe : MonoBehaviour
 	/// <param name="highVelocity">The velocity of the 'high' leaking velocity</param>
 	/// <param name="liquid">The liquid that the machine will initially leak</param>
 	/// <param name="velocity">The velocity that the machine will initially leak at</param>
-	public void Create(PressReworked parent, float lowVelocity, float highVelocity, PressLeakLiquid liquid, PressLeakVelocity velocity)
+	/// <param name="lowEmission">The emission rate of the 'low' leaking velocity</param>
+	/// <param name="highEmission">The emission rate of the 'high' leaking velocity</param>
+	public void Create(PressReworked parent, float lowVelocity, float highVelocity, PressLeakLiquid liquid, PressLeakVelocity velocity, float lowEmission, float highEmission)
 	{
 		m_parent = parent;
 		m_lowLeakVelocity = lowVelocity;
 		m_highLeakVelocity = highVelocity;
 		m_liquid = liquid;
 		m_velocity = velocity;
+		m_lowLeakEmission = lowEmission;
+		m_highLeakEmission = highEmission;
 	}
 
 	/// <summary>
@@ -50,6 +58,8 @@ public class LeakingPipe : MonoBehaviour
 
 		ParticleSystem.MainModule inkMain = m_inkParticles.main;
 		ParticleSystem.MainModule waterMain = m_waterParticles.main;
+		ParticleSystem.EmissionModule inkEmission = m_inkParticles.emission;
+		ParticleSystem.EmissionModule waterEmission = m_waterParticles.emission;
 
 		//sets the velocities
 		switch(m_velocity)
@@ -57,10 +67,14 @@ public class LeakingPipe : MonoBehaviour
 			case (PressLeakVelocity.HIGH):
 				inkMain.startSpeed = m_highLeakVelocity;
 				waterMain.startSpeed = m_highLeakVelocity;
+				inkEmission.rateOverTime = new ParticleSystem.MinMaxCurve(m_highLeakEmission);
+				waterEmission.rateOverTime = new ParticleSystem.MinMaxCurve(m_highLeakEmission);
 				break;
 			case (PressLeakVelocity.LOW):
 				inkMain.startSpeed = m_lowLeakVelocity;
 				waterMain.startSpeed = m_lowLeakVelocity;
+				inkEmission.rateOverTime = new ParticleSystem.MinMaxCurve(m_lowLeakEmission);
+				waterEmission.rateOverTime = new ParticleSystem.MinMaxCurve(m_lowLeakEmission);
 				break;
 			default:
 				Debug.LogError("Invalid PressLeakVelocity passed on LeakingPipe!");
