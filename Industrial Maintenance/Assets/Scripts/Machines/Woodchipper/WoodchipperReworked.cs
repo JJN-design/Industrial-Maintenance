@@ -525,6 +525,9 @@ public class WoodchipperReworked : BaseMachine
 		//call base function
 		base.FixMachine();
 
+		//reset stage
+		SetNewStage(0);
+
 		//randomly generate new variables
 		AxleOrientation newAxles = (AxleOrientation)Random.Range(0, 2);
 		BladeSpinDirection newSpin = (BladeSpinDirection)Random.Range(0, 2);

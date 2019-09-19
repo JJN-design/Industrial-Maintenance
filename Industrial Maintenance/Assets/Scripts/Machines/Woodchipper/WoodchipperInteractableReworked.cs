@@ -77,14 +77,6 @@ public class WoodchipperInteractableReworked : Interactable
 	}
 
 	/// <summary>
-	/// Function to be called when the machine is fixed
-	/// </summary>
-	public void MachineFixed()
-	{
-		m_parent.SetNewStage(0);
-	}
-
-	/// <summary>
 	/// Sets a new stage for all machines
 	/// </summary>
 	/// <param name="stage">The new stage value</param>

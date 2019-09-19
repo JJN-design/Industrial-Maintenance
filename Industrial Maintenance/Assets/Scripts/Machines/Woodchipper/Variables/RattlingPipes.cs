@@ -59,7 +59,7 @@ public class RattlingPipes : MonoBehaviour
 	/// </summary>
 	public void StopRattling()
 	{
-		transform.localPosition = m_startPos;
+		transform.position = m_startPos;
 		m_isRattling = false;
 	}
 }
