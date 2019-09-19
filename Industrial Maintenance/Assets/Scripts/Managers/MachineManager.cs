@@ -138,7 +138,7 @@ public class MachineManager : MonoBehaviour
 				if (m_painterEnabled)
 				{
 					m_painter.BreakMachine();
-					Debug.Log("Painter");
+					Debug.Log("Painter broke");
 				}
 				else
 					Debug.Log("Painter tried to break but is disabled");
