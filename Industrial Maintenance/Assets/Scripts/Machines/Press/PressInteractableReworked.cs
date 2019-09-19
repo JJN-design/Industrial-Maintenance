@@ -121,16 +121,37 @@ public class PressInteractableReworked : Interactable
 		//set currently held to false
 		m_currentlyHeld = false;
 
+
+
 		//if parent is not working
 		if(!m_parent.GetWorking())
 		{
-			if(m_currentStage == 2)
+			switch (m_currentStage)
 			{
-				bool stageThreeCorrect = StageThree();
-				if (stageThreeCorrect)
-					m_parent.FixMachine();
-				else
-					InteractFail();
+				case (0):
+					bool stageOneCorrect = StageOne();
+					if (stageOneCorrect)
+					{
+						m_parent.StartLeaking();
+						InteractCorrect();
+					}
+					else
+						InteractFail();
+					break;
+				case (1):
+					bool stageTwoCorrect = StageTwo();
+					if (stageTwoCorrect)
+						InteractCorrect();
+					else
+						InteractFail();
+					break;
+				case (2):
+					bool stageThreeCorrect = StageThree();
+					if (stageThreeCorrect)
+						m_parent.FixMachine();
+					else
+						InteractFail();
+					break;
 			}
 		}
 
@@ -289,13 +310,13 @@ public class PressInteractableReworked : Interactable
 		PressLeakLiquid liquid = m_parent.GetLeakLiquid();
 		PressLeakVelocity velocity = m_parent.GetLeakVelocity();
 
-		if (liquid == PressLeakLiquid.INK && velocity == PressLeakVelocity.HIGH && m_holdTimer < m_pressThreshold)
+		if (m_interactableType == PressInteractableType.RESET_BUTTON && liquid == PressLeakLiquid.INK && velocity == PressLeakVelocity.HIGH && m_holdTimer < m_pressThreshold)
 			return true;
-		if (liquid == PressLeakLiquid.INK && velocity == PressLeakVelocity.LOW && m_holdTimer >= m_pressThreshold)
+		if (m_interactableType == PressInteractableType.RESET_BUTTON && liquid == PressLeakLiquid.INK && velocity == PressLeakVelocity.LOW && m_holdTimer >= m_pressThreshold)
 			return true;
-		if (liquid == PressLeakLiquid.WATER && velocity == PressLeakVelocity.HIGH && m_holdTimer >= m_pressThreshold)
+		if (m_interactableType == PressInteractableType.RESET_BUTTON && liquid == PressLeakLiquid.WATER && velocity == PressLeakVelocity.HIGH && m_holdTimer >= m_pressThreshold)
 			return true;
-		if (liquid == PressLeakLiquid.WATER && velocity == PressLeakVelocity.LOW && m_holdTimer < m_pressThreshold)
+		if (m_interactableType == PressInteractableType.RESET_BUTTON && liquid == PressLeakLiquid.WATER && velocity == PressLeakVelocity.LOW && m_holdTimer < m_pressThreshold)
 			return true;
 		else
 			return false;
