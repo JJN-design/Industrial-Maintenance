@@ -92,22 +92,22 @@ public class FPSController : MonoBehaviour
 		Vector3 moveDir = Vector3.zero;
 		int inputCount = 0;
 
-		if(Input.GetAxis("Vertical") > 0)
+		if (Input.GetAxisRaw("Vertical") > 0)
 		{
 			moveDir += transform.forward;
 			++inputCount;
 		}
-		if (Input.GetAxis("Vertical") < 0)
+		if (Input.GetAxisRaw("Vertical") < 0)
 		{
 			moveDir -= transform.forward;
 			++inputCount;
 		}
-		if (Input.GetAxis("Horizontal") > 0)
+		if (Input.GetAxisRaw("Horizontal") > 0)
 		{
 			moveDir += transform.right;
 			++inputCount;
 		}
-		if (Input.GetAxis("Horizontal") < 0)
+		if (Input.GetAxisRaw("Horizontal") < 0)
 		{
 			moveDir -= transform.right;
 			++inputCount;
