@@ -20,7 +20,7 @@ abstract public class BaseMachine : MonoBehaviour
 	[Header("Specific machine variables")]
 	[Tooltip("How long before a fail state is reached while this machine is broken")]
 	[SerializeField] private float m_timeBeforeFailure;
-	private float m_failTimer;
+	private float m_failTimer = 0.0f;
 
 	/// <summary>
 	/// Stops particles
@@ -67,6 +67,7 @@ abstract public class BaseMachine : MonoBehaviour
 		m_brokenParticles.Stop();
 		m_isWorking = true;
 		Debug.Log(gameObject.name + " was fixed!");
+		m_failTimer = 0.0f;
 	}
 
 	/// <summary>
