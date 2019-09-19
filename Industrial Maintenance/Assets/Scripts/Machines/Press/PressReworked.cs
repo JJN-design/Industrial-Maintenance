@@ -161,6 +161,12 @@ public class PressReworked : BaseMachine
 	[Tooltip("The velocity of the high velocity pipe leak")]
 	[SerializeField] private float m_highVelocityLeak;
 
+	[Header("Leak emissions")]
+	[Tooltip("The emission rate of the low velocity pipe leak")]
+	[SerializeField] private float m_lowVelocityEmission;
+	[Tooltip("The emission rate of the high velocity pipe leak")]
+	[SerializeField] private float m_highVelocityEmission;
+
 	//the leaks
 	private PressLeakLiquid m_leakingLiquid;
 	private PressLeakVelocity m_leakingVelocity;
@@ -178,10 +184,10 @@ public class PressReworked : BaseMachine
 		m_leakingVelocity = (PressLeakVelocity)Random.Range(0, 2);
 
 		//creates the pipes
-		m_singlePipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity);
-		m_singlePipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity);
-		m_ySplitPipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity);
-		m_ySplitPipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity);
+		m_singlePipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_singlePipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_ySplitPipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_ySplitPipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
 	}
 
 	/// <summary>
