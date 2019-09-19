@@ -340,6 +340,7 @@ public class PressReworked : BaseMachine
 
 		//Generates the variables
 		CreatePipes();
+		UpdatePipes();
 		CreateWheel();
 
 		//Generates the interactables
@@ -371,5 +372,6 @@ public class PressReworked : BaseMachine
 		StopLeaking();
 		SetLeakyPipes();
 		SetNewStage(0);
+		UpdatePipes();
 	}
 }
