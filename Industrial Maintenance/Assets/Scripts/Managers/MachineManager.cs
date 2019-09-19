@@ -88,12 +88,15 @@ public class MachineManager : MonoBehaviour
 	/// <returns>Whether or not all machines are working</returns>
 	private bool CheckMachines()
 	{
-		if (!m_woodchipper.GetWorking() && m_woodchipperEnabled)
-			return false;
-		if (!m_press.GetWorking() && m_pressEnabled)
-			return false;
-		if (!m_painter.GetWorking() && m_painterEnabled)
-			return false;
+		if(m_woodchipperEnabled)
+			if (!m_woodchipper.GetWorking())
+				return false;
+		if(m_pressEnabled)
+			if (!m_press.GetWorking())
+				return false;
+		if(m_painterEnabled)
+			if (!m_painter.GetWorking())
+				return false;
 		return true;
 	}
 

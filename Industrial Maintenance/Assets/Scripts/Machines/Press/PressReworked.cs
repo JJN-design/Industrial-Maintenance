@@ -368,5 +368,6 @@ public class PressReworked : BaseMachine
 
 		//reset variables
 		SetNewLeaks();
+		StopLeaking();
 	}
 }
