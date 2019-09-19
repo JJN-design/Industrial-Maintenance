@@ -183,6 +183,9 @@ public class PressReworked : BaseMachine
 		m_leakingLiquid = (PressLeakLiquid)Random.Range(0, 2);
 		m_leakingVelocity = (PressLeakVelocity)Random.Range(0, 2);
 
+		//Set leaky pipes
+		SetLeakyPipes();
+
 		//creates the pipes
 		m_singlePipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
 		m_singlePipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
@@ -195,10 +198,13 @@ public class PressReworked : BaseMachine
 	/// </summary>
 	private void SetLeakyPipes()
 	{
-		m_singlePipe1Leaking = (Random.Range(0, 2) == 1);
-		m_singlePipe2Leaking = (Random.Range(0, 2) == 1);
-		m_ySplitPipe1Leaking = (Random.Range(0, 2) == 1);
-		m_ySplitPipe2Leaking = (Random.Range(0, 2) == 1);
+		m_singlePipe1Leaking = (Random.Range(0, 2) == 0);
+		m_singlePipe2Leaking = (Random.Range(0, 2) == 0);
+		m_ySplitPipe1Leaking = (Random.Range(0, 2) == 0);
+		m_ySplitPipe2Leaking = (Random.Range(0, 2) == 0);
+
+		if (!m_singlePipe1Leaking && !m_singlePipe2Leaking && !m_ySplitPipe1Leaking && !m_ySplitPipe2Leaking)
+			SetLeakyPipes();
 	}
 
 	/// <summary>
@@ -363,5 +369,6 @@ public class PressReworked : BaseMachine
 		//reset variables
 		SetNewLeaks();
 		StopLeaking();
+		SetLeakyPipes();
 	}
 }
