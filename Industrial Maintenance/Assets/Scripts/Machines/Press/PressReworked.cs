@@ -195,10 +195,10 @@ public class PressReworked : BaseMachine
 	/// </summary>
 	private void SetLeakyPipes()
 	{
-		m_singlePipe1Leaking = (Random.Range(0, 2) == 1);
-		m_singlePipe2Leaking = (Random.Range(0, 2) == 1);
-		m_ySplitPipe1Leaking = (Random.Range(0, 2) == 1);
-		m_ySplitPipe2Leaking = (Random.Range(0, 2) == 1);
+		m_singlePipe1Leaking = (Random.Range(0, 2) == 0);
+		m_singlePipe2Leaking = (Random.Range(0, 2) == 0);
+		m_ySplitPipe1Leaking = (Random.Range(0, 2) == 0);
+		m_ySplitPipe2Leaking = (Random.Range(0, 2) == 0);
 
 		//if no pipes are leaking, redo this
 		if(!m_singlePipe1Leaking && !m_singlePipe2Leaking && !m_ySplitPipe1Leaking && !m_ySplitPipe2Leaking)
