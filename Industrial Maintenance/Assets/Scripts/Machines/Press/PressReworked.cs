@@ -370,5 +370,6 @@ public class PressReworked : BaseMachine
 		SetNewLeaks();
 		StopLeaking();
 		SetLeakyPipes();
+		SetNewStage(0);
 	}
 }

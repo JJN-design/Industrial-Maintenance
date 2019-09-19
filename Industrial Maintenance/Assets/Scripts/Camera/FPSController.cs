@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+
 public class FPSController : MonoBehaviour
 {
 	[Tooltip("How fast the player should move")]
-	[SerializeField] private float m_speed = 10.0f;
+	[SerializeField] private float m_acceleration = 10.0f;
+
+	[Tooltip("How fast the player should move")]
+	[SerializeField] private float m_maxSpeed = 10.0f;
+
+	[Tooltip("Drag value")]
+	[SerializeField] private float m_drag = 10.0f;
 
 	[Tooltip("The mouse camera script of the player")]
 	[SerializeField] private MouseCamLook m_mouseCam;
@@ -23,27 +31,54 @@ public class FPSController : MonoBehaviour
 	//Left/right movement
 	private float m_strafe;
 
-	//The rigidbody of the player
-	private Rigidbody m_rigidbody;
+	//The character controller of the player
+	private CharacterController m_controller;
+	
+	//The velocity of the thing
+	
+	private Vector3 m_velocity;
 
     // Start is called before the first frame update
     void Start()
     {
-		m_rigidbody = GetComponent<Rigidbody>();
+		m_controller = GetComponent<CharacterController>();
+		m_velocity = Vector3.zero;
+
 		//turn off cursor
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+		Vector3 moveDir = MoveDirection();
+
+		float velCompInMoveDir = Vector3.Dot(m_velocity, moveDir);
+		float speedComponenent = Mathf.Clamp(m_maxSpeed - velCompInMoveDir, 0.0f, 1.0f);
+
+		Vector3 finalAcceleration = speedComponenent * m_acceleration * moveDir;
+
 		//Input.GetAxis() is used to get user input
-		m_translation = Input.GetAxis("Vertical") * m_speed * Time.deltaTime;
-		m_strafe = Input.GetAxis("Horizontal") * m_speed * Time.deltaTime;
+		//m_translation = Input.GetAxis("Vertical") * m_acceleration * Time.deltaTime;
+		//m_strafe = Input.GetAxis("Horizontal") * m_acceleration * Time.deltaTime;
 		//transform.Translate(m_strafe, 0, m_translation);
+
+		m_velocity -= m_velocity * m_drag * Time.deltaTime;
+
 		if(m_canMove)
-			m_rigidbody.AddRelativeForce(new Vector3(m_strafe, 0, m_translation));
+		{
+			m_velocity += finalAcceleration * Time.deltaTime;
+		}
+
+		m_velocity += Physics.gravity * Time.deltaTime;
+
+		if (m_velocity.sqrMagnitude > m_maxSpeed * m_maxSpeed)
+			m_velocity = m_velocity.normalized * m_maxSpeed;
+
+		m_controller.Move(m_velocity * Time.deltaTime);
+		m_velocity = m_controller.velocity;
 
 		if(Input.GetButtonDown("Cancel"))
 		{
@@ -51,6 +86,39 @@ public class FPSController : MonoBehaviour
 			m_scoreUI.ShowScores();
 		}
     }
+
+	public Vector3 MoveDirection()
+	{
+		Vector3 moveDir = Vector3.zero;
+		int inputCount = 0;
+
+		if(Input.GetAxis("Vertical") > 0)
+		{
+			moveDir += transform.forward;
+			++inputCount;
+		}
+		if (Input.GetAxis("Vertical") < 0)
+		{
+			moveDir -= transform.forward;
+			++inputCount;
+		}
+		if (Input.GetAxis("Horizontal") > 0)
+		{
+			moveDir += transform.right;
+			++inputCount;
+		}
+		if (Input.GetAxis("Horizontal") < 0)
+		{
+			moveDir -= transform.right;
+			++inputCount;
+		}
+
+		// Normalize movement vector if more than one direction vector is added.
+		if (inputCount > 1)
+			moveDir.Normalize();
+
+		return moveDir;
+	}
 
 	public void DisableMovement()
 	{

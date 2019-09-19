@@ -134,14 +134,6 @@ public class PressInteractableReworked : Interactable
 	}
 
 	/// <summary>
-	/// Function to be called when the machine is fixed
-	/// </summary>
-	public void MachineFixed()
-	{
-		m_parent.SetNewStage(0);
-	}
-
-	/// <summary>
 	/// Code to be called when this isn't the correct interactable
 	/// </summary>
 	private void InteractFail()
