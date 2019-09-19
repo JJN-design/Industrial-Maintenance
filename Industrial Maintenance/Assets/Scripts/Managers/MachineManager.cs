@@ -77,9 +77,16 @@ public class MachineManager : MonoBehaviour
 		}
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            BreakMachine();
-        }
+			m_woodchipper.BreakMachine();
+
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+			m_painter.BreakMachine();
+
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+			m_press.BreakMachine();
+
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+			BreakMachine();
     }
 
 	/// <summary>
