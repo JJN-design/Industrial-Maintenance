@@ -92,7 +92,10 @@ public class PressInteractableReworked : Interactable
 				case (0):
 					bool stageOneCorrect = StageOne();
 					if (stageOneCorrect)
+					{
+						m_parent.StartLeaking();
 						InteractCorrect();
+					}
 					else
 						InteractFail();
 					break;
