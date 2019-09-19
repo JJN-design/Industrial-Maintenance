@@ -83,31 +83,6 @@ public class PressInteractableReworked : Interactable
 
 		//set currently held to true
 		m_currentlyHeld = true;
-
-		//if parent is not working
-		if(!m_parent.GetWorking())
-		{
-			switch(m_currentStage)
-			{
-				case (0):
-					bool stageOneCorrect = StageOne();
-					if (stageOneCorrect)
-					{
-						m_parent.StartLeaking();
-						InteractCorrect();
-					}
-					else
-						InteractFail();
-					break;
-				case (1):
-					bool stageTwoCorrect = StageTwo();
-					if (stageTwoCorrect)
-						InteractCorrect();
-					else
-						InteractFail();
-					break;
-			}
-		}
 	}
 
 	/// <summary>
