@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WoodchipperInteractableTypeV2
+public enum WoodchipperInteractableType
 {
     BUTTON_A,
     BUTTON_B,
@@ -19,7 +19,7 @@ public class WoodchipperInteractableReworked : Interactable
     private WoodchipperReworked m_parent;
 
     //The type of interactable this is
-    private WoodchipperInteractableTypeV2 m_interactableType;
+    private WoodchipperInteractableType m_interactableType;
 
     //How much time is lost when an incorrect interactable is pressed
     private float m_incorrectTimeSubtraction;
@@ -33,7 +33,7 @@ public class WoodchipperInteractableReworked : Interactable
 	/// <param name="machine"></param>
 	/// <param name="type"></param>
 	/// <param name="incorrectTime"></param>
-    public void Create(WoodchipperReworked machine, WoodchipperInteractableTypeV2 type, float incorrectTime)
+    public void Create(WoodchipperReworked machine, WoodchipperInteractableType type, float incorrectTime)
     {
         m_parent = machine;
         m_interactableType = type;
@@ -46,40 +46,43 @@ public class WoodchipperInteractableReworked : Interactable
 	public override void InteractWith()
 	{
 		base.InteractWith();
-
-		switch (m_currentStage)
+		
+		if(!m_parent.GetWorking()) //only if machine isn't working
 		{
-			case (0):
-				bool stageOneCorrect = StageOne();
-				if (stageOneCorrect)
-					InteractCorrect();
-				else
-					InteractFail();
-				break;
-			case (1):
-				bool stageTwoCorrect = StageTwo();
-				if (stageTwoCorrect)
-					InteractCorrect();
-				else
-					InteractFail();
-				break;
-			case (2):
-				bool stageThreeCorrect = StageThree();
-				if (stageThreeCorrect)
-					m_parent.FixMachine();
-				else
-					InteractFail();
-				break;
+			switch (m_currentStage)
+			{
+				case (0):
+					bool stageOneCorrect = StageOne();
+					if (stageOneCorrect)
+						InteractCorrect();
+					else
+						InteractFail();
+					break;
+				case (1):
+					bool stageTwoCorrect = StageTwo();
+					if (stageTwoCorrect)
+						InteractCorrect();
+					else
+						InteractFail();
+					break;
+				case (2):
+					bool stageThreeCorrect = StageThree();
+					if (stageThreeCorrect)
+						m_parent.FixMachine();
+					else
+						InteractFail();
+					break;
+			}
 		}
 	}
 
 	/// <summary>
-	/// Function to be called when the machine is fixed
+	/// Sets a new stage for all machines
 	/// </summary>
-	public void MachineFixed()
+	/// <param name="stage">The new stage value</param>
+	public void SetNewStage(int stage)
 	{
-		m_isCorrect = false;
-		m_currentStage = 0;
+		m_currentStage = stage;
 	}
 
 	/// <summary>
@@ -96,7 +99,7 @@ public class WoodchipperInteractableReworked : Interactable
 	/// </summary>
 	private void InteractCorrect()
 	{
-		m_currentStage++;
+		m_parent.SetNewStage(m_currentStage + 1);
 		Debug.Log("Correct interactable press for Woodchipper rework at stage " + m_currentStage.ToString());
 	}
 
@@ -108,7 +111,7 @@ public class WoodchipperInteractableReworked : Interactable
 	{
 		switch(m_interactableType)
 		{
-			case (WoodchipperInteractableTypeV2.RED_LEVER): //if spin direction is correct and axle orientation is horizontal, or spin direction is incorrect and axle orientation is vertical, this is correct
+			case (WoodchipperInteractableType.RED_LEVER): //if spin direction is correct and axle orientation is horizontal, or spin direction is incorrect and axle orientation is vertical, this is correct
 				if (m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT && m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL
 					|| m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT && m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL)
 				{
@@ -118,7 +121,7 @@ public class WoodchipperInteractableReworked : Interactable
 				else
 					return false;
 				
-			case (WoodchipperInteractableTypeV2.BLUE_LEVER): //if spin direction is incorrect and axle orientation is horizontal, or spin direction is correct and axle orientation is vertical, this is correct
+			case (WoodchipperInteractableType.BLUE_LEVER): //if spin direction is incorrect and axle orientation is horizontal, or spin direction is correct and axle orientation is vertical, this is correct
 				if (m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT && m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL
 					|| m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT && m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL)
 				{
@@ -142,33 +145,33 @@ public class WoodchipperInteractableReworked : Interactable
 		switch(m_parent.GetRattlingPipe())
 		{
 			case (RattlingPipe.BLUE): //if the pipe is blue...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableTypeV2.BLUE_LEVER) //...and axle is horizontal, pull blue lever
+				if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is horizontal, pull blue lever
 					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableTypeV2.RED_LEVER)//...and axle is vertical, pull red lever
+				else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.RED_LEVER)//...and axle is vertical, pull red lever
 					return true;
 				else
 					return false;
 
 			case (RattlingPipe.GREEN): //if the pipe is green...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableTypeV2.BLUE_LEVER) //...and axle is vertical, pull blue lever
+				if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is vertical, pull blue lever
 					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableTypeV2.RED_LEVER) //...and axle is horizontal, pull red lever
+				else if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.RED_LEVER) //...and axle is horizontal, pull red lever
 					return true;
 				else
 					return false;
 
 			case (RattlingPipe.RED): //if the pipe is red...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableTypeV2.BLUE_LEVER) //...and axle is horizontal, pull blue lever
+				if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is horizontal, pull blue lever
 					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableTypeV2.RED_LEVER) //...and axle is vertical, pull red lever
+				else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.RED_LEVER) //...and axle is vertical, pull red lever
 					return true;
 				else
 					return false;
 
 			case (RattlingPipe.YELLOW): //if the pipe is yellow...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableTypeV2.BLUE_LEVER) //...and axle is vertical, pull blue lever
+				if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is vertical, pull blue lever
 					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableTypeV2.RED_LEVER) //...and axle is horizontal, pull red lever
+				else if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.RED_LEVER) //...and axle is horizontal, pull red lever
 					return true;
 				else
 					return false;
@@ -214,27 +217,27 @@ public class WoodchipperInteractableReworked : Interactable
 		switch (m_parent.GetPressure())
 		{
 			case (PressureGauge.PSI30):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_A)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_A)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI45):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_C)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_C)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI60):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_D)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_D)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI75):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_B)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_B)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI90):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_E)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_E)
 					return true;
 				else
 					return false;
@@ -253,27 +256,27 @@ public class WoodchipperInteractableReworked : Interactable
 		switch (m_parent.GetPressure())
 		{
 			case (PressureGauge.PSI30):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_B)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_B)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI45):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_D)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_D)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI60):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_E)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_E)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI75):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_A)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_A)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI90):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_C)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_C)
 					return true;
 				else
 					return false;
@@ -292,27 +295,27 @@ public class WoodchipperInteractableReworked : Interactable
 		switch (m_parent.GetPressure())
 		{
 			case (PressureGauge.PSI30):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_E)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_E)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI45):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_A)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_A)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI60):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_C)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_C)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI75):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_D)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_D)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI90):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_B)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_B)
 					return true;
 				else
 					return false;
@@ -331,27 +334,27 @@ public class WoodchipperInteractableReworked : Interactable
 		switch (m_parent.GetPressure())
 		{
 			case (PressureGauge.PSI30):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_D)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_D)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI45):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_E)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_E)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI60):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_B)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_B)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI75):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_C)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_C)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI90):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_A)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_A)
 					return true;
 				else
 					return false;
@@ -370,27 +373,27 @@ public class WoodchipperInteractableReworked : Interactable
 		switch (m_parent.GetPressure())
 		{
 			case (PressureGauge.PSI30):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_C)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_C)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI45):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_B)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_B)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI60):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_A)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_A)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI75):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_E)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_E)
 					return true;
 				else
 					return false;
 			case (PressureGauge.PSI90):
-				if (m_interactableType == WoodchipperInteractableTypeV2.BUTTON_D)
+				if (m_interactableType == WoodchipperInteractableType.BUTTON_D)
 					return true;
 				else
 					return false;

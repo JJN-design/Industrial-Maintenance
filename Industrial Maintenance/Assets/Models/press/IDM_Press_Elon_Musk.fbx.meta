@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 9c3ad216cb01255419df6a59b491d0ed
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Belt
+    100002: Belt_Drive
+    100004: Belt_Drive_Gear
+    100006: Bolt_1
+    100008: Bolt_2
+    100010: Bolt_3
+    100012: Bolt_4
+    100014: Bolt_5
+    100016: Bolt_6
+    100018: Bolts
+    100020: Bottom
+    100022: Bottom 1
+    100024: Bottom 2
+    100026: Bottom 3
+    100028: Bottom2
+    100030: Bottom_Small_Wheel
+    100032: Corner
+    100034: Corner 1
+    100036: Corner 2
+    100038: Corner 3
+    100040: Corner4
+    100042: Corner4 1
+    100044: Corner4 2
+    100046: Corner4 3
+    100048: Corner_2
+    100050: Curved_Spoke_16
+    100052: Curved_Spoke_4
+    100054: Curved_Spoke_8
+    100056: Engine
+    100058: Engine 1
+    100060: Engine_Shaft
+    100062: Frame
+    100064: Gear_1
+    100066: Gear_2
+    100068: Gear_3
+    100070: Gear_4
+    100072: Gears
+    100074: //RootNode
+    100076: Label_Launcher
+    100078: Lever
+    100080: Lever_3
+    100082: Lever_4
+    100084: Lever_Base
+    100086: Lid
+    100088: Lid 1
+    100090: Main_Wheel
+    100092: Medium_Wheel
+    100094: Paper
+    100096: Paper_Roll
+    100098: Pipes_Base1
+    100100: Pipes_Base2
+    100102: Pipes_Base3
+    100104: Pipes_Base4
+    100106: Pivot
+    100108: Reset_Button
+    100110: Single_Nozzle_1
+    100112: Single_Nozzle_2
+    100114: Spokes
+    100116: Straight_Short
+    100118: Straight_Short 1
+    100120: Straight_Short 2
+    100122: Straight_Short 3
+    100124: Straight_Spoke_16
+    100126: Straight_Spoke_4
+    100128: Straight_Spoke_8
+    100130: Top
+    100132: Top 1
+    100134: Top 2
+    100136: Top 3
+    100138: Top_Small_Wheel_1
+    100140: Top_Small_Wheel_2
+    100142: Top_Small_Wheels
+    100144: Valve
+    100146: Valve_Pipes1
+    100148: Y_Split_Nozzle_1
+    100150: Y_Split_Nozzle_2
+    400000: Belt
+    400002: Belt_Drive
+    400004: Belt_Drive_Gear
+    400006: Bolt_1
+    400008: Bolt_2
+    400010: Bolt_3
+    400012: Bolt_4
+    400014: Bolt_5
+    400016: Bolt_6
+    400018: Bolts
+    400020: Bottom
+    400022: Bottom 1
+    400024: Bottom 2
+    400026: Bottom 3
+    400028: Bottom2
+    400030: Bottom_Small_Wheel
+    400032: Corner
+    400034: Corner 1
+    400036: Corner 2
+    400038: Corner 3
+    400040: Corner4
+    400042: Corner4 1
+    400044: Corner4 2
+    400046: Corner4 3
+    400048: Corner_2
+    400050: Curved_Spoke_16
+    400052: Curved_Spoke_4
+    400054: Curved_Spoke_8
+    400056: Engine
+    400058: Engine 1
+    400060: Engine_Shaft
+    400062: Frame
+    400064: Gear_1
+    400066: Gear_2
+    400068: Gear_3
+    400070: Gear_4
+    400072: Gears
+    400074: //RootNode
+    400076: Label_Launcher
+    400078: Lever
+    400080: Lever_3
+    400082: Lever_4
+    400084: Lever_Base
+    400086: Lid
+    400088: Lid 1
+    400090: Main_Wheel
+    400092: Medium_Wheel
+    400094: Paper
+    400096: Paper_Roll
+    400098: Pipes_Base1
+    400100: Pipes_Base2
+    400102: Pipes_Base3
+    400104: Pipes_Base4
+    400106: Pivot
+    400108: Reset_Button
+    400110: Single_Nozzle_1
+    400112: Single_Nozzle_2
+    400114: Spokes
+    400116: Straight_Short
+    400118: Straight_Short 1
+    400120: Straight_Short 2
+    400122: Straight_Short 3
+    400124: Straight_Spoke_16
+    400126: Straight_Spoke_4
+    400128: Straight_Spoke_8
+    400130: Top
+    400132: Top 1
+    400134: Top 2
+    400136: Top 3
+    400138: Top_Small_Wheel_1
+    400140: Top_Small_Wheel_2
+    400142: Top_Small_Wheels
+    400144: Valve
+    400146: Valve_Pipes1
+    400148: Y_Split_Nozzle_1
+    400150: Y_Split_Nozzle_2
+    2100000: lambert69
+    2100002: lambert1
+    2100004: lambert70
+    2100006: lambert71
+    2100008: lambert72
+    2100010: lambert62
+    2100012: lambert68
+    2100014: lambert2
+    2100016: lambert61
+    2300000: Belt
+    2300002: Belt_Drive
+    2300004: Belt_Drive_Gear
+    2300006: Bolt_1
+    2300008: Bolt_2
+    2300010: Bolt_3
+    2300012: Bolt_4
+    2300014: Bolt_5
+    2300016: Bolt_6
+    2300018: Bottom
+    2300020: Bottom 1
+    2300022: Bottom 2
+    2300024: Bottom 3
+    2300026: Bottom2
+    2300028: Bottom_Small_Wheel
+    2300030: Corner
+    2300032: Corner 1
+    2300034: Corner 2
+    2300036: Corner 3
+    2300038: Corner4
+    2300040: Corner4 1
+    2300042: Corner4 2
+    2300044: Corner4 3
+    2300046: Corner_2
+    2300048: Curved_Spoke_16
+    2300050: Curved_Spoke_4
+    2300052: Curved_Spoke_8
+    2300054: Engine 1
+    2300056: Engine_Shaft
+    2300058: Frame
+    2300060: Gear_1
+    2300062: Gear_2
+    2300064: Gear_3
+    2300066: Gear_4
+    2300068: Label_Launcher
+    2300070: Lever_3
+    2300072: Lever_4
+    2300074: Lever_Base
+    2300076: Lid 1
+    2300078: Main_Wheel
+    2300080: Medium_Wheel
+    2300082: Paper
+    2300084: Paper_Roll
+    2300086: Pivot
+    2300088: Reset_Button
+    2300090: Straight_Short
+    2300092: Straight_Short 1
+    2300094: Straight_Short 2
+    2300096: Straight_Short 3
+    2300098: Straight_Spoke_16
+    2300100: Straight_Spoke_4
+    2300102: Straight_Spoke_8
+    2300104: Top
+    2300106: Top 1
+    2300108: Top 2
+    2300110: Top 3
+    2300112: Top_Small_Wheel_1
+    2300114: Top_Small_Wheel_2
+    2300116: Valve
+    3300000: Belt
+    3300002: Belt_Drive
+    3300004: Belt_Drive_Gear
+    3300006: Bolt_1
+    3300008: Bolt_2
+    3300010: Bolt_3
+    3300012: Bolt_4
+    3300014: Bolt_5
+    3300016: Bolt_6
+    3300018: Bottom
+    3300020: Bottom 1
+    3300022: Bottom 2
+    3300024: Bottom 3
+    3300026: Bottom2
+    3300028: Bottom_Small_Wheel
+    3300030: Corner
+    3300032: Corner 1
+    3300034: Corner 2
+    3300036: Corner 3
+    3300038: Corner4
+    3300040: Corner4 1
+    3300042: Corner4 2
+    3300044: Corner4 3
+    3300046: Corner_2
+    3300048: Curved_Spoke_16
+    3300050: Curved_Spoke_4
+    3300052: Curved_Spoke_8
+    3300054: Engine 1
+    3300056: Engine_Shaft
+    3300058: Frame
+    3300060: Gear_1
+    3300062: Gear_2
+    3300064: Gear_3
+    3300066: Gear_4
+    3300068: Label_Launcher
+    3300070: Lever_3
+    3300072: Lever_4
+    3300074: Lever_Base
+    3300076: Lid 1
+    3300078: Main_Wheel
+    3300080: Medium_Wheel
+    3300082: Paper
+    3300084: Paper_Roll
+    3300086: Pivot
+    3300088: Reset_Button
+    3300090: Straight_Short
+    3300092: Straight_Short 1
+    3300094: Straight_Short 2
+    3300096: Straight_Short 3
+    3300098: Straight_Spoke_16
+    3300100: Straight_Spoke_4
+    3300102: Straight_Spoke_8
+    3300104: Top
+    3300106: Top 1
+    3300108: Top 2
+    3300110: Top 3
+    3300112: Top_Small_Wheel_1
+    3300114: Top_Small_Wheel_2
+    3300116: Valve
+    4300000: Pivot
+    4300002: Lid
+    4300004: Lever_Base
+    4300006: Lever_3
+    4300008: Lever_4
+    4300010: Corner_2
+    4300012: Valve
+    4300014: Bottom2
+    4300016: Label_Launcher
+    4300018: Straight_Short
+    4300020: Corner
+    4300022: Corner4
+    4300024: Straight_Short
+    4300026: Corner
+    4300028: Corner4
+    4300030: Straight_Short
+    4300032: Corner
+    4300034: Corner4
+    4300036: Straight_Short
+    4300038: Corner
+    4300040: Corner4
+    4300042: Top
+    4300044: Bottom
+    4300046: Top
+    4300048: Bottom
+    4300050: Top
+    4300052: Bottom
+    4300054: Top
+    4300056: Bottom
+    4300058: Bolt_1
+    4300060: Bolt_2
+    4300062: Bolt_3
+    4300064: Bolt_4
+    4300066: Bolt_5
+    4300068: Bolt_6
+    4300070: Curved_Spoke_4
+    4300072: Curved_Spoke_8
+    4300074: Curved_Spoke_16
+    4300076: Straight_Spoke_4
+    4300078: Straight_Spoke_8
+    4300080: Straight_Spoke_16
+    4300082: Engine_Shaft
+    4300084: Engine
+    4300086: Belt_Drive_Gear
+    4300088: Belt_Drive
+    4300090: Belt
+    4300092: Top_Small_Wheel_1
+    4300094: Top_Small_Wheel_2
+    4300096: Gear_1
+    4300098: Gear_2
+    4300100: Gear_3
+    4300102: Gear_4
+    4300104: Frame
+    4300106: Paper_Roll
+    4300108: Paper
+    4300110: Main_Wheel
+    4300112: Bottom_Small_Wheel
+    4300114: Medium_Wheel
+    4300116: Reset_Button
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

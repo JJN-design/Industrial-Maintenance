@@ -1,21 +1,48 @@
 fileFormatVersion: 2
-guid: 2713990f098c70241bdc6f27d67a5839
+guid: 17dca58040a9e5b4dacae15b3ce30205
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Curved_Arrow
-    100004: Triangle
-    400000: //RootNode
-    400002: Curved_Arrow
-    400004: Triangle
-    2100000: lambert1
-    2300000: Curved_Arrow
-    2300002: Triangle
-    3300000: Curved_Arrow
-    3300002: Triangle
-    4300000: Curved_Arrow
-    4300002: Triangle
+    100000: Belt_Drive
+    100002: Body
+    100004: Boot
+    100006: Bracket
+    100008: Calf
+    100010: //RootNode
+    100012: Main_Wheel
+    100014: Thigh
+    400000: Belt_Drive
+    400002: Body
+    400004: Boot
+    400006: Bracket
+    400008: Calf
+    400010: //RootNode
+    400012: Main_Wheel
+    400014: Thigh
+    2100000: lambert2
+    2100002: lambert1
+    2100004: Knight_RDX_initialShadingGroup1
+    2300000: Belt_Drive
+    2300002: Body
+    2300004: Boot
+    2300006: Bracket
+    2300008: Calf
+    2300010: Main_Wheel
+    2300012: Thigh
+    3300000: Belt_Drive
+    3300002: Body
+    3300004: Boot
+    3300006: Bracket
+    3300008: Calf
+    3300010: Main_Wheel
+    3300012: Thigh
+    4300000: Body
+    4300002: Belt_Drive
+    4300004: Bracket
+    4300006: Main_Wheel
+    4300008: Thigh
+    4300010: Calf
+    4300012: Boot
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: a67ec2082f9a92d4b9bba4bf6cd9041c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arrow
+    100002: Base
+    100004: Base 1
+    100006: Base 2
+    100008: Base 3
+    100010: Button_1
+    100012: Button_2
+    100014: Button_3
+    100016: Buttons
+    100018: Can
+    100020: Chimney
+    100022: Handle
+    100024: Handle_Pin
+    100026: Lid
+    100028: Light
+    100030: Light 1
+    100032: Light 2
+    100034: Light 3
+    100036: Nozzle
+    100038: Paint_Can
+    100040: Paint_Machine
+    100042: Painter_Body
+    100044: //RootNode
+    100046: Pipe_Corner
+    100048: Pipe_Corner1
+    100050: Pipe_Corner2
+    100052: Pipe_Corner3
+    100054: Pipe_Corner4
+    100056: Pipe_Corner5
+    100058: Pipe_Straight
+    100060: Pipe_Straight1
+    100062: Pipe_Straight2
+    100064: Pipes1
+    100066: Pointer
+    100068: Pointer_Base
+    100070: Q1
+    100072: Q2
+    100074: Q3
+    100076: Q4
+    100078: Simon_Lights
+    400000: Arrow
+    400002: Base
+    400004: Base 1
+    400006: Base 2
+    400008: Base 3
+    400010: Button_1
+    400012: Button_2
+    400014: Button_3
+    400016: Buttons
+    400018: Can
+    400020: Chimney
+    400022: Handle
+    400024: Handle_Pin
+    400026: Lid
+    400028: Light
+    400030: Light 1
+    400032: Light 2
+    400034: Light 3
+    400036: Nozzle
+    400038: Paint_Can
+    400040: Paint_Machine
+    400042: Painter_Body
+    400044: //RootNode
+    400046: Pipe_Corner
+    400048: Pipe_Corner1
+    400050: Pipe_Corner2
+    400052: Pipe_Corner3
+    400054: Pipe_Corner4
+    400056: Pipe_Corner5
+    400058: Pipe_Straight
+    400060: Pipe_Straight1
+    400062: Pipe_Straight2
+    400064: Pipes1
+    400066: Pointer
+    400068: Pointer_Base
+    400070: Q1
+    400072: Q2
+    400074: Q3
+    400076: Q4
+    400078: Simon_Lights
+    2100000: lambert83
+    2100002: lambert84
+    2100004: lambert88
+    2100006: lambert1
+    2300000: Arrow
+    2300002: Base
+    2300004: Base 1
+    2300006: Base 2
+    2300008: Base 3
+    2300010: Button_1
+    2300012: Button_2
+    2300014: Button_3
+    2300016: Can
+    2300018: Handle
+    2300020: Handle_Pin
+    2300022: Lid
+    2300024: Light
+    2300026: Light 1
+    2300028: Light 2
+    2300030: Light 3
+    2300032: Nozzle
+    2300034: Painter_Body
+    2300036: Pipe_Corner
+    2300038: Pipe_Corner1
+    2300040: Pipe_Corner2
+    2300042: Pipe_Corner3
+    2300044: Pipe_Corner4
+    2300046: Pipe_Corner5
+    2300048: Pipe_Straight
+    2300050: Pipe_Straight1
+    2300052: Pipe_Straight2
+    2300054: Pointer_Base
+    3300000: Arrow
+    3300002: Base
+    3300004: Base 1
+    3300006: Base 2
+    3300008: Base 3
+    3300010: Button_1
+    3300012: Button_2
+    3300014: Button_3
+    3300016: Can
+    3300018: Handle
+    3300020: Handle_Pin
+    3300022: Lid
+    3300024: Light
+    3300026: Light 1
+    3300028: Light 2
+    3300030: Light 3
+    3300032: Nozzle
+    3300034: Painter_Body
+    3300036: Pipe_Corner
+    3300038: Pipe_Corner1
+    3300040: Pipe_Corner2
+    3300042: Pipe_Corner3
+    3300044: Pipe_Corner4
+    3300046: Pipe_Corner5
+    3300048: Pipe_Straight
+    3300050: Pipe_Straight1
+    3300052: Pipe_Straight2
+    3300054: Pointer_Base
+    4300000: Handle
+    4300002: Can
+    4300004: Lid
+    4300006: Handle_Pin
+    4300008: Button_1
+    4300010: Button_2
+    4300012: Button_3
+    4300014: Nozzle
+    4300016: Painter_Body
+    4300018: Pipe_Straight
+    4300020: Pipe_Corner
+    4300022: Pipe_Corner1
+    4300024: Pipe_Straight1
+    4300026: Pipe_Corner2
+    4300028: Pipe_Corner3
+    4300030: Pipe_Corner5
+    4300032: Pipe_Corner4
+    4300034: Pipe_Straight2
+    4300036: Light
+    4300038: Base
+    4300040: Light
+    4300042: Base
+    4300044: Light
+    4300046: Base
+    4300048: Light
+    4300050: Base
+    4300052: Pointer_Base
+    4300054: Arrow
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
