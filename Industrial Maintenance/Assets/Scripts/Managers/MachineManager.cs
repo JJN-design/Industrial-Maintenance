@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum MachineLists
+{
+	WOODCHIPPER,
+	PRESS,
+	PAINTER,
+	NONE
+}
+
 public class MachineManager : MonoBehaviour
 {
 	[Header("Machines")]
@@ -19,6 +27,9 @@ public class MachineManager : MonoBehaviour
 	[SerializeField] private bool m_pressEnabled;
 	[Tooltip("Whether or not the painter is enabled")]
 	[SerializeField] private bool m_painterEnabled;
+
+	//The last machine that broke
+	private MachineLists m_lastBreak = MachineLists.NONE;
 
 	//whether or not the factory is currently producing boxes
 	private bool m_producingBoxes = true;
@@ -130,8 +141,18 @@ public class MachineManager : MonoBehaviour
 						Debug.Log("Woodchipper tried to break but is already broken");
 					else
 					{
-						m_woodchipper.BreakMachine();
-						Debug.Log("Woodchipper broke");
+						if (m_lastBreak != MachineLists.WOODCHIPPER)
+						{
+							m_woodchipper.BreakMachine();
+							m_lastBreak = MachineLists.WOODCHIPPER;
+							Debug.Log("Woodchipper broke");
+						}
+						else
+						{
+							Debug.Log("Woodchipper tried to break but was the last machine to break");
+							BreakMachine();
+						}
+
 					}
 				}
 				else
@@ -144,8 +165,17 @@ public class MachineManager : MonoBehaviour
 						Debug.Log("Press tried to break but is already broken");
 					else
 					{
-						m_press.BreakMachine();
-						Debug.Log("Press broke");
+						if(m_lastBreak != MachineLists.PRESS)
+						{
+							m_press.BreakMachine();
+							m_lastBreak = MachineLists.PRESS;
+							Debug.Log("Press broke");
+						}
+						else
+						{
+							Debug.Log("Press tried to break but was the last machine to break");
+							BreakMachine();
+						}
 					}
 				}
 				else
@@ -158,15 +188,32 @@ public class MachineManager : MonoBehaviour
 						Debug.Log("Painter tried to break but is already broken");
 					else
 					{
-						m_painter.BreakMachine();
-						Debug.Log("Painter broke");
+						if(m_lastBreak != MachineLists.PAINTER)
+						{
+							m_painter.BreakMachine();
+							m_lastBreak = MachineLists.PAINTER;
+							Debug.Log("Painter broke");
+						}
+						else
+						{
+							Debug.Log("Painter tried to break but was the last machine to break");
+							BreakMachine();
+						}
 					}
 				}
 				else
 					Debug.Log("Painter tried to break but is disabled");
 				break;
 			case (3):
-				Debug.Log("No machine was broken");
+				if(m_lastBreak != MachineLists.NONE)
+				{
+					Debug.Log("No machine was broken");
+				}
+				else
+				{
+					Debug.Log("No machine was broken but no machine was broken last cycle");
+					BreakMachine();
+				}
 				break;
 			default:
 				Debug.LogError("Something went horribly wrong with Random.Range");
