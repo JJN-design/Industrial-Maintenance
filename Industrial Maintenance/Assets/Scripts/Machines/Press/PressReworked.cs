@@ -187,10 +187,10 @@ public class PressReworked : BaseMachine
 		SetLeakyPipes();
 
 		//creates the pipes
-		m_singlePipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
-		m_singlePipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
-		m_ySplitPipe1.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
-		m_ySplitPipe2.Create(this, m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_singlePipe1.Create(m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_singlePipe2.Create(m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_ySplitPipe1.Create(m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
+		m_ySplitPipe2.Create(m_lowVelocityLeak, m_highVelocityLeak, m_leakingLiquid, m_leakingVelocity, m_lowVelocityEmission, m_highVelocityEmission);
 	}
 
 	/// <summary>

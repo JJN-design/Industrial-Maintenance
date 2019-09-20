@@ -410,9 +410,6 @@ public class Painter : BaseMachine
 	/// </summary>
 	public override void BreakMachine()
 	{
-		if (!m_isWorking)
-			return;
-
 		//call base
 		base.BreakMachine();
 

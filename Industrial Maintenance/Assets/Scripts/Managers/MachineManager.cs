@@ -39,6 +39,9 @@ public class MachineManager : MonoBehaviour
 	[SerializeField] private FPSController m_playerController;
 	public FPSController GetController() { return m_playerController; }
 
+	/// <summary>
+	/// Called on awaken
+	/// </summary>
 	private void Awake()
 	{
 		if(m_woodchipperEnabled)
@@ -49,7 +52,9 @@ public class MachineManager : MonoBehaviour
 			m_painter.GenerateVariables(this);
 	}
 
-	// Update is called once per frame
+	/// <summary>
+	/// Called each frame
+	/// </summary>
 	void Update()
     {
 		//Check if the factory can produce boxes
@@ -75,8 +80,9 @@ public class MachineManager : MonoBehaviour
 			m_breakTimer -= m_timeBetweenBreaks;
 			BreakMachine();
 		}
-
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+#if UNITY_EDITOR
+		//Debug key to break woodchipper
+		if(Input.GetKeyDown(KeyCode.Alpha1))
 			m_woodchipper.BreakMachine();
 
 		if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -87,6 +93,7 @@ public class MachineManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Alpha4))
 			BreakMachine();
+#endif //UNITY_EDITOR
     }
 
 	/// <summary>
@@ -119,8 +126,13 @@ public class MachineManager : MonoBehaviour
 			case (0):
 				if (m_woodchipperEnabled)
 				{
-					m_woodchipper.BreakMachine();
-					Debug.Log("Woodchipper broke");
+					if (!m_woodchipper.GetWorking())
+						Debug.Log("Woodchipper tried to break but is already broken");
+					else
+					{
+						m_woodchipper.BreakMachine();
+						Debug.Log("Woodchipper broke");
+					}
 				}
 				else
 					Debug.Log("Woodchipper tried to break but is disabled");
@@ -128,8 +140,13 @@ public class MachineManager : MonoBehaviour
 			case (1):
 				if (m_pressEnabled)
 				{
-					m_press.BreakMachine();
-					Debug.Log("Press broke");
+					if (!m_press.GetWorking())
+						Debug.Log("Press tried to break but is already broken");
+					else
+					{
+						m_press.BreakMachine();
+						Debug.Log("Press broke");
+					}
 				}
 				else
 					Debug.Log("Press tried to break but is disabled");
@@ -137,8 +154,13 @@ public class MachineManager : MonoBehaviour
 			case (2):
 				if (m_painterEnabled)
 				{
-					m_painter.BreakMachine();
-					Debug.Log("Painter broke");
+					if (!m_painter.GetWorking())
+						Debug.Log("Painter tried to break but is already broken");
+					else
+					{
+						m_painter.BreakMachine();
+						Debug.Log("Painter broke");
+					}
 				}
 				else
 					Debug.Log("Painter tried to break but is disabled");

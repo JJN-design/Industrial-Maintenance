@@ -18,9 +18,6 @@ public class LeakingPipe : MonoBehaviour
 	private float m_lowLeakEmission;
 	private float m_highLeakEmission;
 
-	//the parent of this pipe
-	private PressReworked m_parent;
-
 	//the current leak liquid and velocity
 	private PressLeakLiquid m_liquid;
 	private PressLeakVelocity m_velocity;
@@ -35,9 +32,8 @@ public class LeakingPipe : MonoBehaviour
 	/// <param name="velocity">The velocity that the machine will initially leak at</param>
 	/// <param name="lowEmission">The emission rate of the 'low' leaking velocity</param>
 	/// <param name="highEmission">The emission rate of the 'high' leaking velocity</param>
-	public void Create(PressReworked parent, float lowVelocity, float highVelocity, PressLeakLiquid liquid, PressLeakVelocity velocity, float lowEmission, float highEmission)
+	public void Create(float lowVelocity, float highVelocity, PressLeakLiquid liquid, PressLeakVelocity velocity, float lowEmission, float highEmission)
 	{
-		m_parent = parent;
 		m_lowLeakVelocity = lowVelocity;
 		m_highLeakVelocity = highVelocity;
 		m_liquid = liquid;
