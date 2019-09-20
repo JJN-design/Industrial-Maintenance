@@ -60,11 +60,6 @@ public class FPSController : MonoBehaviour
 
 		Vector3 finalAcceleration = speedComponenent * m_acceleration * moveDir;
 
-		//Input.GetAxis() is used to get user input
-		//m_translation = Input.GetAxis("Vertical") * m_acceleration * Time.deltaTime;
-		//m_strafe = Input.GetAxis("Horizontal") * m_acceleration * Time.deltaTime;
-		//transform.Translate(m_strafe, 0, m_translation);
-
 		m_velocity -= m_velocity * m_drag * Time.deltaTime;
 
 		if(m_canMove)

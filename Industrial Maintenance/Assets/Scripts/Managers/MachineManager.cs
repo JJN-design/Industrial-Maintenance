@@ -28,6 +28,16 @@ public class MachineManager : MonoBehaviour
 	[Tooltip("Whether or not the painter is enabled")]
 	[SerializeField] private bool m_painterEnabled;
 
+	[Header("Audio")]
+	[Tooltip("The source of the alarm audio")]
+	[SerializeField] AudioSource m_alarmSource;
+	[Tooltip("The clip that plays when the woodchipper breaks")]
+	[SerializeField] AudioClip m_woodchipperAlarm;
+	[Tooltip("The clip that plays when the press breaks")]
+	[SerializeField] AudioClip m_pressAlarm;
+	[Tooltip("The clip that plays when the painter breaks")]
+	[SerializeField] AudioClip m_painterAlarm;
+
 	//The last machine that broke
 	private MachineLists m_lastBreak = MachineLists.NONE;
 
@@ -145,6 +155,8 @@ public class MachineManager : MonoBehaviour
 						{
 							m_woodchipper.BreakMachine();
 							m_lastBreak = MachineLists.WOODCHIPPER;
+							m_alarmSource.clip = m_woodchipperAlarm;
+							m_alarmSource.Play();
 							Debug.Log("Woodchipper broke");
 						}
 						else
@@ -169,6 +181,8 @@ public class MachineManager : MonoBehaviour
 						{
 							m_press.BreakMachine();
 							m_lastBreak = MachineLists.PRESS;
+							m_alarmSource.clip = m_pressAlarm;
+							m_alarmSource.Play();
 							Debug.Log("Press broke");
 						}
 						else
@@ -192,6 +206,8 @@ public class MachineManager : MonoBehaviour
 						{
 							m_painter.BreakMachine();
 							m_lastBreak = MachineLists.PAINTER;
+							m_alarmSource.clip = m_painterAlarm;
+							m_alarmSource.Play();
 							Debug.Log("Painter broke");
 						}
 						else
