@@ -21,6 +21,8 @@ abstract public class BaseMachine : MonoBehaviour
 	[Tooltip("How long before a fail state is reached while this machine is broken")]
 	[SerializeField] private float m_timeBeforeFailure;
 	private float m_failTimer = 0.0f;
+	[Tooltip("The dangerometer of this machine")]
+	[SerializeField] private Dangerometer m_dangerometer;
 
 	/// <summary>
 	/// Stops particles
@@ -28,6 +30,7 @@ abstract public class BaseMachine : MonoBehaviour
 	void Awake()
 	{
 		m_brokenParticles.Stop();
+		m_dangerometer.Create(m_timeBeforeFailure);
 	}
 
 	/// <summary>
@@ -38,6 +41,7 @@ abstract public class BaseMachine : MonoBehaviour
 		if(!m_isWorking)
 		{
 			m_failTimer += Time.deltaTime;
+			m_dangerometer.SetCurrentFailTimer(m_failTimer);
 			if(m_failTimer >= m_timeBeforeFailure)
 			{
 				Debug.Log("Level failed due to " + gameObject.name);
@@ -56,6 +60,7 @@ abstract public class BaseMachine : MonoBehaviour
 		if (!m_isWorking) //if the machine is already broken, don't rebreak it
 			return;
 		m_isWorking = false;
+		m_dangerometer.SetBroken(true);
 		m_brokenParticles.Play();
 	}
 
@@ -66,6 +71,7 @@ abstract public class BaseMachine : MonoBehaviour
 	{
 		m_brokenParticles.Stop();
 		m_isWorking = true;
+		m_dangerometer.SetBroken(false);
 		Debug.Log(gameObject.name + " was fixed!");
 		m_failTimer = 0.0f;
 	}
@@ -94,4 +100,16 @@ abstract public class BaseMachine : MonoBehaviour
 	{
 		m_failTimer += time;
 	}
+
+	/// <summary>
+	/// Gets the max time before failure
+	/// </summary>
+	/// <returns>The time before failure</returns>
+	public float GetFailureTime() { return m_timeBeforeFailure; }
+
+	/// <summary>
+	/// Gets the current timer
+	/// </summary>
+	/// <returns></returns>
+	public float GetCurrentTimer() { return m_failTimer; }
 }
