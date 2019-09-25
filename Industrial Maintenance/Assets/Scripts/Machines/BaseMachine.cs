@@ -24,6 +24,16 @@ abstract public class BaseMachine : MonoBehaviour
 	[Tooltip("The dangerometer of this machine")]
 	[SerializeField] private Dangerometer m_dangerometer;
 
+	[Header("Audio")]
+	[Tooltip("The audio source for this machine")]
+	public AudioSource m_audioSource;
+	[Tooltip("The sound that's made when a stage is done correctly on this machine")]
+	public AudioClip m_stageCompleteAudio;
+	[Tooltip("The sound that's made when a stage is done incorrectly on this machine")]
+	public AudioClip m_stageFailedAudio;
+	[Tooltip("The sound that's made when this machine is fixed")]
+	public AudioClip m_machineFixedAudio;
+
 	/// <summary>
 	/// Stops particles
 	/// </summary>
@@ -72,6 +82,8 @@ abstract public class BaseMachine : MonoBehaviour
 		m_brokenParticles.Stop();
 		m_isWorking = true;
 		m_dangerometer.SetBroken(false);
+		m_audioSource.clip = m_machineFixedAudio;
+		m_audioSource.Play();
 		Debug.Log(gameObject.name + " was fixed!");
 		m_failTimer = 0.0f;
 	}
