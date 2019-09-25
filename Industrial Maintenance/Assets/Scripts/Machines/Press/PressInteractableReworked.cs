@@ -139,6 +139,8 @@ public class PressInteractableReworked : Interactable
 	private void InteractFail()
 	{
 		m_parent.SubtractTime(m_incorrectTimeSubtraction);
+		m_parent.m_audioSource.clip = m_parent.m_stageFailedAudio;
+		m_parent.m_audioSource.Play();
 		Debug.Log("Incorrect interactable press for Press rework at stage " + m_currentStage.ToString());
 	}
 
@@ -148,6 +150,8 @@ public class PressInteractableReworked : Interactable
 	private void InteractCorrect()
 	{
 		m_parent.SetNewStage(m_currentStage + 1);
+		m_parent.m_audioSource.clip = m_parent.m_stageCompleteAudio;
+		m_parent.m_audioSource.Play();
 		Debug.Log("Correct interactable press for Press rework at stage " + m_currentStage.ToString());
 	}
 

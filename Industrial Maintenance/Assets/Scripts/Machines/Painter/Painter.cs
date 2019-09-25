@@ -256,8 +256,12 @@ public class Painter : BaseMachine
 		//Disables the previous light
 		DisableLight(m_puzzlesLeft);
 
+		//play audio
+		m_audioSource.clip = m_stageCompleteAudio;
+		m_audioSource.Play();
+
 		//if no more puzzles left, fix machine
-		if(m_puzzlesLeft <= 0)
+		if (m_puzzlesLeft <= 0)
 			FixMachine();
 		else //otherwise, generate a new light colour and enable the next light
 		{
@@ -273,6 +277,10 @@ public class Painter : BaseMachine
 	{
 		//subtract time remaining
 		SubtractTime(m_incorrectTimeSubtraction);
+
+		//play audio
+		m_audioSource.clip = m_stageFailedAudio;
+		m_audioSource.Play();
 
 		Debug.Log("Puzzle stage was failed on painter!\n"
 			+ "Light is: " + m_lightColour.ToString());
