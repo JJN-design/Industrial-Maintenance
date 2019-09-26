@@ -52,8 +52,8 @@ public class Painter : BaseMachine
 	[SerializeField] private Color m_spring = new Color(0.0f, 1.0f, 0.5f);
 	[Tooltip("The green colour")]
 	[SerializeField] private Color m_green = new Color(0.0f, 0.5f, 0.0f);
-	[Tooltip("The yellow colour")]
-	[SerializeField] private Color m_yellow = new Color(1.0f, 1.0f, 0.0f);
+	[Tooltip("The chartreuse colour")]
+	[SerializeField] private Color m_chartreuse = new Color(0.5f, 1.0f, 0.0f);
 	[Tooltip("The orange colour")]
 	[SerializeField] private Color m_orange = new Color(1.0f, 0.5f, 0.0f);
 	[Tooltip("The grey colour")]
@@ -107,7 +107,7 @@ public class Painter : BaseMachine
 				m_lights[puzzleStage].EnableLight(m_green);
 				break;
 			case(PainterLight.CHARTREUSE):
-				m_lights[puzzleStage].EnableLight(m_yellow);
+				m_lights[puzzleStage].EnableLight(m_chartreuse);
 				break;
 			case(PainterLight.ORANGE):
 				m_lights[puzzleStage].EnableLight(m_orange);
