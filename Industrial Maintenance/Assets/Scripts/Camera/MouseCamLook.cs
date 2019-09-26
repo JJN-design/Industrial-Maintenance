@@ -99,11 +99,11 @@ public class MouseCamLook : MonoBehaviour
 		Camera cam = GetComponent<Camera>();
 		RaycastHit hit;
 		Ray ray = cam.ScreenPointToRay(new Vector3(x, y, 0.0f)); 
-		if (Physics.Raycast(ray, out hit, m_interactableLayer)) //ray from middle of screen
+		if (Physics.Raycast(ray, out hit, m_raycastDist, m_interactableLayer)) //ray from middle of screen
 		{
-			if(hit.transform.GetComponent<Interactable>() != null && hit.distance <= m_raycastDist) //check distance of object from ray
+			Debug.Log("Hit " + hit.transform.name);
+			if(hit.transform.GetComponent<Interactable>() != null) //check that object has correct component
 			{
-				Debug.Log("Hit " + hit.transform.name);
 				m_currentlyInteractingWith = hit.transform.GetComponent<Interactable>();
 				m_currentlyInteractingWith.InteractWith();
 				m_isInteracting = true;
