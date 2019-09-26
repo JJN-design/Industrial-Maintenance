@@ -67,7 +67,11 @@ public class Dangerometer : MonoBehaviour
 			float rotationAmount = Mathf.Lerp(m_minRotation, m_maxRotation, m_dangerPercentage);
 
 			//TODO test this
-			m_pointer.transform.Rotate(m_rotationAxis, rotationAmount);
+			Vector3 rotationVec = m_rotationAxis;
+			rotationVec *= rotationAmount;
+
+			//unsure if this'll work
+			m_pointer.transform.rotation = Quaternion.Euler(rotationVec);
 		}
 	}
 }
