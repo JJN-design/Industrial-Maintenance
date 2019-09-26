@@ -39,13 +39,13 @@ public class Painter : BaseMachine
 	[Tooltip("The three different lights")]
 	[SerializeField] private PainterLightDisplay[] m_lights = new PainterLightDisplay[4];
 	[Tooltip("The red colour")]
-	[SerializeField] private Color m_red = new Color(1.0f, 0.0f, 0.0f);
+	[SerializeField] private Color m_red = new Color(0.6862f, 0.0f, 0.0f);
 	[Tooltip("The rose colour")]
 	[SerializeField] private Color m_rose = new Color(1.0f, 0.0f, 0.5f);
 	[Tooltip("The violet colour")]
 	[SerializeField] private Color m_violet = new Color(0.5f, 0.0f, 1.0f);
 	[Tooltip("The blue colour")]
-	[SerializeField] private Color m_blue = new Color(0.0f, 0.0f, 1.0f);
+	[SerializeField] private Color m_blue = new Color(0.0f, 0.0f, 0.5f);
 	[Tooltip("The azure colour")]
 	[SerializeField] private Color m_azure = new Color(0.0f, 0.5f, 1.0f);
 	[Tooltip("The spring colour")]
