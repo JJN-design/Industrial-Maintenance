@@ -60,8 +60,14 @@ public class Dangerometer : MonoBehaviour
 	{
 		if(m_isMachineBroken)
 		{
+			//calculates danger percentage
 			m_dangerPercentage = m_currentFailTimer / m_timeBeforeFailure;
-			//TODO rotate pointer
+
+			//calculates a rotation amount
+			float rotationAmount = Mathf.Lerp(m_minRotation, m_maxRotation, m_dangerPercentage);
+
+			//TODO test this
+			m_pointer.transform.Rotate(m_rotationAxis, rotationAmount);
 		}
 	}
 }
