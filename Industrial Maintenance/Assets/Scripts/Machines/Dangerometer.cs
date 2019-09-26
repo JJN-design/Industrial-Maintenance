@@ -16,7 +16,7 @@ public class Dangerometer : MonoBehaviour
 	[Tooltip("The object for the pointer")]
 	[SerializeField] private GameObject m_pointer;
 
-	private Transform m_defaultTransform;
+	private Quaternion m_defaultRotation;
 
 	//the current timer and the max time before failure
 	private float m_currentFailTimer;
@@ -53,7 +53,7 @@ public class Dangerometer : MonoBehaviour
 	public void Create(float maxFailTime)
 	{
 		m_timeBeforeFailure = maxFailTime;
-		m_defaultTransform = m_pointer.transform;
+		m_defaultRotation = m_pointer.transform.rotation;
 	}
 
 	/// <summary>
@@ -73,11 +73,15 @@ public class Dangerometer : MonoBehaviour
 			Vector3 rotationVec = m_rotationAxis;
 			rotationVec *= rotationAmount;
 
-			Transform newTransform = m_defaultTransform;
-			newTransform.Rotate(m_rotationAxis, rotationAmount);
+			Quaternion newRotation = m_defaultRotation;
+			Vector3 newEuler = newRotation.eulerAngles;
+
+			newEuler += (m_rotationAxis * rotationAmount);
+
+			newRotation = Quaternion.Euler(newEuler);
 
 			//unsure if this'll work
-			m_pointer.transform.rotation = newTransform.rotation;
+			m_pointer.transform.rotation = newRotation;
 		}
 	}
 }
