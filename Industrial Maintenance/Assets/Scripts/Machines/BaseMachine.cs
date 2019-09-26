@@ -86,6 +86,7 @@ abstract public class BaseMachine : MonoBehaviour
 		m_audioSource.Play();
 		Debug.Log(gameObject.name + " was fixed!");
 		m_failTimer = 0.0f;
+		m_dangerometer.SetCurrentFailTimer(m_failTimer);
 	}
 
 	/// <summary>
@@ -124,4 +125,4 @@ abstract public class BaseMachine : MonoBehaviour
 	/// </summary>
 	/// <returns></returns>
 	public float GetCurrentTimer() { return m_failTimer; }
-}
+};
