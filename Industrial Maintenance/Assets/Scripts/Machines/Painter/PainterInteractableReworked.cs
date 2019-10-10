@@ -31,18 +31,14 @@ public class PainterInteractableReworked : Interactable
 	}
 
 	/// <summary>
-	/// 
+	/// Code to be called when this interactable is interacted with
 	/// </summary>
 	public override void InteractWith()
 	{
+		//call base
 		base.InteractWith();
-	}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	public override void StopInteractingWith()
-	{
-		base.StopInteractingWith();
+		//input press
+		m_parent.InputPress(m_type);
 	}
 }

@@ -487,10 +487,6 @@ public class WoodchipperReworked : BaseMachine
 
 	#endregion //Interactables
 
-	[Header("Misc. Variables")]
-	[Tooltip("How much time is lost when you press the wrong button")]
-	[SerializeField] private float m_incorrectTimeSubtraction;
-
 	/// <summary>
 	/// Initially generates the variables the woodchipper might have
 	/// </summary>

@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class PainterLightDisplay : MonoBehaviour
 {
-	private Painter m_parent;
-
 	private Renderer m_renderer;
 
+	private Color m_disabledColour;
 	/// <summary>
 	/// Sets the renderer and parent
 	/// </summary>
-	public void Create(Painter parent)
+	public void Create(Color disabled)
 	{
 		m_renderer = GetComponent<Renderer>();
-		m_parent = parent;
-		m_renderer.material.color = m_parent.GetDisabledColour();
+		m_disabledColour = disabled;
+		m_renderer.material.color = m_disabledColour;
 	}
 
 	/// <summary>
@@ -32,6 +31,6 @@ public class PainterLightDisplay : MonoBehaviour
 	/// </summary>
 	public void DisableLight()
 	{
-		m_renderer.material.color = m_parent.GetDisabledColour();
+		m_renderer.material.color = m_disabledColour;
 	}
 }

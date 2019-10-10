@@ -73,7 +73,25 @@ public class PainterReworked : BaseMachine
 	[SerializeField] private Color m_rose = new Color(1.0f, 0.0f, 0.5f);
 	[Tooltip("The colour for a violet light")]
 	[SerializeField] private Color m_violet = new Color(0.5f, 0.0f, 1.0f);
-	
+
+	[Header("Lights")]
+	[Tooltip("The first stage light")]
+	[SerializeField] private PainterLightDisplay m_firstStageLight;
+	[Tooltip("The second stage light")]
+	[SerializeField] private PainterLightDisplay m_secondStageLight;
+	[Tooltip("The third stage light")]
+	[SerializeField] private PainterLightDisplay m_thirdStageLight;
+
+	/// <summary>
+	/// Creates the light displays
+	/// </summary>
+	private void CreateLights()
+	{
+		m_firstStageLight.Create(m_disabled);
+		m_secondStageLight.Create(m_disabled);
+		m_thirdStageLight.Create(m_disabled);
+	}
+
 	/// <summary>
 	/// Randomly sets colours for each stage
 	/// </summary>
@@ -172,6 +190,220 @@ public class PainterReworked : BaseMachine
 
 	#endregion //Interactables
 
+	#region Puzzle Variables
+
+	private int m_currentStage = 0;
+
+	/// <summary>
+	/// Inputs the chosen button press
+	/// </summary>
+	/// <param name="press">The button that was pressed</param>
+	public void InputPress(PainterInteractableReworkedType press)
+	{
+		//Change required button based on current stage
+		switch(m_currentStage)
+		{
+			case (0):
+				bool stageOne = StageOne(press);
+				if (stageOne)
+					CorrectPress();
+				else
+					IncorrectPress();
+				break;
+			case (1):
+				bool stageTwo = StageTwo(press);
+				if (stageTwo)
+					CorrectPress();
+				else
+					IncorrectPress();
+				break;
+			case (2):
+				bool stageThree = StageThree(press);
+				if (stageThree)
+					CorrectPress();
+				else
+					IncorrectPress();
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Code to be run for Stage One
+	/// </summary>
+	/// <param name="press">The button that was pressed</param>
+	/// <returns>Whether the button pressed was correct</returns>
+	private bool StageOne(PainterInteractableReworkedType press)
+	{
+		switch(m_stageOneLight)
+		{
+			case (StageOneLight.RED): //if light is red...
+				if (press == PainterInteractableReworkedType.RED_BUTTON) //...press red button
+					return true;
+				else
+					return false;
+			case (StageOneLight.GREEN): //if light is green...
+				if (press == PainterInteractableReworkedType.GREEN_BUTTON) //...press green button
+					return true;
+				else
+					return false;
+			case (StageOneLight.BLUE): //if light is blue...
+				if (press == PainterInteractableReworkedType.BLUE_BUTTON) //...press blue button
+					return true;
+				else
+					return false;
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Code to be run for Stage Two
+	/// </summary>
+	/// <param name="press">The button that was pressed</param>
+	/// <returns>Whether the button pressed was correct</returns>
+	private bool StageTwo(PainterInteractableReworkedType press)
+	{
+		switch(m_stageTwoLight)
+		{
+			case (StageTwoLight.CYAN): //if light is cyan...
+				if (press == PainterInteractableReworkedType.BLUE_BUTTON && m_stageOneLight == StageOneLight.GREEN) //...and stage one was green, press blue
+					return true;
+				else if (press == PainterInteractableReworkedType.GREEN_BUTTON && m_stageOneLight == StageOneLight.BLUE) //...and stage one was blue, press green
+					return true;
+				else
+					return false;
+			case (StageTwoLight.YELLOW): //if light is yellow...
+				if (press == PainterInteractableReworkedType.RED_BUTTON && m_stageOneLight == StageOneLight.GREEN) //...and stage one was green, press red
+					return true;
+				else if (press == PainterInteractableReworkedType.GREEN_BUTTON && m_stageOneLight == StageOneLight.RED) //...and stage one was red, press green
+					return true;
+				else
+					return false;
+			case (StageTwoLight.PURPLE): //if light is purple...
+				if (press == PainterInteractableReworkedType.RED_BUTTON && m_stageOneLight == StageOneLight.BLUE) //...and stage one was blue, press red
+					return true;
+				else if (press == PainterInteractableReworkedType.BLUE_BUTTON && m_stageOneLight == StageOneLight.RED) //...and stage one was red, press blue
+					return true;
+				else
+					return false;
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Code to be run for Stage Three
+	/// </summary>
+	/// <param name="press">The button that was pressed</param>
+	/// <returns>Whether the button pressed was correct</returns>
+	private bool StageThree(PainterInteractableReworkedType press)
+	{
+		switch(m_stageTwoLight)
+		{
+			case (StageTwoLight.CYAN): //if stage two was cyan...
+				if (press == PainterInteractableReworkedType.RED_BUTTON && m_stageThreeLight == StageThreeLight.GREY) //...and light is grey, press red
+					return true;
+				else if (press == PainterInteractableReworkedType.GREEN_BUTTON && m_stageThreeLight == StageThreeLight.SPRING) //...and light is spring, press green
+					return true;
+				else if (press == PainterInteractableReworkedType.BLUE_BUTTON && m_stageThreeLight == StageThreeLight.AZURE) //...and light is azure, press blue
+					return true;
+				else
+					return false;
+			case (StageTwoLight.YELLOW): //if stage two was yellow...
+				if (press == PainterInteractableReworkedType.RED_BUTTON && m_stageThreeLight == StageThreeLight.ORANGE) //...and light is orange, press red
+					return true;
+				else if (press == PainterInteractableReworkedType.GREEN_BUTTON && m_stageThreeLight == StageThreeLight.CHARTREUSE) //...and light is chartreuse, press green
+					return true;
+				else if (press == PainterInteractableReworkedType.BLUE_BUTTON && m_stageThreeLight == StageThreeLight.GREY) //...and light is grey, press blue
+					return true;
+				else
+					return false;
+			case (StageTwoLight.PURPLE): //if stage two was purple...
+				if (press == PainterInteractableReworkedType.RED_BUTTON && m_stageThreeLight == StageThreeLight.ROSE) //...and light is rose, press red
+					return true;
+				else if (press == PainterInteractableReworkedType.GREEN_BUTTON && m_stageThreeLight == StageThreeLight.GREY) //...and light is grey, press green
+					return true;
+				else if (press == PainterInteractableReworkedType.BLUE_BUTTON && m_stageThreeLight == StageThreeLight.VIOLET) //...and light is violet, press blue
+					return true;
+				else
+					return false;
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Code to be called if the correct button is pressed
+	/// </summary>
+	private void CorrectPress()
+	{
+		//play the correct sound
+		m_audioSource.clip = m_stageCompleteAudio;
+		m_audioSource.Play();
+
+		//change what is done based on stage
+		switch(m_currentStage)
+		{
+			case (0): //on stage one...
+				m_currentStage++; //increment stage
+				switch(m_stageTwoLight) //enable stage two light
+				{
+					case (StageTwoLight.CYAN):
+						m_secondStageLight.EnableLight(m_cyan);
+						break;
+					case (StageTwoLight.YELLOW):
+						m_secondStageLight.EnableLight(m_yellow);
+						break;
+					case (StageTwoLight.PURPLE):
+						m_secondStageLight.EnableLight(m_purple);
+						break;
+				}
+				break;
+			case (1): //on stage two...
+				m_currentStage++; //increment stage
+				switch(m_stageThreeLight) //enable stage three light
+				{
+					case (StageThreeLight.GREY):
+						m_thirdStageLight.EnableLight(m_grey);
+						break;
+					case (StageThreeLight.ORANGE):
+						m_thirdStageLight.EnableLight(m_orange);
+						break;
+					case (StageThreeLight.CHARTREUSE):
+						m_thirdStageLight.EnableLight(m_chartreuse);
+						break;
+					case (StageThreeLight.SPRING):
+						m_thirdStageLight.EnableLight(m_spring);
+						break;
+					case (StageThreeLight.AZURE):
+						m_thirdStageLight.EnableLight(m_azure);
+						break;
+					case (StageThreeLight.ROSE):
+						m_thirdStageLight.EnableLight(m_rose);
+						break;
+					case (StageThreeLight.VIOLET):
+						m_thirdStageLight.EnableLight(m_violet);
+						break;
+				}
+				break;
+			case (2): //on stage three...
+				FixMachine(); //fix machine
+				break;
+		}
+	}
+
+	/// <summary>
+	/// Code to be called if an incorrect button is pressed
+	/// </summary>
+	private void IncorrectPress()
+	{
+		//subtract time
+		SubtractTime(m_incorrectTimeSubtraction);
+
+		//play audio for failed stage
+		m_audioSource.clip = m_stageFailedAudio;
+		m_audioSource.Play();
+	}
+
+	#endregion //Puzzle Variables
+
 	/// <summary>
 	/// Generates the variables for this machine
 	/// </summary>
@@ -196,7 +428,35 @@ public class PainterReworked : BaseMachine
 		//call base
 		base.BreakMachine();
 
-		//TODO activate the first light
+		//Activates the first light
+		switch(m_stageOneLight)
+		{
+			case (StageOneLight.RED):
+				m_firstStageLight.EnableLight(m_red);
+				break;
+			case (StageOneLight.GREEN):
+				m_secondStageLight.EnableLight(m_green);
+				break;
+			case (StageOneLight.BLUE):
+				m_thirdStageLight.EnableLight(m_blue);
+				break;
+		}
+	}
 
+	/// <summary>
+	/// Code to be called when the machine is fixed
+	/// </summary>
+	public override void FixMachine()
+	{
+		//call base
+		base.FixMachine();
+
+		//reset stages left
+		m_currentStage = 0;
+
+		//disable all lights
+		m_firstStageLight.DisableLight();
+		m_secondStageLight.DisableLight();
+		m_thirdStageLight.DisableLight();
 	}
 }
