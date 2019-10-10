@@ -435,10 +435,10 @@ public class PainterReworked : BaseMachine
 				m_firstStageLight.EnableLight(m_red);
 				break;
 			case (StageOneLight.GREEN):
-				m_secondStageLight.EnableLight(m_green);
+				m_firstStageLight.EnableLight(m_green);
 				break;
 			case (StageOneLight.BLUE):
-				m_thirdStageLight.EnableLight(m_blue);
+				m_firstStageLight.EnableLight(m_blue);
 				break;
 		}
 	}
