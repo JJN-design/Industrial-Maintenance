@@ -415,6 +415,7 @@ public class PainterReworked : BaseMachine
 
 		//generate variables
 		GenerateColours();
+		CreateLights();
 
 		//create interactables
 		CreateInteractables();
