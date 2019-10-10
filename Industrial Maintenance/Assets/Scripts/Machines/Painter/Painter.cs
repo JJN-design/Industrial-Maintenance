@@ -60,11 +60,6 @@ public class Painter : BaseMachine
 	[SerializeField] private Color m_grey = new Color(0.5f, 0.5f, 0.5f);
 	[Tooltip("The light colour when the machine is fixed")]
 	[SerializeField] private Color m_disabled = new Color(0.0f, 0.0f, 0.0f);
-	/// <summary>
-	/// Gets the disabled colour
-	/// </summary>
-	/// <returns>The disabled colour</returns>
-	public Color GetDisabledColour() { return m_disabled; }
 
 	/// <summary>
 	/// Gets the current light colour
@@ -160,7 +155,7 @@ public class Painter : BaseMachine
 		m_lightColour = (PainterLight)Random.Range(0, 10);
 		foreach(PainterLightDisplay light in m_lights)
 		{
-			light.Create(this);
+			light.Create(m_disabled);
 		}
 	}
 
@@ -386,10 +381,6 @@ public class Painter : BaseMachine
 	}
 
 	#endregion //Puzzle Variables
-
-	[Header("Misc. Variables")]
-	[Tooltip("How much time is lost when you press the wrong button")]
-	[SerializeField] private float m_incorrectTimeSubtraction;
 
 	/// <summary>
 	/// Initially generates the variables the painter might have

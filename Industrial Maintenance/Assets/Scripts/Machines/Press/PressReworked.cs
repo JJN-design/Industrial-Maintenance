@@ -322,10 +322,6 @@ public class PressReworked : BaseMachine
 
 	#endregion //Interactables
 
-	[Header("Misc. Variables")]
-	[Tooltip("How much time is lost when you press the wrong button")]
-	[SerializeField] private float m_incorrectTimeSubtraction;
-
 	/// <summary>
 	/// Generates the variables for the machine
 	/// </summary>

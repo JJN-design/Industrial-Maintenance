@@ -21,6 +21,8 @@ abstract public class BaseMachine : MonoBehaviour
 	[Tooltip("How long before a fail state is reached while this machine is broken")]
 	[SerializeField] private float m_timeBeforeFailure;
 	private float m_failTimer = 0.0f;
+	[Tooltip("How much time is lost when you press the wrong button")]
+	[SerializeField] protected float m_incorrectTimeSubtraction;
 	[Tooltip("The dangerometer of this machine")]
 	[SerializeField] private Dangerometer m_dangerometer;
 
