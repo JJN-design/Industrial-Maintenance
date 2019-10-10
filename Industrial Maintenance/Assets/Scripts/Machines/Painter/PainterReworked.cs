@@ -455,6 +455,9 @@ public class PainterReworked : BaseMachine
 		//reset stages left
 		m_currentStage = 0;
 
+		//generate a new set of lights
+		GenerateColours();
+
 		//disable all lights
 		m_firstStageLight.DisableLight();
 		m_secondStageLight.DisableLight();
