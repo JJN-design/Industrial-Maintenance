@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PainterLightDisplay : MonoBehaviour
 {
-	private Renderer m_renderer;
+	[SerializeField] private Renderer m_renderer;
 
 	private Color m_disabledColour;
 	/// <summary>
@@ -12,7 +12,6 @@ public class PainterLightDisplay : MonoBehaviour
 	/// </summary>
 	public void Create(Color disabled)
 	{
-		m_renderer = GetComponent<Renderer>();
 		m_disabledColour = disabled;
 		m_renderer.material.color = m_disabledColour;
 	}
