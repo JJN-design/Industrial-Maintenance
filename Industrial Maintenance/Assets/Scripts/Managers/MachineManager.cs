@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum MachineLists
+public enum MachineLists
 {
 	WOODCHIPPER,
 	PRESS,
@@ -41,9 +41,6 @@ public class MachineManager : MonoBehaviour
 	//The last machine that broke
 	private MachineLists m_lastBreak = MachineLists.NONE;
 
-	//whether or not the factory is currently producing boxes
-	private bool m_producingBoxes = true;
-
 	[Header("Timers")]
 	[Tooltip("How long between machine breakings")]
 	[SerializeField] private float m_timeBetweenBreaks;
@@ -61,6 +58,9 @@ public class MachineManager : MonoBehaviour
 	[Tooltip("The FPS controller of the player")]
 	[SerializeField] private FPSController m_playerController;
 	public FPSController GetController() { return m_playerController; }
+
+	[Tooltip("The assembly line manager")]
+	[SerializeField] private AssemblyLine m_assemblyLine;
 
 	/// <summary>
 	/// Called on awaken
@@ -81,21 +81,16 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	void Update()
     {
-		//Check if the factory can produce boxes
-		m_producingBoxes = CheckMachines();
-		if(m_producingBoxes)
-		{
-			//Increment timer
-			m_boxTimer += Time.deltaTime;
+		//Increment timer
+		m_boxTimer += Time.deltaTime;
 
-			//If timer reaches threshold, produce a box
-			if(m_boxTimer >= m_timeBetweenBoxes)
-			{
-				//Reset timer and add score
-				m_boxTimer -= m_timeBetweenBoxes;
-				Debug.Log("A box was produced!");
-				ScoreManager.AddScore(1);
-			}
+		//If timer reaches threshold, produce a log
+		if(m_boxTimer >= m_timeBetweenBoxes)
+		{
+			//Reset timer and add score
+			m_boxTimer -= m_timeBetweenBoxes;
+			Debug.Log("A log was produced!");
+			m_assemblyLine.CreateBox();
 		}
 
 		m_breakTimer += Time.deltaTime;
@@ -121,21 +116,23 @@ public class MachineManager : MonoBehaviour
     }
 
 	/// <summary>
-	/// Checks if all machines are functional
+	/// Gets the working state of a particular machine
 	/// </summary>
-	/// <returns>Whether or not all machines are working</returns>
-	private bool CheckMachines()
+	/// <param name="machine">Which machine to check</param>
+	/// <returns>The working state of said machine</returns>
+	public bool CheckMachine(MachineLists machine)
 	{
-		if(m_woodchipperEnabled)
-			if (!m_woodchipper.GetWorking())
+		switch(machine)
+		{
+			case (MachineLists.WOODCHIPPER):
+				return m_woodchipper.GetWorking();
+			case (MachineLists.PAINTER):
+				return m_painter.GetWorking();
+			case (MachineLists.PRESS):
+				return m_press.GetWorking();
+			default:
 				return false;
-		if(m_pressEnabled)
-			if (!m_press.GetWorking())
-				return false;
-		if(m_painterEnabled)
-			if (!m_painter.GetWorking())
-				return false;
-		return true;
+		}
 	}
 
 	/// <summary>
