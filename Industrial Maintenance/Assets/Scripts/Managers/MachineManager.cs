@@ -47,8 +47,10 @@ public class MachineManager : MonoBehaviour
 	[Header("Timers")]
 	[Tooltip("How long between machine breakings")]
 	[SerializeField] private float m_timeBetweenBreaks;
+	[Tooltip("The initial timer count")]
+	[SerializeField] private float m_initialTimer;
 	//The current timer of the machine breaking
-	private float m_breakTimer = 0.0f;
+	private float m_breakTimer;
 	
 	[Tooltip("How long it takes to produce a box")]
 	[SerializeField] private float m_timeBetweenBoxes;
@@ -65,6 +67,7 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	private void Awake()
 	{
+		m_breakTimer = m_initialTimer;
 		if(m_woodchipperEnabled)
 			m_woodchipper.GenerateVariables(this);
 		if(m_pressEnabled)
