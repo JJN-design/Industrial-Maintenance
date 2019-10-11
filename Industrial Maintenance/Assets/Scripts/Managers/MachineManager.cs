@@ -48,6 +48,9 @@ public class MachineManager : MonoBehaviour
 	[SerializeField] private float m_initialTimer;
 	//The current timer of the machine breaking
 	private float m_breakTimer;
+
+	//How long the player has survived for
+	private float m_survivalTime = 0.0f;
 	
 	[Tooltip("How long it takes to produce a box")]
 	[SerializeField] private float m_timeBetweenBoxes;
@@ -83,6 +86,9 @@ public class MachineManager : MonoBehaviour
     {
 		//Increment timer
 		m_boxTimer += Time.deltaTime;
+		m_survivalTime += Time.deltaTime;
+
+		ScoreManager.SetTime(m_survivalTime);
 
 		//If timer reaches threshold, produce a log
 		if(m_boxTimer >= m_timeBetweenBoxes)
