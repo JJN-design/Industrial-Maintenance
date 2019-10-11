@@ -17,7 +17,10 @@ public class ScoreManager : MonoBehaviour
 	static int m_currentScore;
 
 	//the name of the current player
-	static string m_currentName;
+	static string m_currentName = "NoName";
+
+	//The current time survived
+	static float m_currentTime;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +45,11 @@ public class ScoreManager : MonoBehaviour
 			Debug.Log("Reset score");
 			ResetScore();
 		}
+	}
+
+	static public void SetTime(float time)
+	{
+		m_currentTime = time;
 	}
 
 	/// <summary>
@@ -99,6 +107,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			m_thirdHighScore.score = m_currentScore;
 			m_thirdHighScore.name = m_currentName;
+			m_thirdHighScore.time = m_currentTime;
 		}
 
 		//if current score is higher than the third highest score, but is less than the first high score, set a new second highest score and shift current second highest to third highest
@@ -107,6 +116,7 @@ public class ScoreManager : MonoBehaviour
 			m_thirdHighScore = m_secondHighScore;
 			m_secondHighScore.score = m_currentScore;
 			m_secondHighScore.name = m_currentName;
+			m_secondHighScore.time = m_currentTime;
 		}
 
 		//if current high score is higher than the first highest score, set a new highest score and shift previous scores down
@@ -116,6 +126,7 @@ public class ScoreManager : MonoBehaviour
 			m_secondHighScore = m_firstHighScore;
 			m_firstHighScore.score = m_currentScore;
 			m_firstHighScore.name = m_currentName;
+			m_firstHighScore.time = m_currentTime;
 		}
 
 		FileIO.Save(m_firstHighScore, m_secondHighScore, m_thirdHighScore);

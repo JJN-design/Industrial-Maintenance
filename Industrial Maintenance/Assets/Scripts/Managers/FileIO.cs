@@ -9,6 +9,7 @@ public struct HighScore
 {
 	public int score;
 	public string name;
+	public float time;
 }
 
 public class FileIO : MonoBehaviour
@@ -58,6 +59,7 @@ public class FileIO : MonoBehaviour
 			HighScore newScore = new HighScore();
 			newScore.name = "Empty";
 			newScore.score = 0;
+			newScore.time = 0.0f;
 			HighScore[] emptyArray = { newScore, newScore, newScore };
 			return emptyArray; //no file exists, return empty array
 		}
