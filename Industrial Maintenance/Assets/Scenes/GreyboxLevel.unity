@@ -416,8 +416,9 @@ MonoBehaviour:
   m_woodchipperAlarm: {fileID: 8300000, guid: aa79c8c72d701fc4b929e30d09bfb651, type: 3}
   m_pressAlarm: {fileID: 8300000, guid: aa79c8c72d701fc4b929e30d09bfb651, type: 3}
   m_painterAlarm: {fileID: 8300000, guid: aa79c8c72d701fc4b929e30d09bfb651, type: 3}
-  m_timeBetweenBreaks: 30
-  m_timeBetweenBoxes: 60
+  m_timeBetweenBreaks: 60
+  m_initialTimer: 50
+  m_timeBetweenBoxes: 10
   m_playerController: {fileID: 1507643377}
 --- !u!4 &83417064
 Transform:
@@ -16725,7 +16726,7 @@ MonoBehaviour:
   m_horizontalRotation: {x: 0, y: 0, z: 0}
   m_leftBlades: {fileID: 714019011}
   m_rightBlades: {fileID: 714019010}
-  m_bladeSpinSpeed: 500
+  m_bladeSpinSpeed: 180
   m_brokenBladeMultiplier: 0.01
   m_greenPipe: {fileID: 714019009}
   m_yellowPipe: {fileID: 714019008}
@@ -21879,7 +21880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_brokenParticles: {fileID: 215949218}
   m_timeBeforeFailure: 180
-  m_incorrectTimeSubtraction: 50
+  m_incorrectTimeSubtraction: 60
   m_dangerometer: {fileID: 1216916147}
   m_audioSource: {fileID: 1753055457}
   m_stageCompleteAudio: {fileID: 8300000, guid: 51e329de466a0ed4fa635db999cc2dc9,
