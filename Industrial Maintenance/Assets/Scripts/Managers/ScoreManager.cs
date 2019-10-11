@@ -45,6 +45,15 @@ public class ScoreManager : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Sets the name of the player
+	/// </summary>
+	/// <param name="name">The name to input</param>
+	static public void SetName(string name)
+	{
+		m_currentName = name;
+	}
+
+	/// <summary>
 	/// Resets current score to zero
 	/// </summary>
 	static public void ResetScore()
