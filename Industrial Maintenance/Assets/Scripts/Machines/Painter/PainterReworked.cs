@@ -35,9 +35,11 @@ public class PainterReworked : BaseMachine
 {
 	#region Light Colours
 
-	[Header("Misc Light Colours")]
-	[Tooltip("The disabled light colour")]
-	[SerializeField] private Color m_disabled = new Color(0.0f, 0.0f, 0.0f);
+	[Header("Materials")]
+	[Tooltip("The disabled light material")]
+	[SerializeField] private Material m_disabled;
+	[Tooltip("The enabled light material")]
+	[SerializeField] private Material m_enabled;
 
 	[Header("Stage One Light Colours")]
 	private StageOneLight m_stageOneLight;
@@ -87,9 +89,9 @@ public class PainterReworked : BaseMachine
 	/// </summary>
 	private void CreateLights()
 	{
-		m_firstStageLight.Create(m_disabled);
-		m_secondStageLight.Create(m_disabled);
-		m_thirdStageLight.Create(m_disabled);
+		m_firstStageLight.Create(m_disabled, m_enabled);
+		m_secondStageLight.Create(m_disabled, m_enabled);
+		m_thirdStageLight.Create(m_disabled, m_enabled);
 	}
 
 	/// <summary>
