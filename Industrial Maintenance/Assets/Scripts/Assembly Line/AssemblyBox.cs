@@ -110,8 +110,10 @@ public class AssemblyBox : MonoBehaviour
 		transform.rotation = newRot;
 
 		//if movement is complete, call next node
-		if(movementComplete)
+		if (movementComplete && m_nodeCounter < m_assemblyLine.GetNodes().Length)
 			ChangeNode(m_assemblyLine.GetNodes()[m_nodeCounter++]);
+		else if (movementComplete && m_nodeCounter >= m_assemblyLine.GetNodes().Length)
+			FinishNode();
 	}
 
 	/// <summary>
@@ -138,6 +140,19 @@ public class AssemblyBox : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Code to be called when this reaches the last node
+	/// </summary>
+	private void FinishNode()
+	{
+		//Increase score if all machines were working
+		if (m_correctAssembly)
+			ScoreManager.AddScore(1);
+
+		//destroy self
+		Destroy(gameObject);
+	}
+
+	/// <summary>
 	/// Changes the node
 	/// Should be called upon reaching a node
 	/// </summary>
@@ -147,13 +162,7 @@ public class AssemblyBox : MonoBehaviour
 		//If node just reached was the end node, call end code
 		if(m_previousNode.GetNodeType() == NodeType.FINISH)
 		{
-			//Increase score if all machines were working
-			if (m_correctAssembly)
-				ScoreManager.AddScore(1);
-
-			//destroy self
-			Destroy(gameObject);
-			return;
+			FinishNode();
 		}
 
 		//Reset timer
