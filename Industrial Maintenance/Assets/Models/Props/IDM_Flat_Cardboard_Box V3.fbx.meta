@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3a8bf545296550b46a9ac90037974a89
+guid: 5dd4917dfabaec948864423fef733b1e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
+    2100000: lambert92
     2300000: //RootNode
     3300000: //RootNode
     4300000: Flat_Cardboard_Box
