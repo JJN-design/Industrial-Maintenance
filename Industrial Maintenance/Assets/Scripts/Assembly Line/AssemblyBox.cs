@@ -44,8 +44,6 @@ public class AssemblyBox : MonoBehaviour
 	[SerializeField] private MeshFilter m_meshFilter;
 	[Tooltip("The renderer of this box")]
 	[SerializeField] private Renderer m_renderer;
-	[Tooltip("The explosion particles of this box")]
-	[SerializeField] private ParticleSystem m_explosionParticles;
 
 	[Header("Meshes")]
 	[Tooltip("The log mesh")]
@@ -111,7 +109,7 @@ public class AssemblyBox : MonoBehaviour
 
 		//if movement is complete, call next node
 		if (movementComplete && m_nodeCounter < m_assemblyLine.GetNodes().Length)
-			ChangeNode(m_assemblyLine.GetNodes()[m_nodeCounter++]);
+			ChangeNode(m_assemblyLine.GetNodes()[++m_nodeCounter]);
 		else if (movementComplete && m_nodeCounter >= m_assemblyLine.GetNodes().Length)
 			FinishNode();
 	}
@@ -278,7 +276,7 @@ public class AssemblyBox : MonoBehaviour
 	/// </summary>
 	private void Explode()
 	{
-		m_explosionParticles.Play();
+		m_assemblyLine.m_bootParticles.Play();
 		Destroy(gameObject);
 	}
 
