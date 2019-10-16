@@ -17310,7 +17310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_visible: 1
   m_type: 0
-  m_moveTime: 3
+  m_moveTime: 1
 --- !u!4 &510269270
 Transform:
   m_ObjectHideFlags: 0
@@ -62243,6 +62243,9 @@ MonoBehaviour:
   - {fileID: 1174293793}
   - {fileID: 745514628}
   - {fileID: 1966758500}
+  - {fileID: 1336036450}
+  - {fileID: 1918988214}
+  - {fileID: 296490529}
   m_manager: {fileID: 83417063}
 --- !u!4 &2114060050
 Transform:
