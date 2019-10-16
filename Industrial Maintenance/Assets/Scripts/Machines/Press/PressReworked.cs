@@ -132,6 +132,16 @@ public class PressReworked : BaseMachine
 
 	#region Leak Variables
 
+	[Header("Compartments")]
+	[Tooltip("The ink compartment")]
+	[SerializeField] private OpenablePanel m_inkCompartment;
+
+	/// <summary>
+	/// Gets the ink compartment
+	/// </summary>
+	/// <returns>The ink compartment of the machine</returns>
+	public OpenablePanel GetInkCompartment() { return m_inkCompartment; }
+
 	//the pipes that can leak
 	[Header("Leaking pipes")]
 	[Tooltip("The first single pipe")]
@@ -369,5 +379,6 @@ public class PressReworked : BaseMachine
 		SetLeakyPipes();
 		SetNewStage(0);
 		UpdatePipes();
+		m_inkCompartment.Close();
 	}
 }

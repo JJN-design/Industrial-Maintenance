@@ -61,7 +61,10 @@ public class WoodchipperInteractableReworked : Interactable
 				case (1):
 					bool stageTwoCorrect = StageTwo();
 					if (stageTwoCorrect)
+					{
+						m_parent.GetCompartment().Open();
 						InteractCorrect();
+					}
 					else
 						InteractFail();
 					break;
