@@ -16,6 +16,14 @@ public class Dangerometer : MonoBehaviour
 	[Tooltip("The object for the pointer")]
 	[SerializeField] private GameObject m_pointer;
 
+	[Header("Audio")]
+	[Tooltip("The audio source for the dangerometer")]
+	[SerializeField] private AudioSource m_audioSource;
+	[Tooltip("The audio clip for high danger")]
+	[SerializeField] private AudioClip m_highDangerClip;
+	[Tooltip("The danger percentage at which the high danger alarm will play")]
+	[SerializeField] [Range(0.0f, 1.0f)] private float m_highDangerPercentage;
+
 	private Quaternion m_defaultRotation;
 
 	//the current timer and the max time before failure
@@ -65,6 +73,13 @@ public class Dangerometer : MonoBehaviour
 		{
 			//calculates danger percentage
 			m_dangerPercentage = m_currentFailTimer / m_timeBeforeFailure;
+
+			//plays high danger audio in case of high danger
+			if(m_dangerPercentage >= m_highDangerPercentage)
+			{
+				m_audioSource.clip = m_highDangerClip;
+				m_audioSource.Play();
+			}
 
 			//calculates a rotation amount
 			float rotationAmount = Mathf.Lerp(m_minRotation, m_maxRotation, m_dangerPercentage);
