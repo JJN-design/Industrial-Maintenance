@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1077924219989874334}
   - component: {fileID: 1077924219992035061}
   m_Layer: 0
-  m_Name: "L\xF6g 1"
+  m_Name: "L\xF6g"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077924219992131678}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.2295055, y: 0.16717592, z: 23.137383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_explosionParticles: {fileID: 2371135825269216000}
   m_logMesh: {fileID: 4300000, guid: 5c08781257d03154f8856d375bcab9ee, type: 3}
   m_boxMesh: {fileID: 4300000, guid: d6d4bac4c4c44af449e418bc815eef48, type: 3}
-  m_flatpackMesh: {fileID: 4300000, guid: 3a8bf545296550b46a9ac90037974a89, type: 3}
+  m_flatpackMesh: {fileID: 4300000, guid: 5dd4917dfabaec948864423fef733b1e, type: 3}
   m_logMat: {fileID: 2100000, guid: 446a59a050dcded47a4541155914bae8, type: 2}
   m_paintedLogMat: {fileID: 2100000, guid: b43128866bdc8eb4496a22ddc8538eb6, type: 2}
   m_stickeredLogMat: {fileID: 2100000, guid: fd270d521e91f2c409018363f1626242, type: 2}
