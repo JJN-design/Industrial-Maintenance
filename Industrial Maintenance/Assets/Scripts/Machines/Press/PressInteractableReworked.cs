@@ -108,6 +108,7 @@ public class PressInteractableReworked : Interactable
 					if (stageOneCorrect)
 					{
 						m_parent.StartLeaking();
+						m_parent.GetInkCompartment().Open();
 						InteractCorrect();
 					}
 					else
