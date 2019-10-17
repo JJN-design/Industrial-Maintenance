@@ -5923,10 +5923,10 @@ MonoBehaviour:
   m_incorrectTimeSubtraction: 60
   m_dangerometer: {fileID: 359017112}
   m_audioSource: {fileID: 982367086}
-  m_stageCompleteAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59,
+  m_stageCompleteAudio: {fileID: 8300000, guid: 51e329de466a0ed4fa635db999cc2dc9,
     type: 3}
   m_stageFailedAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59, type: 3}
-  m_machineFixedAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59, type: 3}
+  m_machineFixedAudio: {fileID: 8300000, guid: 831da82a18dd3f44aa8fda4338b3610d, type: 3}
   m_4CurvedSpokeWheel: {fileID: 1411723450}
   m_8CurvedSpokeWheel: {fileID: 997513778}
   m_16CurvedSpokeWheel: {fileID: 735903624}
@@ -11087,8 +11087,8 @@ MonoBehaviour:
   m_rotationAxis: {x: 1, y: 0, z: 0}
   m_pointer: {fileID: 649794021}
   m_audioSource: {fileID: 359017113}
-  m_highDangerClip: {fileID: 8300000, guid: 465833759e489594aaf7b7bb98d4548a, type: 3}
-  m_highDangerPercentage: 0
+  m_highDangerClip: {fileID: 8300000, guid: aa79c8c72d701fc4b929e30d09bfb651, type: 3}
+  m_highDangerPercentage: 0.8
 --- !u!82 &359017113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22250,10 +22250,10 @@ MonoBehaviour:
   m_incorrectTimeSubtraction: 60
   m_dangerometer: {fileID: 1605251960}
   m_audioSource: {fileID: 1892783200}
-  m_stageCompleteAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59,
+  m_stageCompleteAudio: {fileID: 8300000, guid: 51e329de466a0ed4fa635db999cc2dc9,
     type: 3}
   m_stageFailedAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59, type: 3}
-  m_machineFixedAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59, type: 3}
+  m_machineFixedAudio: {fileID: 8300000, guid: 831da82a18dd3f44aa8fda4338b3610d, type: 3}
   m_bladeAssembly: {fileID: 440560855}
   m_verticalRotation: {x: 0, y: 0, z: -90}
   m_horizontalRotation: {x: 0, y: 0, z: 0}
@@ -27600,10 +27600,10 @@ MonoBehaviour:
   m_incorrectTimeSubtraction: 60
   m_dangerometer: {fileID: 1216916147}
   m_audioSource: {fileID: 1753055457}
-  m_stageCompleteAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59,
+  m_stageCompleteAudio: {fileID: 8300000, guid: 51e329de466a0ed4fa635db999cc2dc9,
     type: 3}
   m_stageFailedAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59, type: 3}
-  m_machineFixedAudio: {fileID: 8300000, guid: 6d1cce063b9024742b0b39335d598c59, type: 3}
+  m_machineFixedAudio: {fileID: 8300000, guid: 831da82a18dd3f44aa8fda4338b3610d, type: 3}
   m_disabled: {fileID: 2100000, guid: afe761035e1697b4cade4348c222fa98, type: 2}
   m_enabled: {fileID: 2100000, guid: e64bbcece3cbc404492503151af9c81a, type: 2}
   m_red: {r: 0.6862, g: 0, b: 0, a: 1}
@@ -39757,8 +39757,8 @@ MonoBehaviour:
   m_rotationAxis: {x: 1, y: 0, z: 0}
   m_pointer: {fileID: 1716364054}
   m_audioSource: {fileID: 1216916149}
-  m_highDangerClip: {fileID: 8300000, guid: 465833759e489594aaf7b7bb98d4548a, type: 3}
-  m_highDangerPercentage: 0
+  m_highDangerClip: {fileID: 8300000, guid: aa79c8c72d701fc4b929e30d09bfb651, type: 3}
+  m_highDangerPercentage: 0.8
 --- !u!4 &1216916148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 51abbb1539696ff4495570437004c8aa,
@@ -50446,8 +50446,8 @@ MonoBehaviour:
   m_rotationAxis: {x: 1, y: 0, z: 0}
   m_pointer: {fileID: 1466643940}
   m_audioSource: {fileID: 1605251961}
-  m_highDangerClip: {fileID: 8300000, guid: 465833759e489594aaf7b7bb98d4548a, type: 3}
-  m_highDangerPercentage: 0
+  m_highDangerClip: {fileID: 8300000, guid: aa79c8c72d701fc4b929e30d09bfb651, type: 3}
+  m_highDangerPercentage: 0.8
 --- !u!82 &1605251961
 AudioSource:
   m_ObjectHideFlags: 0
