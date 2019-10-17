@@ -36,6 +36,14 @@ public class Dangerometer : MonoBehaviour
 	//whether or not the machine is broken
 	private bool m_isMachineBroken = false;
 
+	//whether or not the audio has been played before
+	private bool m_audioPlayed = false;
+
+	/// <summary>
+	/// Resets the audio
+	/// </summary>
+	public void ResetAudio() { m_audioPlayed = false; }
+
 	/// <summary>
 	/// Sets what the current timer is
 	/// </summary>
@@ -75,10 +83,11 @@ public class Dangerometer : MonoBehaviour
 			m_dangerPercentage = m_currentFailTimer / m_timeBeforeFailure;
 
 			//plays high danger audio in case of high danger
-			if(m_dangerPercentage >= m_highDangerPercentage)
+			if(m_dangerPercentage >= m_highDangerPercentage && !m_audioPlayed)
 			{
 				m_audioSource.clip = m_highDangerClip;
 				m_audioSource.Play();
+				m_audioPlayed = true;
 			}
 
 			//calculates a rotation amount
