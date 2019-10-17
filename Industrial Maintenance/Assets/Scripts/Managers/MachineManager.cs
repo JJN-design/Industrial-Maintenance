@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MachineLists
+{
+	WOODCHIPPER,
+	PRESS,
+	PAINTER,
+	NONE
+}
+
 public class MachineManager : MonoBehaviour
 {
 	[Header("Machines")]
@@ -20,14 +28,29 @@ public class MachineManager : MonoBehaviour
 	[Tooltip("Whether or not the painter is enabled")]
 	[SerializeField] private bool m_painterEnabled;
 
-	//whether or not the factory is currently producing boxes
-	private bool m_producingBoxes = true;
+	[Header("Audio")]
+	[Tooltip("The source of the alarm audio")]
+	[SerializeField] AudioSource m_alarmSource;
+	[Tooltip("The clip that plays when the woodchipper breaks")]
+	[SerializeField] AudioClip m_woodchipperAlarm;
+	[Tooltip("The clip that plays when the press breaks")]
+	[SerializeField] AudioClip m_pressAlarm;
+	[Tooltip("The clip that plays when the painter breaks")]
+	[SerializeField] AudioClip m_painterAlarm;
+
+	//The last machine that broke
+	private MachineLists m_lastBreak = MachineLists.NONE;
 
 	[Header("Timers")]
 	[Tooltip("How long between machine breakings")]
 	[SerializeField] private float m_timeBetweenBreaks;
+	[Tooltip("The initial timer count")]
+	[SerializeField] private float m_initialTimer;
 	//The current timer of the machine breaking
-	private float m_breakTimer = 0.0f;
+	private float m_breakTimer;
+
+	//How long the player has survived for
+	private float m_survivalTime = 0.0f;
 	
 	[Tooltip("How long it takes to produce a box")]
 	[SerializeField] private float m_timeBetweenBoxes;
@@ -39,11 +62,28 @@ public class MachineManager : MonoBehaviour
 	[SerializeField] private FPSController m_playerController;
 	public FPSController GetController() { return m_playerController; }
 
+	[Tooltip("The assembly line manager")]
+	[SerializeField] private AssemblyLine m_assemblyLine;
+
+	private bool m_failed = false;
+
+	/// <summary>
+	/// Code to be called if the level fails
+	/// </summary>
+	public void FailLevel()
+	{
+		m_failed = true;
+		m_playerController.DisableMovement();
+		m_playerController.GetUI().ShowScores();
+		ScoreManager.FailLevel();
+	}
+
 	/// <summary>
 	/// Called on awaken
 	/// </summary>
 	private void Awake()
 	{
+		m_breakTimer = m_initialTimer;
 		if(m_woodchipperEnabled)
 			m_woodchipper.GenerateVariables(this);
 		if(m_pressEnabled)
@@ -57,21 +97,19 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	void Update()
     {
-		//Check if the factory can produce boxes
-		m_producingBoxes = CheckMachines();
-		if(m_producingBoxes)
-		{
-			//Increment timer
-			m_boxTimer += Time.deltaTime;
+		//Increment timer
+		m_boxTimer += Time.deltaTime;
+		m_survivalTime += Time.deltaTime;
 
-			//If timer reaches threshold, produce a box
-			if(m_boxTimer >= m_timeBetweenBoxes)
-			{
-				//Reset timer and add score
-				m_boxTimer -= m_timeBetweenBoxes;
-				Debug.Log("A box was produced!");
-				ScoreManager.AddScore(1);
-			}
+		ScoreManager.SetTime(m_survivalTime);
+
+		//If timer reaches threshold, produce a log
+		if(m_boxTimer >= m_timeBetweenBoxes)
+		{
+			//Reset timer and add score
+			m_boxTimer -= m_timeBetweenBoxes;
+			Debug.Log("A log was produced!");
+			m_assemblyLine.CreateBox();
 		}
 
 		m_breakTimer += Time.deltaTime;
@@ -97,21 +135,23 @@ public class MachineManager : MonoBehaviour
     }
 
 	/// <summary>
-	/// Checks if all machines are functional
+	/// Gets the working state of a particular machine
 	/// </summary>
-	/// <returns>Whether or not all machines are working</returns>
-	private bool CheckMachines()
+	/// <param name="machine">Which machine to check</param>
+	/// <returns>The working state of said machine</returns>
+	public bool CheckMachine(MachineLists machine)
 	{
-		if(m_woodchipperEnabled)
-			if (!m_woodchipper.GetWorking())
+		switch(machine)
+		{
+			case (MachineLists.WOODCHIPPER):
+				return m_woodchipper.GetWorking();
+			case (MachineLists.PAINTER):
+				return m_painter.GetWorking();
+			case (MachineLists.PRESS):
+				return m_press.GetWorking();
+			default:
 				return false;
-		if(m_pressEnabled)
-			if (!m_press.GetWorking())
-				return false;
-		if(m_painterEnabled)
-			if (!m_painter.GetWorking())
-				return false;
-		return true;
+		}
 	}
 
 	/// <summary>
@@ -130,8 +170,20 @@ public class MachineManager : MonoBehaviour
 						Debug.Log("Woodchipper tried to break but is already broken");
 					else
 					{
-						m_woodchipper.BreakMachine();
-						Debug.Log("Woodchipper broke");
+						if (m_lastBreak != MachineLists.WOODCHIPPER)
+						{
+							m_woodchipper.BreakMachine();
+							m_lastBreak = MachineLists.WOODCHIPPER;
+							m_alarmSource.clip = m_woodchipperAlarm;
+							m_alarmSource.Play();
+							Debug.Log("Woodchipper broke");
+						}
+						else
+						{
+							Debug.Log("Woodchipper tried to break but was the last machine to break");
+							BreakMachine();
+						}
+
 					}
 				}
 				else
@@ -144,8 +196,19 @@ public class MachineManager : MonoBehaviour
 						Debug.Log("Press tried to break but is already broken");
 					else
 					{
-						m_press.BreakMachine();
-						Debug.Log("Press broke");
+						if(m_lastBreak != MachineLists.PRESS)
+						{
+							m_press.BreakMachine();
+							m_lastBreak = MachineLists.PRESS;
+							m_alarmSource.clip = m_pressAlarm;
+							m_alarmSource.Play();
+							Debug.Log("Press broke");
+						}
+						else
+						{
+							Debug.Log("Press tried to break but was the last machine to break");
+							BreakMachine();
+						}
 					}
 				}
 				else
@@ -158,15 +221,34 @@ public class MachineManager : MonoBehaviour
 						Debug.Log("Painter tried to break but is already broken");
 					else
 					{
-						m_painter.BreakMachine();
-						Debug.Log("Painter broke");
+						if(m_lastBreak != MachineLists.PAINTER)
+						{
+							m_painter.BreakMachine();
+							m_lastBreak = MachineLists.PAINTER;
+							m_alarmSource.clip = m_painterAlarm;
+							m_alarmSource.Play();
+							Debug.Log("Painter broke");
+						}
+						else
+						{
+							Debug.Log("Painter tried to break but was the last machine to break");
+							BreakMachine();
+						}
 					}
 				}
 				else
 					Debug.Log("Painter tried to break but is disabled");
 				break;
 			case (3):
-				Debug.Log("No machine was broken");
+				if(m_lastBreak != MachineLists.NONE)
+				{
+					Debug.Log("No machine was broken");
+				}
+				else
+				{
+					Debug.Log("No machine was broken but no machine was broken last cycle");
+					BreakMachine();
+				}
 				break;
 			default:
 				Debug.LogError("Something went horribly wrong with Random.Range");

@@ -17,7 +17,13 @@ public class ScoreManager : MonoBehaviour
 	static int m_currentScore;
 
 	//the name of the current player
-	static string m_currentName;
+	static string m_currentName = "NoName";
+
+	//The current time survived
+	static float m_currentTime;
+
+	//whether or not score and timer can increment
+	static bool m_scoreIncrementable = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,18 +36,19 @@ public class ScoreManager : MonoBehaviour
 		m_thirdHighScore = highScores[2];
     }
 
-	void Update()
+	static public void SetTime(float time)
 	{
-		if(Input.GetKeyDown(KeyCode.Keypad5))
-		{
-			AddScore(1);
-			Debug.Log("Added one score");
-		}
-		if(Input.GetKeyDown(KeyCode.Keypad4))
-		{
-			Debug.Log("Reset score");
-			ResetScore();
-		}
+		if(m_scoreIncrementable)
+			m_currentTime = time;
+	}
+
+	/// <summary>
+	/// Sets the name of the player
+	/// </summary>
+	/// <param name="name">The name to input</param>
+	static public void SetName(string name)
+	{
+		m_currentName = name;
 	}
 
 	/// <summary>
@@ -50,6 +57,11 @@ public class ScoreManager : MonoBehaviour
 	static public void ResetScore()
 	{
 		m_currentScore = 0;
+	}
+
+	static public void FailLevel()
+	{
+		m_scoreIncrementable = false;
 	}
 
 	/// <summary>
@@ -77,7 +89,8 @@ public class ScoreManager : MonoBehaviour
 	/// <param name="value">How much score to add</param>
 	static public void AddScore(int value)
 	{
-		m_currentScore += value;
+		if(m_scoreIncrementable)
+			m_currentScore += value;
 	}
 
 	/// <summary>
@@ -90,6 +103,7 @@ public class ScoreManager : MonoBehaviour
 		{
 			m_thirdHighScore.score = m_currentScore;
 			m_thirdHighScore.name = m_currentName;
+			m_thirdHighScore.time = m_currentTime;
 		}
 
 		//if current score is higher than the third highest score, but is less than the first high score, set a new second highest score and shift current second highest to third highest
@@ -98,6 +112,7 @@ public class ScoreManager : MonoBehaviour
 			m_thirdHighScore = m_secondHighScore;
 			m_secondHighScore.score = m_currentScore;
 			m_secondHighScore.name = m_currentName;
+			m_secondHighScore.time = m_currentTime;
 		}
 
 		//if current high score is higher than the first highest score, set a new highest score and shift previous scores down
@@ -107,6 +122,7 @@ public class ScoreManager : MonoBehaviour
 			m_secondHighScore = m_firstHighScore;
 			m_firstHighScore.score = m_currentScore;
 			m_firstHighScore.name = m_currentName;
+			m_firstHighScore.time = m_currentTime;
 		}
 
 		FileIO.Save(m_firstHighScore, m_secondHighScore, m_thirdHighScore);

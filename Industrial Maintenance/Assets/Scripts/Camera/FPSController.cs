@@ -60,11 +60,6 @@ public class FPSController : MonoBehaviour
 
 		Vector3 finalAcceleration = speedComponenent * m_acceleration * moveDir;
 
-		//Input.GetAxis() is used to get user input
-		//m_translation = Input.GetAxis("Vertical") * m_acceleration * Time.deltaTime;
-		//m_strafe = Input.GetAxis("Horizontal") * m_acceleration * Time.deltaTime;
-		//transform.Translate(m_strafe, 0, m_translation);
-
 		m_velocity -= m_velocity * m_drag * Time.deltaTime;
 
 		if(m_canMove)
@@ -84,6 +79,7 @@ public class FPSController : MonoBehaviour
 		{
 			DisableMovement();
 			m_scoreUI.ShowScores();
+			m_scoreUI.UpdateFailed("Player hit Escape.");
 		}
     }
 
@@ -92,22 +88,22 @@ public class FPSController : MonoBehaviour
 		Vector3 moveDir = Vector3.zero;
 		int inputCount = 0;
 
-		if(Input.GetAxis("Vertical") > 0)
+		if(Input.GetAxisRaw("Vertical") > 0)
 		{
 			moveDir += transform.forward;
 			++inputCount;
 		}
-		if (Input.GetAxis("Vertical") < 0)
+		if (Input.GetAxisRaw("Vertical") < 0)
 		{
 			moveDir -= transform.forward;
 			++inputCount;
 		}
-		if (Input.GetAxis("Horizontal") > 0)
+		if (Input.GetAxisRaw("Horizontal") > 0)
 		{
 			moveDir += transform.right;
 			++inputCount;
 		}
-		if (Input.GetAxis("Horizontal") < 0)
+		if (Input.GetAxisRaw("Horizontal") < 0)
 		{
 			moveDir -= transform.right;
 			++inputCount;

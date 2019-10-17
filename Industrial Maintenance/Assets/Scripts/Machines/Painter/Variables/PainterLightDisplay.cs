@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class PainterLightDisplay : MonoBehaviour
 {
-	private Painter m_parent;
+	[SerializeField] private Renderer m_renderer;
 
-	private Renderer m_renderer;
+	private Material m_disabledMaterial;
 
+	private Material m_enabledMaterial;
 	/// <summary>
 	/// Sets the renderer and parent
 	/// </summary>
-	public void Create(Painter parent)
+	/// <param name="disabled">The material to be used when this light is disabled</param>
+	/// <param name="enabled">The material to be used when this light is enabled</param>
+	public void Create(Material disabled, Material enabled)
 	{
-		m_renderer = GetComponent<Renderer>();
-		m_parent = parent;
-		m_renderer.material.color = m_parent.GetDisabledColour();
+		m_enabledMaterial = enabled;
+		m_disabledMaterial = disabled;
+		m_renderer.material = m_disabledMaterial;
 	}
 
 	/// <summary>
-	/// 
+	/// Turns the light on and sets the colour
 	/// </summary>
-	/// <param name="colour"></param>
+	/// <param name="colour">The colour the light is set to</param>
 	public void EnableLight(Color colour)
 	{
-		m_renderer.material.color = colour;
+		m_renderer.material = m_enabledMaterial;
+		m_renderer.material.SetColor("_EmissionColor", colour);
 	}
 
 	/// <summary>
@@ -32,6 +36,6 @@ public class PainterLightDisplay : MonoBehaviour
 	/// </summary>
 	public void DisableLight()
 	{
-		m_renderer.material.color = m_parent.GetDisabledColour();
+		m_renderer.material = m_disabledMaterial;
 	}
 }

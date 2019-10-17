@@ -61,7 +61,10 @@ public class WoodchipperInteractableReworked : Interactable
 				case (1):
 					bool stageTwoCorrect = StageTwo();
 					if (stageTwoCorrect)
+					{
+						m_parent.GetCompartment().Open();
 						InteractCorrect();
+					}
 					else
 						InteractFail();
 					break;
@@ -91,6 +94,8 @@ public class WoodchipperInteractableReworked : Interactable
 	private void InteractFail()
 	{
 		m_parent.SubtractTime(m_incorrectTimeSubtraction);
+		m_parent.m_audioSource.clip = m_parent.m_stageFailedAudio;
+		m_parent.m_audioSource.Play();
 		Debug.Log("Incorrect interactable press for Woodchipper rework at stage " + m_currentStage.ToString());
 	}
 
@@ -100,6 +105,8 @@ public class WoodchipperInteractableReworked : Interactable
 	private void InteractCorrect()
 	{
 		m_parent.SetNewStage(m_currentStage + 1);
+		m_parent.m_audioSource.clip = m_parent.m_stageCompleteAudio;
+		m_parent.m_audioSource.Play();
 		Debug.Log("Correct interactable press for Woodchipper rework at stage " + m_currentStage.ToString());
 	}
 
@@ -145,34 +152,90 @@ public class WoodchipperInteractableReworked : Interactable
 		switch(m_parent.GetRattlingPipe())
 		{
 			case (RattlingPipe.BLUE): //if the pipe is blue...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is horizontal, pull blue lever
-					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.RED_LEVER)//...and axle is vertical, pull red lever
-					return true;
+				if (m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...pull blue lever if stage 1 lever pulled was blue
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else
+						return false;
+				}
+				else if (m_interactableType == WoodchipperInteractableType.RED_LEVER)//...pull red lever if stage 1 lever pulled was red
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else
+						return false;
+				}
 				else
 					return false;
 
 			case (RattlingPipe.GREEN): //if the pipe is green...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is vertical, pull blue lever
-					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.RED_LEVER) //...and axle is horizontal, pull red lever
-					return true;
+				if (m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...pull blue lever if stage 1 lever pulled was red
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else
+						return false;
+				}
+				else if (m_interactableType == WoodchipperInteractableType.RED_LEVER) //...pull red lever if stage 1 lever pulled was blue
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else
+						return false;
+				}
 				else
 					return false;
 
 			case (RattlingPipe.RED): //if the pipe is red...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is horizontal, pull blue lever
-					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.RED_LEVER) //...and axle is vertical, pull red lever
-					return true;
+				if (m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...pull blue lever if stage 1 lever pulled was blue
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else
+						return false;
+				}
+				else if (m_interactableType == WoodchipperInteractableType.RED_LEVER)//...pull red lever if stage 1 lever pulled was red
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else
+						return false;
+				}
 				else
 					return false;
 
 			case (RattlingPipe.YELLOW): //if the pipe is yellow...
-				if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...and axle is vertical, pull blue lever
-					return true;
-				else if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_interactableType == WoodchipperInteractableType.RED_LEVER) //...and axle is horizontal, pull red lever
-					return true;
+				if (m_interactableType == WoodchipperInteractableType.BLUE_LEVER) //...pull blue lever if stage 1 lever pulled was red
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else
+						return false;
+				}
+				else if (m_interactableType == WoodchipperInteractableType.RED_LEVER) //...pull red lever if stage 1 lever pulled was blue
+				{
+					if (m_parent.GetAxleOrientation() == AxleOrientation.HORIZONTAL && m_parent.GetSpinDirection() == BladeSpinDirection.INCORRECT)
+						return true;
+					else if (m_parent.GetAxleOrientation() == AxleOrientation.VERTICAL && m_parent.GetSpinDirection() == BladeSpinDirection.CORRECT)
+						return true;
+					else
+						return false;
+				}
 				else
 					return false;
 

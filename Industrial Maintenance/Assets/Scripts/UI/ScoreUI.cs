@@ -21,6 +21,10 @@ public class ScoreUI : MonoBehaviour
 
 	[Tooltip("The display for the third highest score")]
 	[SerializeField] private Text m_thirdHighScoreText;
+
+	[Header("Other text")]
+	[Tooltip("The display for which machine failed")]
+	[SerializeField] private Text m_machineFailedText;
 	
 	/// <summary>
 	/// Updates the text for the manager
@@ -33,10 +37,25 @@ public class ScoreUI : MonoBehaviour
 		//get high scores
 		HighScore[] highScores = ScoreManager.GetHighScores();
 
+		float[] secondsSurvived = { highScores[0].time, highScores[1].time, highScores[2].time };
+		float[] minutesSurvived = { Mathf.Floor(secondsSurvived[0] / 60), Mathf.Floor(secondsSurvived[1] / 60), Mathf.Floor(secondsSurvived[2] / 60) };
+		secondsSurvived[0] -= (minutesSurvived[0] * 60);
+		secondsSurvived[1] -= (minutesSurvived[1] * 60);
+		secondsSurvived[2] -= (minutesSurvived[2] * 60);
+
 		//update high scores
-		m_firstHighScoreText.text = highScores[0].name + " - " + highScores[0].score.ToString();
-		m_secondHighScoreText.text = highScores[1].name + " - " + highScores[1].score.ToString();
-		m_thirdHighScoreText.text = highScores[2].name + " - " + highScores[2].score.ToString();
+		m_firstHighScoreText.text = highScores[0].name + " / " + highScores[0].score.ToString() + " / " + minutesSurvived[0] + ":" + secondsSurvived[0];
+		m_secondHighScoreText.text = highScores[1].name + " / " + highScores[1].score.ToString() + " / " + minutesSurvived[1] + ":" + secondsSurvived[1];
+		m_thirdHighScoreText.text = highScores[2].name + " / " + highScores[2].score.ToString() + " / " + minutesSurvived[2] + ":" + secondsSurvived[2];
+	}
+
+	/// <summary>
+	/// Sets the failure string
+	/// </summary>
+	/// <param name="failString">The string that should be displayed</param>
+	public void UpdateFailed(string failString)
+	{
+		m_machineFailedText.text = failString;
 	}
 
 	/// <summary>

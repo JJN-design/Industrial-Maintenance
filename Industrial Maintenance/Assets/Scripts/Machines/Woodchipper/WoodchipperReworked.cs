@@ -487,9 +487,15 @@ public class WoodchipperReworked : BaseMachine
 
 	#endregion //Interactables
 
-	[Header("Misc. Variables")]
-	[Tooltip("How much time is lost when you press the wrong button")]
-	[SerializeField] private float m_incorrectTimeSubtraction;
+	[Header("Misc variables")]
+	[Tooltip("The RPM and Pressure Compartment of this machine")]
+	[SerializeField] private OpenablePanel m_stageThreeCompartment;
+
+	/// <summary>
+	/// Gets the openable compartment
+	/// </summary>
+	/// <returns>The openable compartment</returns>
+	public OpenablePanel GetCompartment() { return m_stageThreeCompartment; }
 
 	/// <summary>
 	/// Initially generates the variables the woodchipper might have
@@ -537,7 +543,7 @@ public class WoodchipperReworked : BaseMachine
 
 		//Hide variables
 		StopRattlingPipe();
-		//TODO close panels
+		m_stageThreeCompartment.Close();
 
 		//update all the variables
 		UpdateAxle(newAxles);
