@@ -65,6 +65,19 @@ public class MachineManager : MonoBehaviour
 	[Tooltip("The assembly line manager")]
 	[SerializeField] private AssemblyLine m_assemblyLine;
 
+	private bool m_failed = false;
+
+	/// <summary>
+	/// Code to be called if the level fails
+	/// </summary>
+	public void FailLevel()
+	{
+		m_failed = true;
+		m_playerController.DisableMovement();
+		m_playerController.GetUI().ShowScores();
+		ScoreManager.FailLevel();
+	}
+
 	/// <summary>
 	/// Called on awaken
 	/// </summary>

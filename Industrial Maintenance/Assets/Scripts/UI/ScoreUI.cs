@@ -21,6 +21,10 @@ public class ScoreUI : MonoBehaviour
 
 	[Tooltip("The display for the third highest score")]
 	[SerializeField] private Text m_thirdHighScoreText;
+
+	[Header("Other text")]
+	[Tooltip("The display for which machine failed")]
+	[SerializeField] private Text m_machineFailedText;
 	
 	/// <summary>
 	/// Updates the text for the manager
@@ -43,6 +47,15 @@ public class ScoreUI : MonoBehaviour
 		m_firstHighScoreText.text = highScores[0].name + " / " + highScores[0].score.ToString() + " / " + minutesSurvived[0] + ":" + secondsSurvived[0];
 		m_secondHighScoreText.text = highScores[1].name + " / " + highScores[1].score.ToString() + " / " + minutesSurvived[1] + ":" + secondsSurvived[1];
 		m_thirdHighScoreText.text = highScores[2].name + " / " + highScores[2].score.ToString() + " / " + minutesSurvived[2] + ":" + secondsSurvived[2];
+	}
+
+	/// <summary>
+	/// Sets the failure string
+	/// </summary>
+	/// <param name="failString">The string that should be displayed</param>
+	public void UpdateFailed(string failString)
+	{
+		m_machineFailedText.text = failString;
 	}
 
 	/// <summary>
