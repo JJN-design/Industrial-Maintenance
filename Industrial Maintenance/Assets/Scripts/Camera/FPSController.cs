@@ -79,6 +79,7 @@ public class FPSController : MonoBehaviour
 		{
 			DisableMovement();
 			m_scoreUI.ShowScores();
+			m_scoreUI.UpdateFailed("Player hit Escape.");
 		}
     }
 

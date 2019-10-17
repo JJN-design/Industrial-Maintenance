@@ -22,6 +22,9 @@ public class ScoreManager : MonoBehaviour
 	//The current time survived
 	static float m_currentTime;
 
+	//whether or not score and timer can increment
+	static bool m_scoreIncrementable = true;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,23 +36,10 @@ public class ScoreManager : MonoBehaviour
 		m_thirdHighScore = highScores[2];
     }
 
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.Keypad5))
-		{
-			AddScore(1);
-			Debug.Log("Added one score");
-		}
-		if(Input.GetKeyDown(KeyCode.Keypad4))
-		{
-			Debug.Log("Reset score");
-			ResetScore();
-		}
-	}
-
 	static public void SetTime(float time)
 	{
-		m_currentTime = time;
+		if(m_scoreIncrementable)
+			m_currentTime = time;
 	}
 
 	/// <summary>
@@ -67,6 +57,11 @@ public class ScoreManager : MonoBehaviour
 	static public void ResetScore()
 	{
 		m_currentScore = 0;
+	}
+
+	static public void FailLevel()
+	{
+		m_scoreIncrementable = false;
 	}
 
 	/// <summary>
@@ -94,7 +89,8 @@ public class ScoreManager : MonoBehaviour
 	/// <param name="value">How much score to add</param>
 	static public void AddScore(int value)
 	{
-		m_currentScore += value;
+		if(m_scoreIncrementable)
+			m_currentScore += value;
 	}
 
 	/// <summary>
