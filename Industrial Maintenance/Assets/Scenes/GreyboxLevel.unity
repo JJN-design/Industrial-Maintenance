@@ -12371,8 +12371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70afeb18144cfc4d877f7a787bab79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shakeSpeed: {x: 0, y: 0, z: 0}
-  m_shakeIntensity: {x: 0, y: 0, z: 0}
+  m_shakeSpeed: {x: 100, y: 250, z: 500}
+  m_shakeIntensity: {x: 0.01, y: 0.01, z: 0.01}
 --- !u!114 &440560872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12385,8 +12385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70afeb18144cfc4d877f7a787bab79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shakeSpeed: {x: 0, y: 0, z: 0}
-  m_shakeIntensity: {x: 0, y: 0, z: 0}
+  m_shakeSpeed: {x: 100, y: 250, z: 500}
+  m_shakeIntensity: {x: 0.01, y: 0.01, z: 0.01}
 --- !u!114 &440560873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12399,8 +12399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70afeb18144cfc4d877f7a787bab79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shakeSpeed: {x: 0, y: 0, z: 0}
-  m_shakeIntensity: {x: 0, y: 0, z: 0}
+  m_shakeSpeed: {x: 100, y: 250, z: 500}
+  m_shakeIntensity: {x: 0.01, y: 0.01, z: 0.01}
 --- !u!114 &440560874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12413,8 +12413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70afeb18144cfc4d877f7a787bab79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shakeSpeed: {x: 0, y: 0, z: 0}
-  m_shakeIntensity: {x: 0, y: 0, z: 0}
+  m_shakeSpeed: {x: 100, y: 250, z: 500}
+  m_shakeIntensity: {x: 0.01, y: 0.01, z: 0.01}
 --- !u!114 &440560875
 MonoBehaviour:
   m_ObjectHideFlags: 0
