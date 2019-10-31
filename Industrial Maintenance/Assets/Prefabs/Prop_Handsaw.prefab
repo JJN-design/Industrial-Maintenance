@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3854650463844430868}
   - component: {fileID: 3854650463841006644}
   - component: {fileID: 3854650463842006772}
+  - component: {fileID: 505158747}
   m_Layer: 0
   m_Name: Prop_Handsaw
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3854650463844198452}
-  m_LocalRotation: {x: -0.7071065, y: -0, z: -0, w: 0.7071071}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.21928787, y: -0.1245186, z: 0.36360168}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -57,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c97209550d20cb4b8b3a3cd11274c80, type: 3}
+  - {fileID: 2100000, guid: e6a8212db9a2f9643aa2a5eb7229fdfb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &505158747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3854650463844198452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7241697, y: 0.17272647, z: 0.018080259}
+  m_Center: {x: 0.1936622, y: 0.08636298, z: -0.004642231}

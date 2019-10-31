@@ -108,9 +108,9 @@ public class AssemblyBox : MonoBehaviour
 		transform.rotation = newRot;
 
 		//if movement is complete, call next node
-		if (movementComplete && m_nodeCounter < m_assemblyLine.GetNodes().Length)
+		if (movementComplete && m_nodeCounter < m_assemblyLine.GetNodes().Length - 1)
 			ChangeNode(m_assemblyLine.GetNodes()[++m_nodeCounter]);
-		else if (movementComplete && m_nodeCounter >= m_assemblyLine.GetNodes().Length)
+		else if (movementComplete && m_nodeCounter >= m_assemblyLine.GetNodes().Length - 1)
 			FinishNode();
 	}
 

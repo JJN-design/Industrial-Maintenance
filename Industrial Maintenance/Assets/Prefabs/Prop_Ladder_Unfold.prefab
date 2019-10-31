@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8849140586419396133}
   - component: {fileID: 8849140586422296069}
   - component: {fileID: 8849140586421165253}
+  - component: {fileID: 628099407}
   m_Layer: 0
   m_Name: Prop_Ladder_Unfold
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8849140586419225093}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06, y: -0.1545186, z: 6.4}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -57,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 89ee3992dd8d08f4e862b57d625c11dc, type: 3}
+  - {fileID: 2100000, guid: 57fdcc8204a4e0a49831946196ff6d7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &628099407
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849140586419225093}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49983191, y: 1.9291778, z: 1.2000641}
+  m_Center: {x: -0.24991581, y: 0.9645883, z: -0.5945901}

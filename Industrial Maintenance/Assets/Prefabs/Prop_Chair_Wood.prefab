@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8421722483078558463}
   - component: {fileID: 8421722483079852767}
   - component: {fileID: 8421722483080851487}
+  - component: {fileID: 763400931}
   m_Layer: 0
   m_Name: Prop_Chair_Wood
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8421722483078917855}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6685028, y: -0.1545186, z: 3.1897392}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -57,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 28d311d1569eac840ae5ce7de34f66c3, type: 3}
+  - {fileID: 2100000, guid: b442ff51fb0f14d419f0ef537c2f82d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &763400931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421722483078917855}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.40487635, y: 0.89738196, z: 0.3424402}
+  m_Center: {x: -0.00000046938658, y: 0.44449136, z: 0}
