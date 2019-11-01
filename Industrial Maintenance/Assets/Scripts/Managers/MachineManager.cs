@@ -57,6 +57,14 @@ public class MachineManager : MonoBehaviour
 	//the current timer of box production
 	private float m_boxTimer = 0.0f;
 
+	[Header("Scaling Difficulty")]
+	[Tooltip("How long between each difficulty increase")]
+	[SerializeField] private float m_difficultyIncreaseTime;
+	[Tooltip("How much the difficulty changes each interval")]
+	[SerializeField] private float m_difficultyIncreaseAmount;
+
+	private float m_difficultyTimer;
+
 	[Header("Other Objects")]
 	[Tooltip("The FPS controller of the player")]
 	[SerializeField] private FPSController m_playerController;
@@ -100,6 +108,7 @@ public class MachineManager : MonoBehaviour
 		//Increment timer
 		m_boxTimer += Time.deltaTime;
 		m_survivalTime += Time.deltaTime;
+		m_difficultyTimer += Time.deltaTime;
 
 		ScoreManager.SetTime(m_survivalTime);
 
@@ -112,12 +121,21 @@ public class MachineManager : MonoBehaviour
 			m_assemblyLine.CreateBox();
 		}
 
+		//If timer reaches threshold, try to break a machine
 		m_breakTimer += Time.deltaTime;
 		if(m_breakTimer >= m_timeBetweenBreaks)
 		{
 			m_breakTimer -= m_timeBetweenBreaks;
 			BreakMachine();
 		}
+
+		//If timer reaches threshold, increase difficulty
+		if(m_difficultyTimer >= m_difficultyIncreaseTime)
+		{
+			m_difficultyTimer -= m_difficultyIncreaseTime;
+			IncrementDifficulty();
+		}
+
 #if UNITY_EDITOR
 		//Debug key to break woodchipper
 		if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -133,6 +151,20 @@ public class MachineManager : MonoBehaviour
 			BreakMachine();
 #endif //UNITY_EDITOR
     }
+
+	/// <summary>
+	/// Increments the difficulty of each machine
+	/// </summary>
+	private void IncrementDifficulty()
+	{
+		//increase difficulty of machines
+		m_woodchipper.DifficultyIncrease(m_difficultyIncreaseAmount);
+		m_painter.DifficultyIncrease(m_difficultyIncreaseAmount);
+		m_press.DifficultyIncrease(m_difficultyIncreaseAmount);
+
+		//decrease how long between machine breaks
+		m_timeBetweenBreaks *= m_difficultyIncreaseAmount;
+	}
 
 	/// <summary>
 	/// Gets the working state of a particular machine
