@@ -64,6 +64,16 @@ abstract public class BaseMachine : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Increments the difficulty of the machine by decreasing how long there is before failure
+	/// </summary>
+	/// <param name="increaseAmount">What the time will be multiplied by</param>
+	public void DifficultyIncrease(float increaseAmount)
+	{
+		m_timeBeforeFailure *= increaseAmount;
+		m_incorrectTimeSubtraction *= increaseAmount;
+	}
+
+	/// <summary>
 	/// Calls for the machine to be broken
 	/// </summary>
 	virtual public void BreakMachine()
