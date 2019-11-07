@@ -202,30 +202,34 @@ public class PainterReworked : BaseMachine
 	/// <param name="press">The button that was pressed</param>
 	public void InputPress(PainterInteractableReworkedType press)
 	{
-		//Change required button based on current stage
-		switch(m_currentStage)
+		//Only input press if machine is broken
+		if(!m_isWorking)
 		{
-			case (0):
-				bool stageOne = StageOne(press);
-				if (stageOne)
-					CorrectPress();
-				else
-					IncorrectPress();
-				break;
-			case (1):
-				bool stageTwo = StageTwo(press);
-				if (stageTwo)
-					CorrectPress();
-				else
-					IncorrectPress();
-				break;
-			case (2):
-				bool stageThree = StageThree(press);
-				if (stageThree)
-					CorrectPress();
-				else
-					IncorrectPress();
-				break;
+			//Change required button based on current stage
+			switch(m_currentStage)
+			{
+				case (0):
+					bool stageOne = StageOne(press);
+					if (stageOne)
+						CorrectPress();
+					else
+						IncorrectPress();
+					break;
+				case (1):
+					bool stageTwo = StageTwo(press);
+					if (stageTwo)
+						CorrectPress();
+					else
+						IncorrectPress();
+					break;
+				case (2):
+					bool stageThree = StageThree(press);
+					if (stageThree)
+						CorrectPress();
+					else
+						IncorrectPress();
+					break;
+			}
 		}
 	}
 
