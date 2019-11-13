@@ -5,19 +5,19 @@ using UnityEngine;
 public class SpinningBlades : MonoBehaviour
 {
 	//What direction these blades spin
-	private BladeSpinDirection m_spinDirection;
+	private BladeSpinDirection m_spinDirection = BladeSpinDirection.CORRECT;
 
 	//How fast these blades should spin normally if 'correct' (multiplied by -1 if spin direction is 'INCORRECT')
-	private float m_spinSpeed;
+	private float m_spinSpeed = 180.0f;
 
 	//How much slower these blades should be if the machine is broken
-	private float m_brokenSpeedMultiplier;
+	private float m_brokenSpeedMultiplier = 0.1f;
 
 	//The current speed at which these blades rotate
-	private float m_currentSpinSpeed;
+	private float m_currentSpinSpeed = 180.0f;
 
 	//The current RPM of the machine
-	private RotationRate m_machineRPM;
+	private RotationRate m_machineRPM = RotationRate.RPM500;
 
 	/// <summary>
 	/// Sets up variables for the spinning blades
