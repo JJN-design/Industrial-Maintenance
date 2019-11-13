@@ -264,10 +264,16 @@ public class AssemblyBox : MonoBehaviour
 	/// </summary>
 	private void Boot()
 	{
-		if(m_type != BoxType.PAINTED_STICKERED_BOX) //if box isn't painted, stickered, and a box, explode it
+		if (m_type != BoxType.PAINTED_STICKERED_BOX) //if box isn't painted, stickered, and a box, explode it
+		{
+			m_assemblyLine.m_boot.Stomp(false);
 			Explode();
+		}
 		else //otherwise, stamp it flat
+		{
+			m_assemblyLine.m_boot.Stomp(true);
 			m_type = BoxType.FINISHED_BOX;
+		}
 		UpdateMesh();
 	}
 
@@ -276,7 +282,6 @@ public class AssemblyBox : MonoBehaviour
 	/// </summary>
 	private void Explode()
 	{
-		m_assemblyLine.m_bootParticles.Play();
 		Destroy(gameObject);
 	}
 

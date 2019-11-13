@@ -98,6 +98,8 @@ public class ScoreManager : MonoBehaviour
 	/// </summary>
 	static public void SaveNewScores()
 	{
+		Debug.Log(m_thirdHighScore.name + " / " + m_thirdHighScore.score);
+
 		//if current score is higher than the third highest score, but is less than the second high score, set a new third highest score
 		if (m_thirdHighScore.score < m_currentScore && m_currentScore <= m_secondHighScore.score)
 		{

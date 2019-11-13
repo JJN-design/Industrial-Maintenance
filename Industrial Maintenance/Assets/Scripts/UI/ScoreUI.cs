@@ -58,12 +58,18 @@ public class ScoreUI : MonoBehaviour
 		m_machineFailedText.text = failString;
 	}
 
+	private bool m_scoresSaveable = true;
+
 	/// <summary>
 	/// Saves the scores and shows the panel
 	/// </summary>
 	public void ShowScores()
 	{
-		m_highScorePanel.SetActive(true);
-		ScoreManager.SaveNewScores();
+		if(m_scoresSaveable)
+		{
+			m_highScorePanel.SetActive(true);
+			ScoreManager.SaveNewScores();
+			m_scoresSaveable = false;
+		}
 	}
 }
