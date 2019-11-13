@@ -53539,11 +53539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: c477256ae0e66fa4aa662bcdd3b151fe, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!114 &1338512922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53556,54 +53551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1338512919}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!1 &1339857450 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8242530798113912516, guid: dfbbee9c085ba2b478c2a755639530ff,
@@ -54617,6 +54564,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1369479117493513066, guid: cb1ddf1a4cd4d10408b01b3eb69ac5b9,
     type: 3}
   m_PrefabInstance: {fileID: 816658823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1559487984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5595853611734586106, guid: a48bfcfa56a0cc8459cd9297baa285ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 5595853611789955104}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1560963655 stripped
 MonoBehaviour:
@@ -72884,7 +72837,7 @@ MonoBehaviour:
   - {fileID: 1336036450}
   - {fileID: 1918988214}
   - {fileID: 296490529}
-  m_bootParticles: {fileID: 307062448}
+  m_boot: {fileID: 2143277367}
   m_manager: {fileID: 83417063}
 --- !u!4 &2114060050
 Transform:
@@ -73117,6 +73070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2143277365}
   - component: {fileID: 2143277366}
+  - component: {fileID: 2143277367}
   m_Layer: 0
   m_Name: Stomper
   m_TagString: Untagged
@@ -73152,6 +73106,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.06209, y: 5.563346, z: 1.2358093}
   m_Center: {x: 1.4683175, y: 0.006758213, z: 0.11790585}
+--- !u!114 &2143277367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143277364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d862647a4f771848bbb8773bd794501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_boot: {fileID: 1559487984}
+  m_bootParticles: {fileID: 307062448}
+  m_defaultPosition: {x: 0.0000006103515, y: 2.967564, z: -0.703512}
+  m_stompedPosition: {x: 0.0000006103515, y: 1.686, z: -0.703512}
+  m_stompTime: 0.1
+  m_stayTime: 1
+  m_retractTime: 0.5
 --- !u!1001 &2145934474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74321,6 +74294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595853611734224602, guid: a48bfcfa56a0cc8459cd9297baa285ed,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.967564
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a48bfcfa56a0cc8459cd9297baa285ed, type: 3}

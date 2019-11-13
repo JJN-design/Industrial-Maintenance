@@ -10,8 +10,8 @@ public class AssemblyLine : MonoBehaviour
 	[Tooltip("The list of nodes, from start to end\nMachines must be in the order: Woodchipper, Painter, Press, Boot")]
 	[SerializeField] private AssemblyNode[] m_nodes;
 
-	[Tooltip("The boot explosion particle system")]
-	public ParticleSystem m_bootParticles;
+	[Tooltip("The boot script")]
+	public Boot m_boot;
 
 	/// <summary>
 	/// Gets the node list
