@@ -28,6 +28,7 @@ public class AssemblyLine : MonoBehaviour
 	public void CreateBox()
 	{
 		GameObject newBox = Instantiate(m_boxPrefab, m_nodes[0].transform);
+		newBox.transform.position = m_nodes[0].transform.position;
 		newBox.GetComponent<AssemblyBox>().Create(this, m_manager);
 	}
 }

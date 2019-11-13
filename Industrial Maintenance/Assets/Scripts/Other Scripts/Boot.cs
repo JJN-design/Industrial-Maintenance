@@ -74,7 +74,7 @@ public class Boot : MonoBehaviour
 				{
 					m_stompState = StompState.STOMPED;
 					m_timer -= m_stompTime;
-					if(m_correctBox)
+					if(!m_correctBox)
 						m_bootParticles.Play();
 					return;
 				}
