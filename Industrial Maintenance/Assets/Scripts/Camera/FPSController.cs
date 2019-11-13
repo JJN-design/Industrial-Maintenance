@@ -22,6 +22,9 @@ public class FPSController : MonoBehaviour
 	[SerializeField] private ScoreUI m_scoreUI;
 	public ScoreUI GetUI() { return m_scoreUI; }
 
+	[Tooltip("The index of the main menu scene")]
+	[SerializeField] private int m_mainMenuIndex;
+
 	//Whether or not the player can move
 	private bool m_canMove = true;
 
@@ -35,8 +38,9 @@ public class FPSController : MonoBehaviour
 	private CharacterController m_controller;
 	
 	//The velocity of the thing
-	
 	private Vector3 m_velocity;
+
+	private bool m_scoreOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -77,9 +81,17 @@ public class FPSController : MonoBehaviour
 
 		if(Input.GetButtonDown("Cancel"))
 		{
-			DisableMovement();
-			m_scoreUI.ShowScores();
-			m_scoreUI.UpdateFailed("Player hit Escape.");
+			if(!m_scoreOpen)
+			{
+				DisableMovement();
+				m_scoreUI.ShowScores();
+				m_scoreUI.UpdateFailed("Player hit Escape.");
+				m_scoreOpen = true;
+			}
+			else
+			{
+				UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(m_mainMenuIndex, UnityEngine.SceneManagement.LoadSceneMode.Single);
+			}
 		}
     }
 
