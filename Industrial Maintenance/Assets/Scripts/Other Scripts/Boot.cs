@@ -19,10 +19,12 @@ public class Boot : MonoBehaviour
 	[SerializeField] private ParticleSystem m_bootParticles;
 
 	[Header("Positional Variables")]
-	[Tooltip("The position of the boot when resting")]
-	[SerializeField] private Vector3 m_defaultPosition;
-	[Tooltip("The position of the boot when fully down")]
-	[SerializeField] private Vector3 m_stompedPosition;
+	//the default vector3 position of the boot
+	private Vector3 m_defaultPosition;
+	//the stomped vector3 position of the boot
+	private Vector3 m_stompedPosition;
+	[Tooltip("How much in the Y axis the boot should move when stomped down")]
+	[SerializeField] private float m_yMovement;
 
 	[Header("Timing Variables")]
 	[Tooltip("How quickly this boot should stomp down")]
@@ -41,6 +43,22 @@ public class Boot : MonoBehaviour
 	//Whether to play the particles or not
 	private bool m_correctBox;
 
+	/// <summary>
+	/// code to be called on scene load
+	/// </summary>
+	private void Awake()
+	{
+		m_defaultPosition = m_boot.transform.position;
+
+		Vector3 stompPos = m_defaultPosition;
+		stompPos.y += m_yMovement;
+
+		m_stompedPosition = stompPos;
+	}
+
+	/// <summary>
+	/// code to be called each frame
+	/// </summary>
 	private void Update()
 	{
 		switch(m_stompState)

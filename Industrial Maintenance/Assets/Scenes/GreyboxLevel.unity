@@ -54445,6 +54445,7 @@ MonoBehaviour:
   m_drag: 10
   m_mouseCam: {fileID: 1338512920}
   m_scoreUI: {fileID: 389937276}
+  m_mainMenuIndex: 0
 --- !u!1001 &1509059057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73120,8 +73121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_boot: {fileID: 1559487984}
   m_bootParticles: {fileID: 307062448}
-  m_defaultPosition: {x: 0.0000006103515, y: 2.967564, z: -0.703512}
-  m_stompedPosition: {x: 0.0000006103515, y: 1.686, z: -0.703512}
+  m_yMovement: -1.25
   m_stompTime: 0.1
   m_stayTime: 1
   m_retractTime: 0.5

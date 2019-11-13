@@ -80,10 +80,13 @@ public class MachineManager : MonoBehaviour
 	/// </summary>
 	public void FailLevel()
 	{
-		m_failed = true;
-		m_playerController.DisableMovement();
-		m_playerController.GetUI().ShowScores();
-		ScoreManager.FailLevel();
+		if(!m_failed)
+		{
+			m_failed = true;
+			m_playerController.DisableMovement();
+			m_playerController.GetUI().ShowScores();
+			ScoreManager.FailLevel();
+		}
 	}
 
 	/// <summary>
