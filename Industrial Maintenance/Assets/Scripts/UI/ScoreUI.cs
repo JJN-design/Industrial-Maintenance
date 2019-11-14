@@ -44,9 +44,12 @@ public class ScoreUI : MonoBehaviour
 		secondsSurvived[2] -= (minutesSurvived[2] * 60);
 
 		//update high scores
-		m_firstHighScoreText.text = highScores[0].name + " / " + highScores[0].score.ToString() + " / " + minutesSurvived[0] + ":" + secondsSurvived[0];
-		m_secondHighScoreText.text = highScores[1].name + " / " + highScores[1].score.ToString() + " / " + minutesSurvived[1] + ":" + secondsSurvived[1];
-		m_thirdHighScoreText.text = highScores[2].name + " / " + highScores[2].score.ToString() + " / " + minutesSurvived[2] + ":" + secondsSurvived[2];
+		if(m_firstHighScoreText != null)
+			m_firstHighScoreText.text = highScores[0].name + " / " + highScores[0].score.ToString() + " / " + minutesSurvived[0] + ":" + secondsSurvived[0];
+		if(m_secondHighScoreText != null)
+			m_secondHighScoreText.text = highScores[1].name + " / " + highScores[1].score.ToString() + " / " + minutesSurvived[1] + ":" + secondsSurvived[1];
+		if(m_thirdHighScoreText != null)
+			m_thirdHighScoreText.text = highScores[2].name + " / " + highScores[2].score.ToString() + " / " + minutesSurvived[2] + ":" + secondsSurvived[2];
 	}
 
 	/// <summary>
