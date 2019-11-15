@@ -34,6 +34,16 @@ public class Boot : MonoBehaviour
 	[Tooltip("How long the boot should take to retract")]
 	[SerializeField] private float m_retractTime;
 
+	[Header("Audio")]
+	[Tooltip("The audio source for boot piston sounds")]
+	[SerializeField] private AudioSource m_pistonAudioSource;
+	[Tooltip("The audio source for box noises")]
+	[SerializeField] private AudioSource m_boxAudioSource;
+	[Tooltip("The audio clip for a flattened box")]
+	[SerializeField] private AudioClip m_flattenBoxAudio;
+	[Tooltip("The audio clip for a smashed box")]
+	[SerializeField] private AudioClip m_smashedBoxAudio;
+
 	//the current state of the boot
 	private StompState m_stompState = StompState.STATIC;
 	
@@ -75,7 +85,15 @@ public class Boot : MonoBehaviour
 					m_stompState = StompState.STOMPED;
 					m_timer -= m_stompTime;
 					if(!m_correctBox)
+					{
+						m_boxAudioSource.clip = m_smashedBoxAudio;
 						m_bootParticles.Play();
+					}
+					else
+					{
+						m_boxAudioSource.clip = m_flattenBoxAudio;
+					}
+					m_boxAudioSource.Play();
 					return;
 				}
 				//calculate percentage
@@ -128,6 +146,7 @@ public class Boot : MonoBehaviour
 	/// <param name="correctBox">Whether or not the box was a correct box</param>
 	public void Stomp(bool correctBox)
 	{
+		m_pistonAudioSource.Play();
 		m_correctBox = correctBox;
 		m_stompState = StompState.STOMPING;
 		m_timer = 0.0f;

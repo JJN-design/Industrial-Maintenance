@@ -144,7 +144,10 @@ public class AssemblyBox : MonoBehaviour
 	{
 		//Increase score if all machines were working
 		if (m_correctAssembly)
+		{
 			ScoreManager.AddScore(1);
+			m_assemblyLine.m_boxCompleteAudio.Play();
+		}
 
 		//destroy self
 		Destroy(gameObject);
