@@ -13,6 +13,9 @@ public class AssemblyLine : MonoBehaviour
 	[Tooltip("The boot script")]
 	public Boot m_boot;
 
+	[Tooltip("The audio source for box completion")]
+	public AudioSource m_boxCompleteAudio;
+
 	/// <summary>
 	/// Gets the node list
 	/// </summary>

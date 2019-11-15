@@ -15,7 +15,11 @@ public class RattlingPipes : MonoBehaviour
 	[Tooltip("How fast this pipe shakes in each axis")]
 	[SerializeField] private Vector3 m_shakeSpeed; 
 	[Tooltip("How much this pipe shakes in each axis")]
-	[SerializeField] private Vector3 m_shakeIntensity; 
+	[SerializeField] private Vector3 m_shakeIntensity;
+
+	[Header("Audio")]
+	[Tooltip("The audio source for a rattling pipe")]
+	[SerializeField] private AudioSource m_rattleNoise;
 
 	/// <summary>
 	/// Set starting position
@@ -52,6 +56,7 @@ public class RattlingPipes : MonoBehaviour
 	public void StartRattling()
 	{
 		m_isRattling = true;
+		m_rattleNoise.Play();
 	}
 
 	/// <summary>
@@ -61,5 +66,6 @@ public class RattlingPipes : MonoBehaviour
 	{
 		transform.position = m_startPos;
 		m_isRattling = false;
+		m_rattleNoise.Stop();
 	}
 }
