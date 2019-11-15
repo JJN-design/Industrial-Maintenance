@@ -29,8 +29,8 @@ public class HighScoreUI : MonoBehaviour
 		secondsSurvived[2] -= (minutesSurvived[2] * 60);
 
 		//update text displays
-		m_firstHighScoreText.text = highScores[0].name + " / " + highScores[0].score.ToString() + " / " + minutesSurvived[0] + ":" + secondsSurvived[0].ToString("#.00");
-		m_secondHighScoreText.text = highScores[1].name + " / " + highScores[1].score.ToString() + " / " + minutesSurvived[1] + ":" + secondsSurvived[1].ToString("#.00");
-		m_thirdHighScoreText.text = highScores[2].name + " / " + highScores[2].score.ToString() + " / " + minutesSurvived[2] + ":" + secondsSurvived[2].ToString("#.00");
+		m_firstHighScoreText.text = highScores[0].name + " " + highScores[0].score.ToString() + " " + minutesSurvived[0] + ":" + secondsSurvived[0].ToString("#.00");
+		m_secondHighScoreText.text = highScores[1].name + " " + highScores[1].score.ToString() + " " + minutesSurvived[1] + ":" + secondsSurvived[1].ToString("#.00");
+		m_thirdHighScoreText.text = highScores[2].name + " " + highScores[2].score.ToString() + " " + minutesSurvived[2] + ":" + secondsSurvived[2].ToString("#.00");
 	}
 }
